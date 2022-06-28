@@ -50,7 +50,7 @@ const Work = ({ projects, meta }) => (
                 },
             ].concat(meta)}
         />
-        <Layout>
+        <>
             <WorkTitle>
                 Work
             </WorkTitle>
@@ -58,20 +58,20 @@ const Work = ({ projects, meta }) => (
                 {projects.map((project, i) => (
                     <ProjectCard
                         key={i}
-                        category={project.node.project_category}
-                        title={project.node.project_title}
-                        description={project.node.project_preview_description}
-                        thumbnail={project.node.project_preview_thumbnail}
-                        uid={project.node._meta.uid}
+                        category={project.node.data.project_category.text}
+                        title={project.node.data.project_title.text}
+                        description={project.node.data.project_preview_description.text}
+                        thumbnail={project.node.data.project_preview_thumbnail.fluid}
+                        uid={project.node.uid}
                     />
                 ))}
             </>
-        </Layout>
+        </>
     </>
 );
 
 export default ({ data }) => {
-    const projects = data.prismic.allProjects.edges;
+    const projects = data.allPrismicProject.edges;
     const meta = data.site.siteMetadata;
     if (!projects) return null;
 
@@ -86,22 +86,41 @@ Work.propTypes = {
 
 export const query = graphql`
     {
-        prismic {
-            allProjects {
-                edges {
-                    node {
-                        project_title
-                        project_preview_description
-                        project_preview_thumbnail
-                        project_category
-                        project_post_date
-                        _meta {
-                            uid
-                        }
-                    }
+      allPrismicProject {
+        edges {
+          node {
+            data {
+              project_category {
+                text
+              }
+              project_description {
+                html
+                text
+              }
+              project_hero_image {
+                fluid {
+                  src
                 }
+              }
+              project_post_date
+              project_preview_description {
+                html
+                text
+              }
+              project_title {
+                html
+                text
+              }
+              project_preview_thumbnail {
+                fluid {
+                  src
+                }
+              }
             }
+            uid
+          }
         }
+      }
         site {
             siteMetadata {
                 title
@@ -111,4 +130,3 @@ export const query = graphql`
         }
     }
 `
-

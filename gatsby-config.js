@@ -1,8 +1,8 @@
 module.exports = {
   siteMetadata: {
-    title: `Prist | Gatsby & Prismic Starter`,
-        description: `A starter powered by Gatsby and Prismic to showcase portfolios and blogs.`,
-    author: `Marguerite Roth | marguerite.io`,
+    title: `Elyseos | Sacramental Ecosystem`,
+        description: `Elyseos.`,
+    author: `Elyseos | elyseos.com`,
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
@@ -14,6 +14,7 @@ module.exports = {
     `gatsby-plugin-resolve-src`,
     `gatsby-plugin-remove-trailing-slashes`,
     `gatsby-plugin-emotion`,
+    `gatsby-plugin-image`,
     {
       resolve: `gatsby-source-filesystem`,
       options: {
@@ -24,11 +25,27 @@ module.exports = {
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
     {
-        resolve: 'gatsby-source-prismic-graphql',
-        options: {
-            repositoryName: 'prist', // (REQUIRED, replace with your own)
-            linkResolver: () => post => `/${post.uid}`,
-        }
+    resolve: 'gatsby-source-prismic',
+    options: {
+
+      repositoryName: 'kannalaunch',
+      accessToken: 'MC5ZclY3b3hFQUFDUUFXSEdF.Fe-_ve-_vTjvv73vv73vv71AIyo_AWoJTO-_ve-_vVHvv73vv73vv73vv73vv70577-9RA7vv709Okwr',
+      customTypesApiToken: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0eXBlIjoibWFjaGluZTJtYWNoaW5lIiwiZGJpZCI6Imthbm5hbGF1bmNoLTIxNGJiZDA2LTViNzYtNDk5Mi04ZDdhLTNiNTFmOThmNmU0MV80IiwiZGF0ZSI6MTY1NjA2MTI2OSwiZG9tYWluIjoia2FubmFsYXVuY2giLCJpYXQiOjE2NTYwNjEyNjl9.RaCsJ7aJdmH3uUmhoHVEHC4v42ee8qFvwFBFUDnMeXQ'
+    },
+  },
+    // {
+    //     resolve: 'gatsby-source-prismic-graphql',
+    //     options: {
+    //         repositoryName: 'kannalaunch', // (REQUIRED, replace with your own)
+    //         linkResolver: () => post => `/${post.uid}`,
+    //     }
+    // },
+    {
+     resolve: '@chakra-ui/gatsby-plugin',
+     options: {
+       resetCSS: true,
+       isUsingColorMode: true,
+     },
     },
     {
       resolve: `gatsby-plugin-manifest`,

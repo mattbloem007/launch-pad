@@ -67,7 +67,7 @@ const Blog = ({ posts, meta }) => (
                 },
             ].concat(meta)}
         />
-        <Layout>
+        <>
             <BlogTitle>
                 Blog
             </BlogTitle>
@@ -75,21 +75,21 @@ const Blog = ({ posts, meta }) => (
                 {posts.map((post, i) => (
                     <PostCard
                         key={i}
-                        author={post.node.post_author}
-                        category={post.node.post_category}
-                        title={post.node.post_title}
-                        date={post.node.post_date}
-                        description={post.node.post_preview_description}
-                        uid={post.node._meta.uid}
+                        author={post.node.data.post_author}
+                        category={post.node.data.post_category.text}
+                        title={post.node.data.post_title.text}
+                        date={post.node.data.post_date}
+                        description={post.node.post_preview_description.text}
+                        uid={post.node.uid}
                     />
                 ))}
             </BlogGrid>
-        </Layout>
+        </>
     </>
 );
 
 export default ({ data }) => {
-    const posts = data.prismic.allPosts.edges;
+    const posts = data.allPrismicPost.edges;
     const meta = data.site.siteMetadata;
     if (!posts) return null;
 
@@ -106,22 +106,41 @@ Blog.propTypes = {
 
 export const query = graphql`
     {
-        prismic {
-            allPosts(sortBy: post_date_DESC) {
-                edges {
-                    node {
-                        post_title
-                        post_date
-                        post_category
-                        post_preview_description
-                        post_author
-                        _meta {
-                            uid
-                        }
+            allPrismicPost(sort: {fields: data___post_date, order: DESC}) {
+              edges {
+                node {
+                  data {
+                    post_author
+                    post_date
+                    post_title {
+                      text
+                      html
                     }
+                    post_preview_description {
+                      html
+                      text
+                    }
+                    post_hero_image {
+                      fluid {
+                        src
+                      }
+                    }
+                    post_hero_annotation {
+                      html
+                      text
+                    }
+                    post_category {
+                      text
+                    }
+                    post_body {
+                      html
+                      text
+                    }
+                  }
+                  uid
                 }
+              }
             }
-        }
         site {
             siteMetadata {
                 title
@@ -131,4 +150,3 @@ export const query = graphql`
         }
     }
 `
-

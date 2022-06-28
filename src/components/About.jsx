@@ -83,7 +83,7 @@ const AboutActions = styled("div")`
 const About = ({ bio, socialLinks }) => (
     <AboutContainer>
         <AboutLinkContainer>
-            {socialLinks.map((social, i) => (
+            {/**socialLinks.map((social, i) => (
                 <AboutLink
                     key={i}
                     href={social.about_link[0].spans[0].data.url}
@@ -91,7 +91,7 @@ const About = ({ bio, socialLinks }) => (
                     {social.about_link[0].text}
                     <span>&#8594;</span>
                 </AboutLink>
-            ))}
+            ))*/}
         </AboutLinkContainer>
         <AboutBio>
             {RichText.render(bio)}

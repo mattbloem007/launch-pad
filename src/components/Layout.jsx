@@ -9,11 +9,12 @@ import dimensions from "styles/dimensions";
 import Footer from "components/Footer";
 import Header from "components/Header";
 import 'styles/fonts.scss';
+//padding-left: ${dimensions.paddingHorizontalDesktop}em;
+//padding-right: ${dimensions.paddingHorizontalDesktop}em;
 
 const LayoutContainer = styled.div`
     max-width: ${dimensions.maxwidthDesktop}px;
-    padding-left: ${dimensions.paddingHorizontalDesktop}em;
-    padding-right: ${dimensions.paddingHorizontalDesktop}em;
+
     margin: 0 auto;
 
     @media(max-width: ${dimensions.maxwidthTablet}px) {

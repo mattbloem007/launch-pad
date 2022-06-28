@@ -9,65 +9,124 @@ const wrapper = promise =>
         return result
     });
 
+    exports.onCreateWebpackConfig = ({
+      stage,
+      rules,
+      loaders,
+      plugins,
+      actions,
+    }) => {
+      actions.setWebpackConfig({
+        module: {
+          rules: [
+            {
+              test: /\.mjs$/,
+              include: /node_modules/,
+              type: 'javascript/auto',
+            },
+          ],
+        },
+        plugins: [
+          plugins.define({
+            __DEVELOPMENT__: stage === `develop` || stage === `develop-html`,
+          }),
+        ],
+      })
+    }
+
 exports.createPages = async ({ graphql, actions }) => {
     const { createPage } = actions;
 
     const result = await wrapper(
         graphql(`
         {
-            prismic {
-                allProjects {
-                    edges {
-                        node {
-                            project_title
-                            project_preview_description
-                            project_preview_thumbnail
-                            project_category
-                            project_post_date
-                            _meta {
-                                uid
-                            }
-                        }
+          allPrismicPost {
+            edges {
+              node {
+                data {
+                  post_author
+                  post_date
+                  post_title {
+                    text
+                    html
+                  }
+                  post_preview_description {
+                    html
+                    text
+                  }
+                  post_hero_image {
+                    fluid {
+                      src
                     }
+                  }
+                  post_hero_annotation {
+                    html
+                    text
+                  }
+                  post_category {
+                    text
+                  }
+                  post_body {
+                    html
+                    text
+                  }
                 }
-                allPosts {
-                    edges {
-                        node {
-                            post_title
-                            post_hero_image
-                            post_hero_annotation
-                            post_date
-                            post_category
-                            post_body
-                            post_preview_description
-                            post_author
-                            _meta {
-                                uid
-                            }
-                        }
-                    }
-                }
+                uid
+              }
             }
+          }
+
+          allPrismicProject {
+            edges {
+              node {
+                data {
+                  project_category {
+                    text
+                  }
+                  project_description {
+                    html
+                    text
+                  }
+                  project_hero_image {
+                    fluid {
+                      src
+                    }
+                  }
+                  project_post_date
+                  project_preview_description {
+                    html
+                    text
+                  }
+                  project_title {
+                    html
+                    text
+                  }
+                }
+                uid
+              }
+            }
+          }
         }
     `)
     )
 
-    const projectsList = result.data.prismic.allProjects.edges;
-    const postsList = result.data.prismic.allPosts.edges;
+    const projectsList = result.data.allPrismicProject.edges;
+    const postsList = result.data.allPrismicPost.edges;
 
     const projectTemplate = require.resolve('./src/templates/project.jsx');
     const postTemplate = require.resolve('./src/templates/post.jsx');
 
     projectsList.forEach(edge => {
         // The uid you assigned in Prismic is the slug!
+        console.log("Edge", edge)
         createPage({
             type: 'Project',
             match: '/work/:uid',
-            path: `/work/${edge.node._meta.uid}`,
+            path: `/work/${edge.node.uid}`,
             component: projectTemplate,
             context: {
                 // Pass the unique ID (uid) through context so the template can filter by it
-                uid: edge.node._meta.uid,
+                uid: edge.node.uid,
             },
         })
     })
@@ -76,10 +135,10 @@ exports.createPages = async ({ graphql, actions }) => {
         createPage({
             type: 'Project',
             match: '/blog/:uid',
-            path: `/blog/${edge.node._meta.uid}`,
+            path: `/blog/${edge.node.uid}`,
             component: postTemplate,
             context: {
-                uid: edge.node._meta.uid,
+                uid: edge.node.uid,
             },
         })
     })

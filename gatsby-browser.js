@@ -8,3 +8,7 @@
 // const { linkResolver } = require('./src/utils/prismic-configuration');
 
 // registerLinkResolver(linkResolver);
+
+import { wrapPageElement as wrap } from './src/root-wrapper'
+
+export const wrapPageElement = wrap

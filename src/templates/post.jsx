@@ -96,7 +96,7 @@ const Post = ({ post, meta }) => {
     return (
         <>
             <Helmet
-                title={`${post.post_title[0].text} | Prist, Gatsby & Prismic Starter`}
+                title={`${post.data.post_title.text} | Prist, Gatsby & Prismic Starter`}
                 titleTemplate={`%s | ${meta.title}`}
                 meta={[
                     {
@@ -105,7 +105,7 @@ const Post = ({ post, meta }) => {
                     },
                     {
                         property: `og:title`,
-                        content: `${post.post_title[0].text} | Prist, Gatsby & Prismic Starter`,
+                        content: `${post.data.post_title.text} | Prist, Gatsby & Prismic Starter`,
                     },
                     {
                         property: `og:description`,
@@ -133,39 +133,39 @@ const Post = ({ post, meta }) => {
                     },
                 ].concat(meta)}
             />
-            <Layout>
+            <>
                 <PostCategory>
-                    {RichText.render(post.post_category)}
+                    {RichText.render(post.data.post_category.richText)}
                 </PostCategory>
                 <PostTitle>
-                    {RichText.render(post.post_title)}
+                    {RichText.render(post.data.post_title.richText)}
                 </PostTitle>
                 <PostMetas>
                     <PostAuthor>
-                        {post.post_author}
+                        {post.data.post_author.text}
                     </PostAuthor>
                     <PostDate>
-                        <Moment format="MMMM D, YYYY">{post.post_date}</Moment>
+                        <Moment format="MMMM D, YYYY">{post.data.post_date}</Moment>
                     </PostDate>
                 </PostMetas>
                     {post.post_hero_image && (
                     <PostHeroContainer>
                         <img src={post.post_hero_image.url} alt="bees" />
                         <PostHeroAnnotation>
-                            {RichText.render(post.post_hero_annotation)}
+                            {RichText.render(post.data.post_hero_annotation.richText)}
                         </PostHeroAnnotation>
                     </PostHeroContainer>
                 )}
                 <PostBody>
-                    {RichText.render(post.post_body)}
+                    {RichText.render(post.data.post_body.richText)}
                 </PostBody>
-            </Layout>
+            </>
         </>
     )
 }
 
 export default ({ data }) => {
-    const postContent = data.prismic.allPosts.edges[0].node;
+    const postContent = data.prismic.allPrismicPost.edges[0].node;
     const meta = data.site.siteMetadata;
     return (
         <Post post={postContent} meta={meta}/>
@@ -179,25 +179,45 @@ Post.propTypes = {
 
 export const query = graphql`
     query PostQuery($uid: String) {
-        prismic {
-            allPosts(uid: $uid) {
-                edges {
-                    node {
-                        post_title
-                        post_hero_image
-                        post_hero_annotation
-                        post_date
-                        post_category
-                        post_body
-                        post_author
-                        post_preview_description
-                        _meta {
-                            uid
-                        }
-                    }
+      allPrismicPost(filter:{uid: {eq: $uid}}) {
+        edges {
+          node {
+            data {
+              post_author
+              post_date
+              post_title {
+                text
+                html
+                richText
+              }
+              post_preview_description {
+                html
+                text
+              }
+              post_hero_image {
+                fluid {
+                  src
                 }
+              }
+              post_hero_annotation {
+                html
+                text
+                richText
+              }
+              post_category {
+                text
+                richText
+              }
+              post_body {
+                html
+                text
+                richText
+              }
             }
+            uid
+          }
         }
+      }
         site {
             siteMetadata {
                 title
