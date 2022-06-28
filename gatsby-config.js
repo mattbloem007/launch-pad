@@ -1,3 +1,7 @@
+require("dotenv").config({
+  path: `.env.${process.env.NODE_ENV}`,
+})
+
 module.exports = {
   siteMetadata: {
     title: `Elyseos | Sacramental Ecosystem`,
@@ -29,8 +33,8 @@ module.exports = {
     options: {
 
       repositoryName: 'kannalaunch',
-      accessToken: 'MC5ZclY3b3hFQUFDUUFXSEdF.Fe-_ve-_vTjvv73vv73vv71AIyo_AWoJTO-_ve-_vVHvv73vv73vv73vv73vv70577-9RA7vv709Okwr',
-      customTypesApiToken: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0eXBlIjoibWFjaGluZTJtYWNoaW5lIiwiZGJpZCI6Imthbm5hbGF1bmNoLTIxNGJiZDA2LTViNzYtNDk5Mi04ZDdhLTNiNTFmOThmNmU0MV80IiwiZGF0ZSI6MTY1NjA2MTI2OSwiZG9tYWluIjoia2FubmFsYXVuY2giLCJpYXQiOjE2NTYwNjEyNjl9.RaCsJ7aJdmH3uUmhoHVEHC4v42ee8qFvwFBFUDnMeXQ'
+      accessToken: process.env.ACCESS_TOKEN,
+      customTypesApiToken: process.env.CUSTOM_API_TOKEN
     },
   },
     // {
