@@ -8,14 +8,15 @@ import typeStyles from 'styles/typography';
 import dimensions from "styles/dimensions";
 import Footer from "components/Footer";
 import Header from "components/Header";
+import NavBar from "components/NavBar"
 import 'styles/fonts.scss';
 //padding-left: ${dimensions.paddingHorizontalDesktop}em;
 //padding-right: ${dimensions.paddingHorizontalDesktop}em;
+//    max-width: ${dimensions.maxwidthDesktop}px;
 
 const LayoutContainer = styled.div`
-    max-width: ${dimensions.maxwidthDesktop}px;
 
-    margin: 0 auto;
+    margin: 0;
 
     @media(max-width: ${dimensions.maxwidthTablet}px) {
         padding-left: ${dimensions.paddingHorizontalTablet}em;
@@ -47,7 +48,7 @@ const Layout = ({ children }) => (
             <LayoutContainer className="div">
                 <Global styles={[globalStyles, typeStyles]} />
                 <div className="Layout">
-                    <Header />
+                  <NavBar />
                     <main className="Layout__content">
                         {children}
                     </main>

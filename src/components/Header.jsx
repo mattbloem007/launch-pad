@@ -5,11 +5,14 @@ import colors from "styles/colors";
 import dimensions from "styles/dimensions";
 import Logo from "components/_ui/Logo";
 import logo from '../images/Elyseos Logo.png'
-import { Text, Button } from '@chakra-ui/react'
+import { Text, Button, Heading } from '@chakra-ui/react'
 import { Stack } from "@chakra-ui/layout"
-import { Menu, X } from "react-feather"
+import { ArrowBackIcon } from '@chakra-ui/icons'
+
 
 const HeaderContainer = styled("div")`
+margin-left: 280px;
+margin-right: 280px;
 `
 
 const HeaderContent = styled("div")`
@@ -109,29 +112,17 @@ const Header = () => {
       <HeaderContainer>
           <HeaderContent>
             <Stack spacing="5" w="full" direction="row" alignItems="flex-start" p="2">
-              <Link to="/">
-                  <img style={{marginTop: "36px"}} src={logo}/>
-              </Link>
                   <Stack spacing="5" w="full" direction="column" alignItems="flex-start" p="2">
-                    <Text my="5" textAlign="left" w="full" fontSize="4xl" fontWeight="medium" color={"#ed6f1b"} style={{marginTop: "0px", marginBottom:"0px"}}>Project Name</Text>
-                    <Text flexGrow="2" color={"#ed6f1b"} style={{marginTop: "0px"}}>A subtitle which describes the project in simple language</Text>
+                    <Heading fontSize="48px" style={{marginBottom: "0px"}}>Project Name</Heading>
+                    <Text flexGrow="2" color={"navy"} fontSize="sm" style={{marginTop: "0px"}}>A subtitle which describes the project in simple language</Text>
                   </Stack>
               </Stack>
-              <Stack spacing="5" w="full" direction="row" alignItems="center" justifyContent="flex-end" p="2">
-                <Button size="md" colorScheme='white' color='orange' border={"2px"} borderColor="orange" borderRadius={"44px"} style={{width: "44%"}}>
-                  Connect Wallet
-                </Button>
-                <StyledButton
-                  onClick={toggleMobileMenu}
-                  style={{ color: "black", background: "none" }}
-                >
-                  {mobileMenu.open ? (
-                    <X stroke="black" size={24} alt="close menu" />
-                  ) : (
-                    <Menu stroke="black" size={24} alt="open menu" />
-                  )}
-                </StyledButton>
-              </Stack>
+              <Link to='/'>
+                <Stack spacing="5" w="sm" direction="row" alignItems="center" justifyContent="center" p="2">
+                  <ArrowBackIcon />
+                  <Text color={"navy"} style={{marginTop: "0px", marginLeft: "5px"}}>Back</Text>
+                </Stack>
+              </Link>
           </HeaderContent>
       </HeaderContainer>
   )

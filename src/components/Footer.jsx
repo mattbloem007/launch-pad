@@ -4,17 +4,88 @@ import styled from "@emotion/styled";
 import colors from "styles/colors";
 import Logo from "components/_ui/Logo";
 import spooch from "images/oscar-icon.png"
+import twitter from "images/Social Media Icons Twiteer - V1.0.png"
+import github from "images/Social Media Icons Github- V1.0.png"
+import medium from "images/Social Media Icons M - V1.0.png"
+import email from "images/Social Media Icons Email - V1.0.png"
+import discord from "images/Social Media Icons Discord - V1.0.png"
+import telegram from "images/Social Media Icons Telegram - V1.0.png"
+import facebook from "images/Social Media Icons Facebook- V1.0.png"
+import instagram from "images/Social Media Icons Instagram - V1.0.png"
+import youtube from "images/Social Media Icons YouTube - V1.0.png"
+import soundcloud from "images/Social Media Icons Soundclourd- V1.0.png"
+import spotify from "images/Social Media Icons Spotify - V1.0.png"
+import rss from "images/Social Media Icons RSS - V1.0.png"
+import dimensions from "styles/dimensions";
+
+const FooterWrapper = styled("footer")`
+  background-color: ${colors.mush};
+`
+
+const FooterColumn = styled("div")`
+  span {
+    font-size: 16px;
+    font-family: Parisine Plus Std;
+    font-weight: bold;
+    color: ${colors.white};
+  }
+  ul {
+    list-style: none;
+    margin: 16px 0;
+    padding: 0;
+    color: ${colors.white};
+    li {
+      margin-bottom: 12px;
+      font-family: Parisine Plus Std;
+      font-size: 16px;
+      margin-left: 2px;
+    }
+  }
+  @media (max-width: ${dimensions.maxwidthMobile}px) {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+  }
+`
 
 const FooterContainer = styled("div")`
-    padding-top: 3.75em;
-    padding-bottom: 3em;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    position: relative;
+    max-width: 100%;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 0px;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-column-gap: 32px;
+    padding-top: 15px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 85%;
+    justify-content: start;
+
+    @media (max-width: ${dimensions.maxwidthMobile}px) {
+      grid-template-columns: 1fr 1fr;
+      grid-gap: 32px;
+    }
 
     svg {
         max-width: 50px;
     }
+`
+
+const SocialContainer = styled("div")`
+  display: grid;
+  grid-template-columns: 40px 40px 40px 40px;
+  align-items: center;
+  margin-right: 20px;
+  column-gap: 30px;
+`
+
+const SocialSymbol = styled("img")`
+  height: 40px;
+  margin-bottom: 20px;
+  margin-top: 10px;
+  margin-right: 50px;
 `
 
 const FooterAuthor = styled("a")`
@@ -43,21 +114,93 @@ const FooterAuthor = styled("a")`
     }
 `
 
+const ListLink = styled("a")`
+    text-decoration: none;
+    color: ${colors.white};
+  :hover {
+    color: #ED6F1B;
+  }
+`
+
 const FooterSpooch = styled("img")`
     max-width: 33px;
     margin-top: 0.25em;
 `
 
 const Footer = () => (
+  <FooterWrapper id="footer">
     <FooterContainer>
-        <Link to="/">
-            <Logo />
+      <FooterColumn>
+        <span>General</span>
+        <ul>
+          <ListLink href="/home"><li>About</li></ListLink>
+          <ListLink href="/faq"><li>FAQ</li></ListLink>
+          <li>Support</li>
+        </ul>
+      </FooterColumn>
+      <FooterColumn>
+        <span>Technology</span>
+        <ul>
+          <ListLink href="/token-timelines"><li>Token</li></ListLink>
+          <ListLink href="/litepaper"><li>Litepaper</li></ListLink>
+        </ul>
+      </FooterColumn>
+      <FooterColumn>
+        <span>Community</span>
+        <ul>
+        <ListLink href="/roadmap"><li>Roadmap</li></ListLink>
+        <li>Governance</li>
+        <ListLink href="/litepaper"><li>Litepaper</li></ListLink>
+        </ul>
+      </FooterColumn>
+      <FooterColumn>
+        <span>Listings</span>
+        <ul>
+          <ListLink target="_blank" href="https://nomics.com/assets/elys-elyseos"><li>Nomics</li></ListLink>
+        </ul>
+      </FooterColumn>
+      <FooterColumn>
+      <SocialContainer>
+        <a target="_blank" href="https://t.me/joinchat/kJCUkY1WacpkZTVk">
+          <SocialSymbol src={telegram}/>
+        </a>
+        <a target="_blank" href="https://discord.gg/gY2WMAnBem">
+          <SocialSymbol src={discord} />
+        </a>
+        <a target="_blank" href="https://twitter.com/ElyseosFDN">
+          <SocialSymbol src={twitter} />
+        </a>
+        <a target="_blank" href="https://github.com/elyseos/contracts">
+          <SocialSymbol src={github} />
+        </a>
+        <a target="_blank" href="https://medium.com/@Elyseos">
+          <SocialSymbol src={medium} />
+        </a>
+        <a target="_blank" href="https://medium.com/@Elyseos">
+          <SocialSymbol src={facebook} />
+        </a>
+        <a target="_blank" href="https://medium.com/@Elyseos">
+          <SocialSymbol src={instagram} />
+        </a>
+        <a target="_blank" href="https://medium.com/@Elyseos">
+          <SocialSymbol src={youtube} />
+        </a>
+        <a target="_blank" href="https://medium.com/@Elyseos">
+          <SocialSymbol src={soundcloud} />
+        </a>
+        <a target="_blank" href="https://medium.com/@Elyseos">
+          <SocialSymbol src={spotify} />
+        </a>
+        <a target="_blank" href="https://medium.com/@Elyseos">
+          <SocialSymbol src={rss} />
+        </a>
+        <Link to="/email-signup">
+          <SocialSymbol src={email} />
         </Link>
-        <FooterAuthor href="https://www.marguerite.io/?utm_source=prist&utm_medium=footer&utm_campaign=prist_starter">
-            © 2019 — Designed & developed by Marguerite Roth
-            <FooterSpooch className="FooterSpooch" src={spooch} />
-        </FooterAuthor>
+      </SocialContainer>
+      </FooterColumn>
     </FooterContainer>
+  </FooterWrapper>
 )
 
 export default Footer;

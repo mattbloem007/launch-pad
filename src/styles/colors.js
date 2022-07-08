@@ -54,6 +54,17 @@ const colors = {
     teal500: "#17B1B1",
     teal200: "#D1EFEF",
     teal100: "#E8F7F7",
+
+    white: '#FFFFFF',
+    mush: '#5E8195',
+    navy: '#164057',
+    brownE: '#483A4B',
+    orange: '#E46B1B',
+    darkBrown: '#4F4051',
+    lavendar: '#CFADD9',
+    grey: '#707070',
+    darkGreen: '#4D9C73',
+    lightGreen: '#CFF09E'
 }
 
 export default colors;

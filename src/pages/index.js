@@ -9,12 +9,13 @@ import dimensions from "styles/dimensions";
 import About from "components/About";
 import Layout from "components/Layout";
 import ProjectCard from "components/ProjectCard";
-import telegram from "../images/telegram-black-icon.png"
-import twitter from "../images/twitter-black-icon.png"
+import kannaNFT from "../images/Sceletium Tortuosum - NFT Card - V1.0.2.png"
 import {
   Box,
   Container,
-  Stack
+  Stack,
+  Grid,
+  GridItem
 } from "@chakra-ui/layout"
 import {
   AspectRatio,
@@ -36,6 +37,7 @@ import {
   ModalFooter,
   ModalBody,
   ModalCloseButton,
+  Image,
   useDisclosure
 } from '@chakra-ui/react'
 
@@ -138,6 +140,7 @@ const SocialSymbol = styled("img")`
 const ProjectHeroContainer = styled("div")`
     display: flex;
     justify-content: flex-start;
+    flex-direction: column;
     align-items: center;
     overflow: hidden;
     position: relative;
@@ -220,139 +223,121 @@ const RenderBody = ({ home, projects, meta }) => {
                 },
             ].concat(meta)}
         />
-          <Modal onClose={onClose} size={"4xl"} isOpen={isOpen}>
-            <ModalOverlay
-              bg='none'
-              backdropFilter='auto'
-              backdropInvert='80%'
-              backdropBlur='2px'
-            />
-            <ModalContent alignItems="center" style={{background: "black", color: "white", height: "400px", width: "600px", borderRadius: "44px"}}>
-              <ModalHeader>Buy TOA NFTS</ModalHeader>
-              <ModalCloseButton />
-              <ModalBody>
-                <Stack direction="column">
-                  <Stack spacing="5" w="full" direction="row" alignItems="center" justifyContent="center" p="2">
-                    <Box fontSize='lg'>
-                      Number to buy
-                    </Box>
-                    <Box>
-                      <Input
-                      htmlSize={2}
-                      width='auto'
-                      defaultValue={nftAmount.amount}
-                      onChange={handleInputChange}
-                       />
-                    </Box>
-                  </Stack>
-                  <Stack spacing="5" w="full" direction="row" alignItems="center" justifyContent="center" p="2">
-                    <Box fontSize='lg'>
-                      USDC price
-                    </Box>
-                    <Box>
-                      $1,200
-                    </Box>
-                  </Stack>
-                  <Stack spacing="5" w="full" direction="row" alignItems="center" justifyContent="center" p="2">
-                    <Button size="lg" colorScheme='white' color='orange' border={"2px"} borderColor="orange" borderRadius={"44px"} style={{width: "100%"}}>
-                      Approve USDC
-                    </Button>
-                  </Stack>
-                </Stack>
-              </ModalBody>
-            </ModalContent>
-          </Modal>
           <ProjectHeroContainer>
-            <Tabs isFitted>
-              <TabList>
-                <Tab>Overview</Tab>
-                <Tab>TOA Metrics</Tab>
-                <Tab>Documentation</Tab>
-              </TabList>
-
-              <TabPanels style={{width: "644px"}}>
-                <TabPanel>
-                  <AspectRatio maxW='1000px' ratio={16 / 9}>
-                    <iframe
-                    title='elyseos'
-                    src='https://www.youtube.com/embed/YlU5XwqtTbY'
-                    allowFullScreen
-                    />
-                  </AspectRatio>
-                </TabPanel>
-                <TabPanel>
-                  <p>two!</p>
-                </TabPanel>
-                <TabPanel>
-                  <p>three!</p>
-                </TabPanel>
-              </TabPanels>
-            </Tabs>
-            <Container centerContent p="3" pt="0" border={"2px"} borderColor={"#ec7019"} rounded="3xl" shadow="lg" maxWidth="400px">
-                <Text my="5" textAlign="left" w="full" fontSize="5xl" fontWeight="medium" color={"#ed6f1b"}>$60,000</Text>
-                <Container px="8">
-                    <Stack spacing="5" w="full" direction="row" alignItems="center" p="2">
-                        <Text textAlign={"center"} flexGrow="2" color={"#ed6f1b"}>Raised of $250,000 Minimum</Text>
-                    </Stack>
-
-                        <Progress border={"2px"} borderColor={"#ec7019"} rounded="3xl" value={80} />
-                </Container>
-                <Stack spacing="5" w="full" direction="column" alignItems="flex-end" p="2">
-                  <Box fontSize='lg'>
-                  $1,200
-                    <Box as='span' color='gray.600' fontSize='md'>
-                      / TOA
-                    </Box>
+            <Heading> Statistics </Heading>
+            <Container centerContent p="3" pt="0" bg={"mush"} rounded="3xl" shadow="lg" maxWidth="1000px" h="232px" justifyContent="space-evenly">
+              <Text textAlign={"center"} fontSize="xl" color="white">Within the last few days...</Text>
+              <Grid templateColumns='repeat(4, 1fr)' gap={6}>
+                <GridItem>
+                  <Box borderRadius='33px' h='128px' w='216px' bg='darkBrown'>
+                    <Text textAlign={"center"} fontSize="xl" fontWeight="bold" color={"white"}>3</Text>
+                    <Text textAlign={"center"} fontSize="sm" color={"white"}> Ongoing Projects</Text>
                   </Box>
-                  <Box fontSize='lg'>
-                    50
-                    <Box as='span' color='gray.600' fontSize='md'>
-                      / 300 sold
-                    </Box>
+                </GridItem>
+                <GridItem>
+                  <Box borderRadius='33px' h='128px' w='216px' bg='darkBrown'>
+                    <Text textAlign={"center"} fontSize="xl" fontWeight="bold" color={"white"}>$60,000</Text>
+                    <Text textAlign={"center"} fontSize="sm" color={"white"}>Funds Raised</Text>
                   </Box>
-                </Stack>
-                <Button size="lg" colorScheme='white' color='orange' border={"2px"} borderColor="orange" borderRadius={"44px"} style={{width: "44%"}} onClick={onOpen}>
-                Buy Now
-                </Button>
-                <Text textAlign={"center"} flexGrow="2" color={"#ed6f1b"}>11 days Remaining</Text>
+                </GridItem>
+                <GridItem>
+                  <Box borderRadius='33px' h='128px' w='216px' bg='darkBrown'>
+                    <Text textAlign={"center"} fontSize="xl" fontWeight="bold" color={"white"}>$350M</Text>
+                    <Text textAlign={"center"} fontSize="sm" color={"white"}>Project Market Cap</Text>
+                  </Box>
+                </GridItem>
+                <GridItem>
+                  <Box borderRadius='33px' h='128px' w='216px' bg='darkBrown'>
+                    <Text textAlign={"center"} fontSize="xl" fontWeight="bold" color={"white"}>48</Text>
+                    <Text textAlign={"center"} fontSize="sm" color={"white"}>Stakeholders</Text>
+                  </Box>
+                </GridItem>
+              </Grid>
             </Container>
+            <Heading> Current & Upcoming Projects </Heading>
+            <Grid templateColumns='repeat(3, 1fr)' gap={3}>
+              <Link to='/project'>
+                <GridItem>
+                  <Box style={{display: "flex", alignContent: "flex-end", justifyContent: "center", flexWrap: "wrap"}} borderRadius='11px' h='488px' w='312px' bg='orange'>
+                    <Image h='416px' w='416px' src={kannaNFT}/>
+                    <Text textAlign={"center"} color={"white"} fontSize="lg" fontWeight="bold" lineHeight="31px"> Sceletium Project</Text>
+                    <Text textAlign={"center"} fontSize="sm" color={"white"} lineHeight="31px">It could be smugglers, it could be. That is the system</Text>
+                  </Box>
+                </GridItem>
+              </Link>
+              <GridItem>
+                <Box borderRadius='11px' h='488px' w='312px' bg='darkBrown'>
+                  <Box style={{display: "flex", alignContent: "space-around", justifyContent: "center", flexWrap: "wrap"}} borderRadius="22px" h='393px' w='280px' bg='lavendar' marginLeft={"15px"} borderColor={"darkBrown"} borderTopWidth={"6px"}>
+                    <Text textAlign={"center"} color="darkBrown" fontSize="lg" fontWeight="bold" fontStyle="italic"> Coming Soon!</Text>
+                  </Box>
+                  <Text textAlign={"center"} color={"white"} fontSize="lg" fontWeight="bold" lineHeight="31px"> Mushroom Project</Text>
+                  <Text textAlign={"center"} fontSize="sm" color={"white"} lineHeight="31px">It could be smugglers, it could be. That is the system</Text>
+                </Box>
+              </GridItem>
+              <GridItem>
+                <Box borderRadius='11px' h='488px' w='312px' bg='darkGreen'>
+                  <Box style={{display: "flex", alignContent: "space-around", justifyContent: "center", flexWrap: "wrap"}} borderRadius="22px" h='393px' w='280px' bg='lightGreen' marginLeft={"15px"} borderColor={"darkGreen"} borderTopWidth={"6px"}>
+                    <Text textAlign={"center"} color={"#4D9C73"} fontSize="lg" fontWeight="bold" fontStyle="italic"> Coming Soon!</Text>
+                  </Box>
+                  <Text textAlign={"center"} color={"white"} fontSize="lg" fontWeight="bold" lineHeight="31px"> Marijuana Project</Text>
+                  <Text textAlign={"center"} fontSize="sm" color={"white"} lineHeight="31px">It could be smugglers, it could be. That is the system</Text>
+                </Box>
+              </GridItem>
+            </Grid>
+            <Heading>Learn More</Heading>
+            <Box marginRight={"50px"} marginLeft={"50px"} w='1168px'>
+              <Text color={"navy"} textAlign={"center"} fontSize={"sm"}>What was your job when you were based here? Sanitation. Sanitation? Then how do you know how to disable the shields? I don't. I'm just here to get Rey. People are counting on us! The galaxy is counting on us--! Solo, we'll figure it out! We'll use the Force! That's not how the Force works--! Oh really, you're cold? Come on! Report. Weapon charged in fifteen minutes, sir. Hey! The longer we're here, less luck we're going to have. The shields? I have an idea about that.</Text>
+              <br/>
+              <Text color={"navy"} textAlign={"center"}>I didn't know there was this much green in the whole galaxy. Hey, Solo -- I'm not sure what we're walking into here -- D'you just call me Solo? Sorry. Han-- Mr.</Text>
+              <br />
+              <Text color={"navy"} textAlign={"center"}>What do we do with her? Is there a garbage chute? Trash compactor? Yeah, there is. General, their shields are down! Thank the Maker! Han did it! Send them in! Give Poe full authorization to attack. Black Leader, go to sub-lights. On your call. COMMODORE META reacts. Admiral, their weapon will fire in two minutes. The Falcon's this way. We're not done yet. You're a monster! It's just us now. Han Solo can't save you. Rey! Rey! Rey.</Text>
+              <br/>
+              <Text color={"navy"} textAlign={"center"}>But my first battle, I made a choice. I wasn't going to kill for them. So I ran. Right into you. We have their location. We tracked their reconnaissance ship to the Ileenium system. Good. Then we will crush them once and for all.Something far worse has happened to you. You know what I've come for. I know where you come from. Before you called yourself Kylo Ren. The map to Skywalker. We know you've found it, and now you're going to give it to the First Order.</Text>
+              <br/>
+              <Text color={"navy"} textAlign={"center"}>General, their shields are down! Thank the Maker! Han did it! Send them in! Give Poe full authorization to attack. Black Leader, go to sub-lights. On your call. Roger, base -- red squad, blue squad, take my lead.</Text>
+            </Box>
+            <Heading>Past Highlights / Projects Funded</Heading>
+            <Grid templateColumns='repeat(4, 0.5fr)' gap={3}>
+              <GridItem>
+                <Box borderRadius='11px' h='488px' w='312px' bg='darkBrown'>
+                  <Box style={{display: "flex", alignContent: "space-around", justifyContent: "center", flexWrap: "wrap"}} borderRadius="22px" h='393px' w='280px' bg='lavendar' marginLeft={"15px"} borderColor={"#4F4051"} borderTopWidth={"6px"}>
+                    <Text textAlign={"center"} color={"#4F4051"} fontSize="lg" fontWeight="bold" fontStyle="italic"> Sold Out!</Text>
+                  </Box>
+                  <Text textAlign={"center"} color={"white"} fontSize="lg" fontWeight="bold" lineHeight="31px">Project name 1</Text>
+                  <Text textAlign={"center"} fontSize="sm" color={"white"} lineHeight="31px">It could be smugglers, it could be. That is the system</Text>
+                </Box>
+              </GridItem>
+              <GridItem>
+                <Box borderRadius='11px' h='488px' w='312px' bg='darkBrown'>
+                  <Box style={{display: "flex", alignContent: "space-around", justifyContent: "center", flexWrap: "wrap"}} borderRadius="22px" h='393px' w='280px' bg='lavendar' marginLeft={"15px"} borderColor={"#4F4051"} borderTopWidth={"6px"}>
+                    <Text textAlign={"center"} color={"#4F4051"} fontSize="lg" fontWeight="bold" fontStyle="italic"> Sold Out!</Text>
+                  </Box>
+                  <Text textAlign={"center"} color={"white"} fontSize="lg" fontWeight="bold" lineHeight="31px">Project name 2</Text>
+                  <Text textAlign={"center"} fontSize="sm" color={"white"} lineHeight="31px">It could be smugglers, it could be. That is the system</Text>
+                </Box>
+              </GridItem>
+              <GridItem>
+                <Box borderRadius='11px' h='488px' w='312px' bg='darkBrown'>
+                  <Box style={{display: "flex", alignContent: "space-around", justifyContent: "center", flexWrap: "wrap"}} borderRadius="22px" h='393px' w='280px' bg='lavendar' marginLeft={"15px"} borderColor={"#4F4051"} borderTopWidth={"6px"}>
+                    <Text textAlign={"center"} color={"#4F4051"} fontSize="lg" fontWeight="bold" fontStyle="italic"> Sold Out!</Text>
+                  </Box>
+                  <Text textAlign={"center"} color={"white"} fontSize="lg" fontWeight="bold" lineHeight="31px">Project name 3</Text>
+                  <Text textAlign={"center"} fontSize="sm" color={"white"} lineHeight="31px">It could be smugglers, it could be. That is the system</Text>
+                </Box>
+              </GridItem>
+              <GridItem>
+                <Box borderRadius='11px' h='488px' w='312px' bg='darkBrown'>
+                  <Box style={{display: "flex", alignContent: "space-around", justifyContent: "center", flexWrap: "wrap"}} borderRadius="22px" h='393px' w='280px' bg='lavendar' marginLeft={"15px"} borderColor={"#4F4051"} borderTopWidth={"6px"}>
+                    <Text textAlign={"center"} color={"#4F4051"} fontSize="lg" fontWeight="bold" fontStyle="italic"> Sold Out!</Text>
+                  </Box>
+                  <Text textAlign={"center"} color={"white"} fontSize="lg" fontWeight="bold" lineHeight="31px">Project name 4</Text>
+                  <Text textAlign={"center"} fontSize="sm" color={"white"} lineHeight="31px">It could be smugglers, it could be. That is the system</Text>
+                </Box>
+              </GridItem>
+            </Grid>
           </ProjectHeroContainer>
-            <ProjectBody>
-            <SocialContainer>
-              <a target="_blank" href="https://t.me/joinchat/kJCUkY1WacpkZTVk">
-                <SocialSymbol src={telegram}/>
-              </a>
-              <a target="_blank" href="https://twitter.com/ElyseosFDN">
-                <SocialSymbol src={twitter} />
-              </a>
-            </SocialContainer>
-              <Stack direction="row" w="4xl">
-                <Stack spacing="5" w={"150px"} direction="column" p="2" borderRight={"2px"} borderRightStyle={"dotted"} height="200px">
-                  <Box fontSize='lg'>
-                  Background
-                  </Box>
-                  <Box fontSize='lg'>
-                    Keypoints
-                  </Box>
-                  <Box fontSize='lg'>
-                    Stakeholders
-                  </Box>
-                  <Box fontSize='lg'>
-                    Risks
-                  </Box>
-                </Stack>
-                <Stack spacing="1" w="full" direction="column" p="2" style={{overflowY: "auto", overflowX: "hidden", height: "350px"}}>
-                  <Heading> Background </Heading>
-                  <Text textAlign={"left"} flexGrow="2" color={"#ed6f1b"}>Nulla dui purus, eleifend vel, consequat non, dictum porta, nulla. Duis ante mi, laoreet ut, commodo eleifend, cursus nec, lorem. Aenean eu est. Etiam imperdiet turpis. Praesent nec augue. Nulla dui purus, eleifend vel, consequat non, dictum porta, nulla. Duis ante mi, laoreet ut, commodo eleifend, cursus nec, lorem. Aenean eu est. Etiam imperdiet turpis. Praesent nec augue.</Text>
-                  <Heading> Keypoints </Heading>
-                  <Text textAlign={"left"} flexGrow="2" color={"#ed6f1b"}>Nulla dui purus, eleifend vel, consequat non, dictum porta, nulla. Duis ante mi, laoreet ut, commodo eleifend, cursus nec, lorem. Aenean eu est. Etiam imperdiet turpis. Praesent nec augue. Nulla dui purus, eleifend vel, consequat non, dictum porta, nulla. Duis ante mi, laoreet ut, commodo eleifend, cursus nec, lorem. Aenean eu est. Etiam imperdiet turpis. Praesent nec augue.</Text>
-                  <Heading> Stakeholders </Heading>
-                  <Text textAlign={"left"} flexGrow="2" color={"#ed6f1b"}>Nulla dui purus, eleifend vel, consequat non, dictum porta, nulla. Duis ante mi, laoreet ut, commodo eleifend, cursus nec, lorem. Aenean eu est. Etiam imperdiet turpis. Praesent nec augue. Nulla dui purus, eleifend vel, consequat non, dictum porta, nulla. Duis ante mi, laoreet ut, commodo eleifend, cursus nec, lorem. Aenean eu est. Etiam imperdiet turpis. Praesent nec augue.</Text>
-                  <Heading> Risks </Heading>
-                  <Text textAlign={"left"} flexGrow="2" color={"#ed6f1b"}>Nulla dui purus, eleifend vel, consequat non, dictum porta, nulla. Duis ante mi, laoreet ut, commodo eleifend, cursus nec, lorem. Aenean eu est. Etiam imperdiet turpis. Praesent nec augue. Nulla dui purus, eleifend vel, consequat non, dictum porta, nulla. Duis ante mi, laoreet ut, commodo eleifend, cursus nec, lorem. Aenean eu est. Etiam imperdiet turpis. Praesent nec augue.</Text>
-                </Stack>
-              </Stack>
-            </ProjectBody>
+          <ProjectBody>
+          </ProjectBody>
     </>
   )
 }

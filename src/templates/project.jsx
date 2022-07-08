@@ -6,8 +6,7 @@ import colors from "styles/colors";
 import { Link, graphql } from 'gatsby';
 import { RichText } from "prismic-reactjs";
 import Layout from "components/Layout";
-import telegram from "../images/telegram-black-icon.png"
-import twitter from "../images/twitter-black-icon.png"
+
 import {
   Box,
   Container,
@@ -248,14 +247,6 @@ const Project = ({ project, meta }) => {
                     </ProjectHeroContainer>
                 )}
                 <ProjectBody>
-                <SocialContainer>
-                  <a target="_blank" href="https://t.me/joinchat/kJCUkY1WacpkZTVk">
-                    <SocialSymbol src={telegram}/>
-                  </a>
-                  <a target="_blank" href="https://twitter.com/ElyseosFDN">
-                    <SocialSymbol src={twitter} />
-                  </a>
-                </SocialContainer>
                   <Stack direction="row" w="4xl">
                     <Stack spacing="5" w={"150px"} direction="column" p="2" borderRight={"2px"} borderRightStyle={"dotted"} height="200px">
                       <Box fontSize='lg'>
