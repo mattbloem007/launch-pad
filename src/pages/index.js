@@ -170,7 +170,7 @@ const ProjectBody = styled("div")`
     }
 `
 
-const RenderBody = ({ home, projects, meta }) => {
+const RenderBody = () => {
 
   const { isOpen, onOpen, onClose } = useDisclosure()
   const [nftAmount, setNftAmount] = useState({ amount: 1 })
@@ -187,11 +187,11 @@ const RenderBody = ({ home, projects, meta }) => {
     <>
         <Helmet
             title={`Kanna Launch | Elyseos Launch Pad`}
-            titleTemplate={`%s | ${meta.title}`}
+            titleTemplate={`%s | meta.title`}
             meta={[
                 {
                     name: `description`,
-                    content: meta.description,
+                    content: 'meta.description',
                 },
                 {
                     property: `og:title`,
@@ -199,7 +199,7 @@ const RenderBody = ({ home, projects, meta }) => {
                 },
                 {
                     property: `og:description`,
-                    content: meta.description,
+                    content: 'meta.description',
                 },
                 {
                     property: `og:type`,
@@ -211,17 +211,17 @@ const RenderBody = ({ home, projects, meta }) => {
                 },
                 {
                     name: `twitter:creator`,
-                    content: meta.author,
+                    content: 'meta.author',
                 },
                 {
                     name: `twitter:title`,
-                    content: meta.title,
+                    content: 'meta.title',
                 },
                 {
                     name: `twitter:description`,
-                    content: meta.description,
+                    content: 'meta.description',
                 },
-            ].concat(meta)}
+            ]}
         />
           <ProjectHeroContainer>
             <Heading> Statistics </Heading>
@@ -344,14 +344,10 @@ const RenderBody = ({ home, projects, meta }) => {
 
 export default ({ data }) => {
     //Required check for no data being returned
-    const doc = data.allPrismicHomepage.edges;
-    const projects = data.allPrismicProject.edges;
-    const meta = data.site.siteMetadata;
-      console.log("HOME", doc)
-    if (!doc || !projects) return null;
+
 
     return (
-            <RenderBody home={doc[0].node} projects={projects} meta={meta}/>
+            <RenderBody />
     )
 }
 

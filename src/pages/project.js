@@ -84,7 +84,7 @@ const ProjectBody = styled("div")`
     }
 `
 
-const Project = ({ home, projects, meta }) => {
+const Project = () => {
 
   const { isOpen, onOpen, onClose } = useDisclosure()
   const [nftAmount, setNftAmount] = useState({ amount: 1 })
@@ -100,11 +100,11 @@ const Project = ({ home, projects, meta }) => {
     <>
         <Helmet
             title={`Kanna Launch | Elyseos Launch Pad`}
-            titleTemplate={`%s | ${meta.title}`}
+            titleTemplate={`%s | meta.title`}
             meta={[
                 {
                     name: `description`,
-                    content: meta.description,
+                    content: 'meta.description',
                 },
                 {
                     property: `og:title`,
@@ -112,7 +112,7 @@ const Project = ({ home, projects, meta }) => {
                 },
                 {
                     property: `og:description`,
-                    content: meta.description,
+                    content: 'meta.description',
                 },
                 {
                     property: `og:type`,
@@ -124,17 +124,17 @@ const Project = ({ home, projects, meta }) => {
                 },
                 {
                     name: `twitter:creator`,
-                    content: meta.author,
+                    content: 'meta.author',
                 },
                 {
                     name: `twitter:title`,
-                    content: meta.title,
+                    content: 'meta.title',
                 },
                 {
                     name: `twitter:description`,
-                    content: meta.description,
+                    content: 'meta.description',
                 },
-            ].concat(meta)}
+            ]}
         />
           <Header />
           <Modal isCentered onClose={onClose} isOpen={isOpen}>
@@ -350,14 +350,10 @@ const Project = ({ home, projects, meta }) => {
 
 export default ({ data }) => {
     //Required check for no data being returned
-    const doc = data.allPrismicHomepage.edges;
-    const projects = data.allPrismicProject.edges;
-    const meta = data.site.siteMetadata;
-      console.log("HOME", doc)
-    if (!doc || !projects) return null;
+
 
     return (
-            <Project home={doc[0].node} projects={projects} meta={meta}/>
+            <Project />
     )
 }
 

@@ -94,7 +94,7 @@ const ProjectBody = styled("div")`
     }
 `
 
-const Governance = ({ home, projects, meta }) => {
+const VoteOne = () => {
 
   const { isOpen, onOpen, onClose } = useDisclosure()
   const [nftAmount, setNftAmount] = useState({ amount: 1 })
@@ -111,11 +111,11 @@ const Governance = ({ home, projects, meta }) => {
     <>
         <Helmet
             title={`Kanna Launch | Elyseos Launch Pad`}
-            titleTemplate={`%s | ${meta.title}`}
+            titleTemplate={`%s | meta.title`}
             meta={[
                 {
                     name: `description`,
-                    content: meta.description,
+                    content: 'meta.description',
                 },
                 {
                     property: `og:title`,
@@ -123,7 +123,7 @@ const Governance = ({ home, projects, meta }) => {
                 },
                 {
                     property: `og:description`,
-                    content: meta.description,
+                    content: 'meta.description',
                 },
                 {
                     property: `og:type`,
@@ -135,17 +135,17 @@ const Governance = ({ home, projects, meta }) => {
                 },
                 {
                     name: `twitter:creator`,
-                    content: meta.author,
+                    content: 'meta.author',
                 },
                 {
                     name: `twitter:title`,
-                    content: meta.title,
+                    content: 'meta.title',
                 },
                 {
                     name: `twitter:description`,
-                    content: meta.description,
+                    content: 'meta.description',
                 },
-            ].concat(meta)}
+            ]}
         />
           <ProjectHeroContainer>
           <Stack direction="row" w="6xl">
@@ -274,18 +274,14 @@ const Governance = ({ home, projects, meta }) => {
 
 export default ({ data }) => {
     //Required check for no data being returned
-    const doc = data.allPrismicHomepage.edges;
-    const projects = data.allPrismicProject.edges;
-    const meta = data.site.siteMetadata;
-      console.log("HOME", doc)
-    if (!doc || !projects) return null;
+
 
     return (
-            <Governance home={doc[0].node} projects={projects} meta={meta}/>
+            <VoteOne />
     )
 }
 
-Governance.propTypes = {
+VoteOne.propTypes = {
     home: PropTypes.object.isRequired,
     projects: PropTypes.array.isRequired,
     meta: PropTypes.object.isRequired,
