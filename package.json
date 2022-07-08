@@ -24,6 +24,7 @@
     "gatsby-image": "^2.2.20",
     "gatsby-plugin-catch-links": "^4.17.0",
     "gatsby-plugin-emotion": "^7.17.0",
+    "gatsby-plugin-gatsby-cloud": "^4.18.0",
     "gatsby-plugin-google-analytics": "^2.1.6",
     "gatsby-plugin-image": "^2.17.0",
     "gatsby-plugin-manifest": "^4.17.0",
@@ -63,10 +64,10 @@
     "prettier": "^1.18.2"
   },
   "resolutions": {
-     "graphql": "^15.4.0",
-     "graphql-compose": "^7.25.0",
-     "webpack": "^5.24.2"
-   },
+    "graphql": "^15.4.0",
+    "graphql-compose": "^7.25.0",
+    "webpack": "^5.24.2"
+  },
   "keywords": [
     "gatsby",
     "prismic",
