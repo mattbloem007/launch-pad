@@ -28,7 +28,7 @@ const WalletSpace = ({ style }) => {
     }
 
     return (
-      <Stack direction="row" alignItems="center" mx="auto" w="100%" >
+      <Stack direction="column" alignItems="center" mx="auto" w="100%" >
           {error instanceof UnsupportedChainIdError &&
               <Stack direction="row" alignItems="center" bg="#b20000" rounded="lg" py="1" px="3" >
                   <IconContext.Provider value={{ color: 'white' }}>
@@ -43,13 +43,13 @@ const WalletSpace = ({ style }) => {
             <Stack alignItems={active ? "flex-start" : "center"} direction="column" color="#ed6f1b">
                 <Button size='md' backgroundColor=
                     {active ? "darkBrown" :
-                        "darkBrown"} onClick={active ? () => {disconnect()} : connect}>
-                        <Box><Text isTruncated color='white' fontSize='sm' >{active ? 'Disconnect Wallet' : 'Connect Wallet'}</Text></Box>
+                        "darkBrown"} onClick={active ? () => {navigator.clipboard.writeText(account)} : connect}>
+                        <Box><Text isTruncated color='white' fontSize='sm' >{active ? <Stack direction='row' alignItems="center" space={3}><Jazzicon diameter={20} seed={jsNumberForAddress(account)} /><Text color='white' fontSize='sm' w='100px' style={{overflow: "hidden", textOverflow: "ellipsis", whiteSpace:'nowrap'}}>{account}</Text><BiCopy/></Stack> : 'Connect Wallet'}</Text></Box>
                 </Button>
-                {active && <Stack direction='row'><Text color='white' fontSize='sm'>{account}</Text><BiCopy onClick={() => {navigator.clipboard.writeText(account)}}/></Stack>}
+                {/*active && <Stack direction='row'><Text color='white' fontSize='sm' w='100px' style={{overflow: "hidden", textOverflow: "ellipsis", whiteSpace:'nowrap'}}>{account}</Text><BiCopy onClick={() => {navigator.clipboard.writeText(account)}}/></Stack>*/}
               </Stack>
           }
-          {/**active && <Button bg="#b20000" alignItems=" center" onClick={disconnect} color="white"><AiOutlineDisconnect /></Button>*/}
+          {active && <Button bg="#b20000" alignItems=" center" onClick={disconnect} color="white"><AiOutlineDisconnect /></Button>}
       </Stack >
     )
 }
