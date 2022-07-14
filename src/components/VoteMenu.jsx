@@ -7,13 +7,15 @@ import { Link } from 'gatsby'
 
 const VoteMenu = ({ data }) => (
   <Box bg="darkPurple" borderRadius="25px" w='288px' padding="10px">
+  <Stack direction="column" alignItems="center">
     <Text textAlign="center" fontSize="sm" fontWeight="bold" color="white">284 Members</Text>
     <Stack direction="row" justifyContent="center"><Button size="sm" bg="navy">Connect Wallet</Button></Stack>
-    <Link to="/governance"><Text textAlign="left" fontSize="sm" fontWeight="bold" color="white">All Proposals</Text></Link>
-    <Text textAlign="left" fontSize="sm" fontWeight="bold" color="white">Bonus Proposals</Text>
+    <Link to="/governance"><Button size='link' bg='darkBrown'>All Proposals</Button></Link>
+    {/**<Text textAlign="left" fontSize="sm" fontWeight="bold" color="white">Bonus Proposals</Text>
     <Text textAlign="left" fontSize="sm" fontWeight="bold" color="white">Remedy Proposals</Text>
-    <Text textAlign="left" fontSize="sm" fontWeight="bold" color="white">Other Proposals</Text>
-    <Link to='addproposal'><Text textAlign="left" fontSize="sm" fontWeight="bold" color="white">Add Proposals</Text></Link>
+    <Text textAlign="left" fontSize="sm" fontWeight="bold" color="white">Other Proposals</Text>*/}
+    <Link to='addproposal'><Button size='link' bg='darkBrown'>Add Proposals</Button></Link>
+    </Stack>
   </Box>
 )
 

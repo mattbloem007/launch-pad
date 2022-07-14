@@ -297,7 +297,7 @@ const RenderBody = () => {
               <Text color={"navy"} textAlign={"center"}>General, their shields are down! Thank the Maker! Han did it! Send them in! Give Poe full authorization to attack. Black Leader, go to sub-lights. On your call. Roger, base -- red squad, blue squad, take my lead.</Text>
             </Box>
             <Heading>Past Highlights / Projects Funded</Heading>
-            <Grid templateColumns='repeat(4, 0.5fr)' gap={3}>
+            {/**<Grid templateColumns='repeat(4, 0.5fr)' gap={3}>
               <GridItem>
                 <Box borderRadius='11px' h='488px' w='312px' bg='darkBrown'>
                   <Box style={{display: "flex", alignContent: "space-around", justifyContent: "center", flexWrap: "wrap"}} borderRadius="22px" h='393px' w='280px' bg='lavendar' marginLeft={"15px"} borderColor={"#4F4051"} borderTopWidth={"6px"}>
@@ -334,7 +334,7 @@ const RenderBody = () => {
                   <Text textAlign={"center"} fontSize="sm" color={"white"} lineHeight="31px">It could be smugglers, it could be. That is the system</Text>
                 </Box>
               </GridItem>
-            </Grid>
+            </Grid>*/}
           </ProjectHeroContainer>
           <ProjectBody>
           </ProjectBody>

@@ -19,9 +19,9 @@ const theme = {
     },
   },
   fonts: {
-    body: "Parisine Plus Std",
-    heading: "Parisine Plus Std Sombre",
-    mono: "Parisine Plus Std",
+    body: "HK Grotesk Normal",
+    heading: "HK Grotesk Normal, sans-serif",
+    mono: "HK Grotesk Normal, sans-serif",
   },
   fontSizes: {
     xs: "13px",
@@ -44,6 +44,14 @@ const theme = {
     },
     Button: {
       sizes: {
+        link: {
+          h: '40px',
+          w: '240px',
+          borderRadius: '4px',
+          bg: 'darkBrown',
+          fontSize: 'sm',
+          color: 'white'
+        },
         xl: {
           h: '45px',
           w: '221px',
