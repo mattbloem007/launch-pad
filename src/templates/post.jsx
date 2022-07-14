@@ -135,10 +135,10 @@ const Post = ({ post, meta }) => {
             />
             <>
                 <PostCategory>
-                    {RichText.render(post.data.post_category.richText)}
+                    {/**RichText.render(post.data.post_category.richText)*/}
                 </PostCategory>
                 <PostTitle>
-                    {RichText.render(post.data.post_title.richText)}
+                    {/**RichText.render(post.data.post_title.richText)*/}
                 </PostTitle>
                 <PostMetas>
                     <PostAuthor>
@@ -152,12 +152,12 @@ const Post = ({ post, meta }) => {
                     <PostHeroContainer>
                         <img src={post.post_hero_image.url} alt="bees" />
                         <PostHeroAnnotation>
-                            {RichText.render(post.data.post_hero_annotation.richText)}
+                            {/**RichText.render(post.data.post_hero_annotation.richText)*/}
                         </PostHeroAnnotation>
                     </PostHeroContainer>
                 )}
                 <PostBody>
-                    {RichText.render(post.data.post_body.richText)}
+                    {/**RichText.render(post.data.post_body.richText)*/}
                 </PostBody>
             </>
         </>

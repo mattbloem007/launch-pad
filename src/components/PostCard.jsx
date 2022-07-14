@@ -94,7 +94,7 @@ const PostCard = ({ author, category, date, title, description, uid}) => (
             {title[0].text}
         </PostTitle>
         <PostDescription>
-            {RichText.render(description)}
+            {/**RichText.render(description)*/}
         </PostDescription>
         <PostCardAction className="PostCardAction">
             Read more <span>&#8594;</span>

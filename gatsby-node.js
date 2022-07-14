@@ -112,34 +112,34 @@ exports.createPages = async ({ graphql, actions }) => {
 
     const projectsList = result.data.allPrismicProject.edges;
     const postsList = result.data.allPrismicPost.edges;
-
-    const projectTemplate = require.resolve('./src/templates/project.jsx');
-    const postTemplate = require.resolve('./src/templates/post.jsx');
-
-    projectsList.forEach(edge => {
-        // The uid you assigned in Prismic is the slug!
-        console.log("Edge", edge)
-        createPage({
-            type: 'Project',
-            match: '/work/:uid',
-            path: `/work/${edge.node.uid}`,
-            component: projectTemplate,
-            context: {
-                // Pass the unique ID (uid) through context so the template can filter by it
-                uid: edge.node.uid,
-            },
-        })
-    })
-
-    postsList.forEach(edge => {
-        createPage({
-            type: 'Project',
-            match: '/blog/:uid',
-            path: `/blog/${edge.node.uid}`,
-            component: postTemplate,
-            context: {
-                uid: edge.node.uid,
-            },
-        })
-    })
+    // 
+    // const projectTemplate = require.resolve('./src/templates/project.jsx');
+    // const postTemplate = require.resolve('./src/templates/post.jsx');
+    //
+    // projectsList.forEach(edge => {
+    //     // The uid you assigned in Prismic is the slug!
+    //     console.log("Edge", edge)
+    //     createPage({
+    //         type: 'Project',
+    //         match: '/work/:uid',
+    //         path: `/work/${edge.node.uid}`,
+    //         component: projectTemplate,
+    //         context: {
+    //             // Pass the unique ID (uid) through context so the template can filter by it
+    //             uid: edge.node.uid,
+    //         },
+    //     })
+    // })
+    //
+    // postsList.forEach(edge => {
+    //     createPage({
+    //         type: 'Project',
+    //         match: '/blog/:uid',
+    //         path: `/blog/${edge.node.uid}`,
+    //         component: postTemplate,
+    //         context: {
+    //             uid: edge.node.uid,
+    //         },
+    //     })
+    // })
 }

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import Helmet from "react-helmet";
 import { RichText } from "prismic-reactjs";
@@ -11,6 +11,9 @@ import Layout from "components/Layout";
 import ProjectCard from "components/ProjectCard";
 import Header from "components/Header";
 import kannaNFT from "../images/Sceletium Tortuosum - NFT Card - V1.0.2.png"
+import $ from 'lib/crwodsale.js'
+import { toDec } from 'lib/bn.js'
+import { useWeb3React } from "@web3-react/core"
 import {
   Box,
   Container,
@@ -46,6 +49,18 @@ import {
   NumberDecrementStepper,
   useDisclosure
 } from '@chakra-ui/react'
+
+import {ethers} from 'ethers'
+const rpcEndPoint = {
+    test: 'https://xapi.testnet.fantom.network/lachesis' //'HTTP://127.0.0.1:7545'//'https://api.avax-test.network/ext/bc/C/rpc'
+}
+
+const ethersProvider = new ethers.providers.JsonRpcProvider(rpcEndPoint.test)
+ethersProvider.on("network", (newNetwork, oldNetwork) => {
+        if (oldNetwork) {
+            window.location.reload();
+        }
+});
 
 
 const ProjectHeroContainer = styled("div")`
@@ -88,12 +103,54 @@ const Project = () => {
 
   const { isOpen, onOpen, onClose } = useDisclosure()
   const [nftAmount, setNftAmount] = useState({ amount: 1 })
+  const [timeLeft, settimeLeft] = useState("")
+  const [fundsRaised, setfundsRaised] = useState("")
+  const [toaPrice, settoaPrice] = useState("")
+  const [numPurchased, setnumPurchased] = useState("")
+  const [available, setavailable] = useState("")
+  const { account } = useWeb3React()
+  // let crowdsale = {
+  //     timeLeft: $.crowdsale.timeUntilEnd(),
+  //     fundsRaised: $.crowdsale.fundsRaised(),
+  //     toaPrice: $.crowdsale.toaPrice(),
+  //     numPurchased: $.crowdsale.numPurchased(),
+  //     available: $.crowdsale.available()
+  // }
+
+  useEffect(() => {
+    async function fetchData() {
+      let time = await $.crowdsale.timeUntilEnd()
+      time = toDec(time._hex, 0, 1)
+      let funds = await $.crowdsale.fundsRaised()
+      funds = toDec(funds._hex, 0, 1)
+      let price = await $.crowdsale.toaPrice()
+      price = toDec(price._hex, 6, 1)
+      let num = await $.crowdsale.numPurchased()
+      num = toDec(num._hex, 0, 1)
+      let avail = await $.crowdsale.available()
+      avail = toDec(avail._hex, 0, 1)
+      console.log("time", time, funds, price, num, avail)
+      settimeLeft(time)
+      setfundsRaised(funds)
+      settoaPrice(price)
+      setnumPurchased(num)
+      setavailable(avail)
+    }
+     fetchData();
+
+    }, [])
+
 
   function handleInputChange(e) {
     setNftAmount(currentValues => ({
       ...currentValues,
       nftAmount: e,
     }))
+  }
+
+  async function approveUSDC(spender, amount) {
+    console.log("SPENDER:", spender, "AMOUNT:", amount, "Signer", ethersProvider.getSigner())
+    await $.ELYS.approve($.provider.getSigner(spender), spender, amount)
   }
 
   return(
@@ -166,9 +223,9 @@ const Project = () => {
                     </Stack>
                     <Stack spacing="5" w="full" direction="row" justifyContent="space-between" p="2" borderRadius="25px" bg="darkBrown">
                       <Text fontSize="sm" color={"white"}>USDC Price</Text>
-                      <Text fontSize="sm" color={"white"}>$1,200</Text>
+                      <Text fontSize="sm" color={"white"}>${toaPrice}</Text>
                     </Stack>
-                    <Button size='xl' bg="darkBrown" style={{alignSelf: "center"}}>
+                    <Button size='xl' bg="darkBrown" style={{alignSelf: "center"}} onClick={() => approveUSDC(account, (nftAmount.amount)*toaPrice)}>
                       Approve USDC
                     </Button>
                   </Stack>
@@ -193,19 +250,19 @@ const Project = () => {
                   </AspectRatio>
             </Tabs>
             <Container centerContent p="3" pt="0" shadow="lg" w="437px" h="385px" borderRadius="25px" bg="navy">
-                <Text textAlign="left" w="full" fontSize="5xl" fontWeight="medium" color={"white"} h='95px'>$60,000</Text>
+                <Text textAlign="left" w="full" fontSize="5xl" fontWeight="medium" color={"white"} h='95px'>$ {fundsRaised}</Text>
                 <Container px="8">
-                  <Text textAlign={"center"} flexGrow="2" fontSize="lg" color={"white"} >Raised of $250,000 Minimum</Text>
-                  <Progress bg="lavendar" rounded="3xl" value={10} colorScheme="progress" marginBottom={"5px"}/>
+                  <Text textAlign={"center"} flexGrow="2" fontSize="lg" color={"white"} >Raised of ${toaPrice*available} Minimum</Text>
+                  <Progress bg="lavendar" rounded="3xl" value={(fundsRaised/toaPrice)*100} colorScheme="progress" marginBottom={"5px"}/>
                 </Container>
                 <Stack spacing="5" w="full" direction="column" alignItems="flex-end" p="2">
                   <Stack spacing="5" w="full" direction="row" justifyContent="space-between" p="2" borderRadius="25px" bg="darkBrown">
                     <Text fontSize="sm" color={"white"}>Price</Text>
-                    <Text fontSize="sm" color={"white"}>$1,200/TOA</Text>
+                    <Text fontSize="sm" color={"white"}>${toaPrice}/TOA</Text>
                   </Stack>
                   <Stack spacing="5" w="full" direction="row" justifyContent="space-between" p="2" borderRadius="25px" bg="darkBrown">
                     <Text fontSize="sm" color={"white"}>TOA's left</Text>
-                    <Text fontSize="sm" color={"white"}>50/300 Sold</Text>
+                    <Text fontSize="sm" color={"white"}>{numPurchased}/{available} Sold</Text>
                   </Stack>
                 </Stack>
                 <Button size="lg" bg="darkBrown" onClick={onOpen}>
@@ -348,7 +405,7 @@ const Project = () => {
   )
 }
 
-export default ({ data }) => {
+export default () => {
     //Required check for no data being returned
 
 
@@ -356,94 +413,3 @@ export default ({ data }) => {
             <Project />
     )
 }
-
-Project.propTypes = {
-    home: PropTypes.object.isRequired,
-    projects: PropTypes.array.isRequired,
-    meta: PropTypes.object.isRequired,
-};
-
-export const query = graphql`
-    {
-      allPrismicHomepage {
-        edges {
-          node {
-            uid
-            data {
-              about_bio {
-                text
-                richText
-              }
-              about_links {
-                about_link {
-                  richText
-                  text
-                }
-              }
-              about_title {
-                text
-                richText
-              }
-              content {
-                text
-                richText
-              }
-              hero_button_link {
-                url
-              }
-              hero_button_text {
-                richText
-                text
-              }
-              hero_title {
-                richText
-                text
-              }
-            }
-          }
-        }
-      }
-            allPrismicProject {
-              edges {
-                node {
-                  data {
-                    project_category {
-                      text
-                    }
-                    project_description {
-                      html
-                      text
-                    }
-                    project_hero_image {
-                      fluid {
-                        src
-                      }
-                    }
-                    project_post_date
-                    project_preview_description {
-                      html
-                      text
-                    }
-                    project_title {
-                      html
-                      text
-                    }
-                    project_preview_thumbnail {
-                      fluid {
-                        src
-                      }
-                    }
-                  }
-                  uid
-                }
-              }
-            }
-        site {
-            siteMetadata {
-                title
-                description
-                author
-            }
-        }
-    }
-`

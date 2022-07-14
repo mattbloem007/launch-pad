@@ -172,7 +172,7 @@ const AddProposal = () => {
   )
 }
 
-export default ({ data }) => {
+export default () => {
     //Required check for no data being returned
 
 
@@ -180,94 +180,3 @@ export default ({ data }) => {
             <AddProposal />
     )
 }
-
-AddProposal.propTypes = {
-    home: PropTypes.object.isRequired,
-    projects: PropTypes.array.isRequired,
-    meta: PropTypes.object.isRequired,
-};
-
-export const query = graphql`
-    {
-      allPrismicHomepage {
-        edges {
-          node {
-            uid
-            data {
-              about_bio {
-                text
-                richText
-              }
-              about_links {
-                about_link {
-                  richText
-                  text
-                }
-              }
-              about_title {
-                text
-                richText
-              }
-              content {
-                text
-                richText
-              }
-              hero_button_link {
-                url
-              }
-              hero_button_text {
-                richText
-                text
-              }
-              hero_title {
-                richText
-                text
-              }
-            }
-          }
-        }
-      }
-            allPrismicProject {
-              edges {
-                node {
-                  data {
-                    project_category {
-                      text
-                    }
-                    project_description {
-                      html
-                      text
-                    }
-                    project_hero_image {
-                      fluid {
-                        src
-                      }
-                    }
-                    project_post_date
-                    project_preview_description {
-                      html
-                      text
-                    }
-                    project_title {
-                      html
-                      text
-                    }
-                    project_preview_thumbnail {
-                      fluid {
-                        src
-                      }
-                    }
-                  }
-                  uid
-                }
-              }
-            }
-        site {
-            siteMetadata {
-                title
-                description
-                author
-            }
-        }
-    }
-`

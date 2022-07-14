@@ -43,7 +43,7 @@ const WalletSpace = ({ style }) => {
             <Stack alignItems={active ? "flex-start" : "center"} direction="column" color="#ed6f1b">
                 <Button size='md' backgroundColor=
                     {active ? "darkBrown" :
-                        "darkBrown"} onClick={active ? () => {navigator.clipboard.writeText(account)} : connect}>
+                        "darkBrown"} onClick={active ? () => {if(typeof(window) !== 'undefined') { navigator.clipboard.writeText(account)}} : connect}>
                         <Box><Text isTruncated color='white' fontSize='sm' >{active ? <Stack direction='row' alignItems="center" space={3}><Jazzicon diameter={20} seed={jsNumberForAddress(account)} /><Text color='white' fontSize='sm' w='100px' style={{overflow: "hidden", textOverflow: "ellipsis", whiteSpace:'nowrap'}}>{account}</Text><BiCopy/></Stack> : 'Connect Wallet'}</Text></Box>
                 </Button>
                 {/*active && <Stack direction='row'><Text color='white' fontSize='sm' w='100px' style={{overflow: "hidden", textOverflow: "ellipsis", whiteSpace:'nowrap'}}>{account}</Text><BiCopy onClick={() => {navigator.clipboard.writeText(account)}}/></Stack>*/}
