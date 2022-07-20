@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import PropTypes from "prop-types";
 import Helmet from "react-helmet";
 import { RichText } from "prismic-reactjs";
@@ -11,9 +11,12 @@ import Layout from "components/Layout";
 import ProjectCard from "components/ProjectCard";
 import Header from "components/Header";
 import kannaNFT from "../images/Sceletium Tortuosum - NFT Card - V1.0.2.png"
+import tree from '../images/Tree Artwork - V1.0.png'
+import crystal from '../images/Crystal Artwork - V1.0.png'
 import $ from 'lib/crwodsale.js'
 import { toDec } from 'lib/bn.js'
 import { useWeb3React } from "@web3-react/core"
+import Sticky from 'react-stickynode';
 import {
   Box,
   Container,
@@ -47,35 +50,30 @@ import {
   NumberInputStepper,
   NumberIncrementStepper,
   NumberDecrementStepper,
+  useToast,
   useDisclosure
 } from '@chakra-ui/react'
 
-import {ethers} from 'ethers'
-const rpcEndPoint = {
-    test: 'https://xapi.testnet.fantom.network/lachesis' //'HTTP://127.0.0.1:7545'//'https://api.avax-test.network/ext/bc/C/rpc'
-}
-
-const ethersProvider = new ethers.providers.JsonRpcProvider(rpcEndPoint.test)
-ethersProvider.on("network", (newNetwork, oldNetwork) => {
-        if (oldNetwork) {
-            window.location.reload();
-        }
-});
 
 
+
+// display: grid;
+// grid-template-columns: 5fr 4fr;
+// gap: 40px;
+// align-items: flex-start;
 const ProjectHeroContainer = styled("div")`
+
     display: flex;
     justify-content: flex-start;
-    align-items: center;
-    overflow: hidden;
+    align-items: flex-end;
     position: relative;
     padding-top: 2.25em;
     margin-bottom: 0.5em;
-    margin-left: 55px;
-    margin-right: 55px;
+    margin-left: 0px;
     border: 2px;
     border-color: #ec7019;
     border-radius: 2px;
+    background: #F0EBDD;
 
     img {
         max-width: 600px;
@@ -84,6 +82,9 @@ const ProjectHeroContainer = styled("div")`
 
 
 const ProjectBody = styled("div")`
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
     max-width: 550px;
     margin: 0;
     margin-left: 55px;
@@ -101,38 +102,40 @@ const ProjectBody = styled("div")`
 
 const Project = () => {
 
+  const toast = useToast();
+  const toastIdRef = useRef();
+  const [processing, setProcessing] = useState(false)
+  const [approved, setApproved] = useState(false)
   const { isOpen, onOpen, onClose } = useDisclosure()
   const [nftAmount, setNftAmount] = useState({ amount: 1 })
   const [timeLeft, settimeLeft] = useState("")
   const [fundsRaised, setfundsRaised] = useState("")
   const [toaPrice, settoaPrice] = useState("")
+  const [toaPriceBN, settoaPriceBN] = useState("")
   const [numPurchased, setnumPurchased] = useState("")
   const [available, setavailable] = useState("")
-  const { account } = useWeb3React()
-  // let crowdsale = {
-  //     timeLeft: $.crowdsale.timeUntilEnd(),
-  //     fundsRaised: $.crowdsale.fundsRaised(),
-  //     toaPrice: $.crowdsale.toaPrice(),
-  //     numPurchased: $.crowdsale.numPurchased(),
-  //     available: $.crowdsale.available()
-  // }
+  const { account, library } = useWeb3React()
+
+
 
   useEffect(() => {
     async function fetchData() {
       let time = await $.crowdsale.timeUntilEnd()
-      time = toDec(time._hex, 0, 1)
+      //time = toDec(time._hex, 0, 1)
+      let date = new Date(Date.now() + time.mul(1000).toNumber())
       let funds = await $.crowdsale.fundsRaised()
-      funds = toDec(funds._hex, 0, 1)
-      let price = await $.crowdsale.toaPrice()
-      price = toDec(price._hex, 6, 1)
+      funds = toDec(funds._hex, 6, 1)
+      let priceBN = await $.crowdsale.toaPrice()
+      let price = toDec(priceBN._hex, 6, 1)
       let num = await $.crowdsale.numPurchased()
       num = toDec(num._hex, 0, 1)
       let avail = await $.crowdsale.available()
       avail = toDec(avail._hex, 0, 1)
-      console.log("time", time, funds, price, num, avail)
+      console.log("time", time, date, funds, price, num, avail)
       settimeLeft(time)
       setfundsRaised(funds)
       settoaPrice(price)
+      settoaPriceBN(priceBN)
       setnumPurchased(num)
       setavailable(avail)
     }
@@ -148,9 +151,77 @@ const Project = () => {
     }))
   }
 
-  async function approveUSDC(spender, amount) {
-    console.log("SPENDER:", spender, "AMOUNT:", amount, "Signer", ethersProvider.getSigner())
-    await $.ELYS.approve($.provider.getSigner(spender), spender, amount)
+  async function approveUSDC( amount) {
+    //---> sending transaction to the blockchain (Toaster) approve pending
+    setProcessing(true)
+    toastIdRef.current = toast({
+            containerStyle: {zIndex: "5500"},
+            title: 'Approval pending',
+            position: "top",
+            status: 'info',
+            isClosable: true,
+            duration: 120000
+        })
+    // toastIdRef.current = toast({
+    //       title: 'Approve Pending',
+    //       description: "Sending transaction to the blockchain.. ",
+    //       status: 'info',
+    //       duration: 9000,
+    //       isClosable: true,
+    // })
+    let tx = await $.USDC.approve(library.getSigner(account), $.crowdsale.address, amount)
+    //sent approval to the blockchain
+    toast.update(toastIdRef.current, {
+          title: 'Sent approval to the blockchain',
+        //  description: "Sending Transaction to the blockchain.. ",
+          status: 'info',
+          duration: 9000,
+          isClosable: true,
+    })
+    await $.confirm(tx.hash)
+    //approval successful
+     toast.update(toastIdRef.current, {
+          title: 'Approval successful',
+        //  description: "Sending Transaction to the blockchain.. ",
+          status: 'success',
+          duration: 9000,
+          isClosable: true,
+      })
+      setProcessing(false)
+      setApproved(true)
+  }
+
+  async function buyTOA(numTOAs) {
+    //---> sending transaction to the blockchain (Toaster) approve pending
+    setProcessing(true)
+
+    toastIdRef.current = toast({
+          title: 'Buy Pending',
+          description: "Sending transaction to the blockchain.. ",
+          status: 'info',
+          duration: 9000,
+          isClosable: true,
+        })
+    let tx = await $.crowdsale.buy(library.getSigner(account), numTOAs)
+    //sent approval to the blockchain
+    toast.update(toastIdRef.current, {
+          title: 'Sent transaction to the blockchain',
+        //  description: "Sending Transaction to the blockchain.. ",
+          status: 'info',
+          duration: 9000,
+          isClosable: true,
+        })
+    await $.confirm(tx.hash)
+    //approval successful
+    toast.update(toastIdRef.current, {
+          title: 'Transaction successful',
+        //  description: "Sending Transaction to the blockchain.. ",
+          status: 'success',
+          duration: 9000,
+          isClosable: true,
+        })
+      setProcessing(false)
+    //  setApproved(true)
   }
 
   return(
@@ -193,7 +264,7 @@ const Project = () => {
                 },
             ]}
         />
-          <Header />
+          <Header id="header" style={{zIndex: '-1'}}/>
           <Modal isCentered onClose={onClose} isOpen={isOpen}>
             <ModalOverlay
               bg='none'
@@ -225,77 +296,98 @@ const Project = () => {
                       <Text fontSize="sm" color={"white"}>USDC Price</Text>
                       <Text fontSize="sm" color={"white"}>${toaPrice}</Text>
                     </Stack>
-                    <Button size='xl' bg="darkBrown" style={{alignSelf: "center"}} onClick={() => approveUSDC(account, (nftAmount.amount)*toaPrice)}>
-                      Approve USDC
-                    </Button>
+                    {
+                      approved ?
+                      <Button size='xl' bg="darkBrown" style={{alignSelf: "center"}} isLoading={processing} onClick={() => buyTOA(nftAmount.amount)}>
+                        Buy TOA
+                      </Button>
+                      :
+                      <Button size='xl' bg="darkBrown" style={{alignSelf: "center"}} isLoading={processing} onClick={() => approveUSDC(toaPriceBN.mul(nftAmount.amount))}>
+                        Approve USDC
+                      </Button>
+                    }
+
                   </Stack>
 
               </ModalBody>
             </ModalContent>
           </Modal>
-          <ProjectHeroContainer>
-            <Tabs isFitted id="project">
-              <TabList>
-                <Tab id="overview"><Heading fontSize="md" style={{marginBottom: "0px"}}>Overview</Heading></Tab>
-                <Tab id="toa"><Heading fontSize="md" style={{marginBottom: "0px"}}>TOA Metrics</Heading></Tab>
-                <Tab id="docs"><Heading fontSize="md" style={{marginBottom: "0px"}}>Documentation</Heading></Tab>
-              </TabList>
-                  <AspectRatio margin={"1rem"} w='648px' h='384px' borderRadius='25px' ratio={16 / 9}>
-                    <iframe
-                    title='elyseos'
-                    src='https://www.youtube.com/embed/YlU5XwqtTbY'
-                    allowFullScreen
-                    style={{borderRadius: '25px', width:'648px', height:'384px'}}
-                    />
-                  </AspectRatio>
-            </Tabs>
-            <Container centerContent p="3" pt="0" shadow="lg" w="437px" h="385px" borderRadius="25px" bg="navy">
-                <Text textAlign="left" w="full" fontSize="5xl" fontWeight="medium" color={"white"} h='95px'>$ {fundsRaised}</Text>
-                <Container px="8">
-                  <Text textAlign={"center"} flexGrow="2" fontSize="lg" color={"white"} >Raised of ${toaPrice*available} Minimum</Text>
-                  <Progress bg="lavendar" rounded="3xl" value={(fundsRaised/toaPrice)*100} colorScheme="progress" marginBottom={"5px"}/>
-                </Container>
-                <Stack spacing="5" w="full" direction="column" alignItems="flex-end" p="2">
-                  <Stack spacing="5" w="full" direction="row" justifyContent="space-between" p="2" borderRadius="25px" bg="darkBrown">
-                    <Text fontSize="sm" color={"white"}>Price</Text>
-                    <Text fontSize="sm" color={"white"}>${toaPrice}/TOA</Text>
+          <ProjectHeroContainer id="project" style={{zIndex:"99"}}>
+            <Image h='353px' w='353px' style={{position: 'relative'}} src={tree}/>
+            <Grid templateColumns='5fr 4fr' gap={6} style={{maxHeight: "460px", position: "relative", right: "112px"}}>
+              <GridItem h="70%">
+                <Tabs isFitted size='sm'>
+                  <TabList>
+                    <Tab id="overview"><Heading fontSize="md" style={{marginBottom: "0px"}}>Overview</Heading></Tab>
+                    <Tab id="toa"><Heading fontSize="md" style={{marginBottom: "0px"}}>TOA Metrics</Heading></Tab>
+                    <Tab id="docs"><Heading fontSize="md" style={{marginBottom: "0px"}}>Documentation</Heading></Tab>
+                  </TabList>
+                      <AspectRatio margin={"1rem"} w='583px' h='384px' borderRadius='25px' ratio={16 / 9}>
+                        <iframe
+                        title='elyseos'
+                        src='https://www.youtube.com/embed/YlU5XwqtTbY'
+                        allowFullScreen
+                        style={{borderRadius: '25px', width:'593px', height:'384px'}}
+                        />
+                      </AspectRatio>
+                </Tabs>
+              </GridItem>
+              <GridItem h="70%">
+                <Sticky enabled={true} top={100} bottomBoundary="#footer">
+                  <Stack direction="column" alignItems="center">
+                    <Image w='295px' h='295px' src={crystal} style={{position: "relative", bottom: "184px", zIndex: "99"}}/>
+                    <Container centerContent p="3" pt="0" shadow="lg" w="400px" h="385px" borderRadius="25px" bg="navy" style={{position: "relative", bottom: "255px"}}>
+                        <Text textAlign="left" w="full" fontSize="5xl" fontWeight="medium" color={"white"} h='95px'>$ {fundsRaised}</Text>
+                        <Container px="8">
+                          <Text textAlign={"center"} flexGrow="2" fontSize="lg" color={"white"} >Raised of ${toaPrice*available} Minimum</Text>
+                          <Progress bg="lavendar" rounded="3xl" value={(fundsRaised/toaPrice)*100} colorScheme="progress" marginBottom={"5px"}/>
+                        </Container>
+                        <Stack spacing="5" w="full" direction="column" alignItems="flex-end" p="2">
+                          <Stack spacing="5" w="full" direction="row" justifyContent="space-between" p="2" borderRadius="25px" bg="darkBrown">
+                            <Text fontSize="sm" color={"white"}>Price</Text>
+                            <Text fontSize="sm" color={"white"}>${toaPrice}/TOA</Text>
+                          </Stack>
+                          <Stack spacing="5" w="full" direction="row" justifyContent="space-between" p="2" borderRadius="25px" bg="darkBrown">
+                            <Text fontSize="sm" color={"white"}>TOA's left</Text>
+                            <Text fontSize="sm" color={"white"}>{numPurchased}/{available} Sold</Text>
+                          </Stack>
+                        </Stack>
+                        <Button size="lg" bg="darkBrown" onClick={onOpen}>
+                        Buy Now
+                        </Button>
+                        <Text textAlign={"center"} flexGrow="2" color={"white"} fontStyle={"italic"}>11 days Remaining</Text>
+                    </Container>
                   </Stack>
-                  <Stack spacing="5" w="full" direction="row" justifyContent="space-between" p="2" borderRadius="25px" bg="darkBrown">
-                    <Text fontSize="sm" color={"white"}>TOA's left</Text>
-                    <Text fontSize="sm" color={"white"}>{numPurchased}/{available} Sold</Text>
-                  </Stack>
-                </Stack>
-                <Button size="lg" bg="darkBrown" onClick={onOpen}>
-                Buy Now
-                </Button>
-                <Text textAlign={"center"} flexGrow="2" color={"white"} fontStyle={"italic"}>11 days Remaining</Text>
-            </Container>
+                </Sticky>
+              </GridItem>
+            </Grid>
           </ProjectHeroContainer>
             <ProjectBody>
-            <Tabs isFitted id="project">
+              <Stack spacing="5" w={"150px"} direction="column" p="2" borderRight={"2px"} borderRightStyle={"dotted"}>
+                <Box color="navy" fontSize='sm' fontWeight="bold">
+                Background
+                </Box>
+                <Box color="navy" fontSize='sm' fontWeight="bold">
+                  Keypoints
+                </Box>
+                <Box color="navy" fontSize='sm' fontWeight="bold">
+                  Stakeholders
+                </Box>
+                <Box color="navy" fontSize='sm' fontWeight="bold">
+                  Risks
+                </Box>
+              </Stack>
+            <Tabs isFitted>
               <TabList>
                 <Tab id="overview"><Heading fontSize="md" style={{marginBottom: "0px"}}>Overview</Heading></Tab>
                 <Tab id="toa"><Heading fontSize="md" style={{marginBottom: "0px"}}>TOA Metrics</Heading></Tab>
                 <Tab id="docs"><Heading fontSize="md" style={{marginBottom: "0px"}}>Documentation</Heading></Tab>
               </TabList>
 
-              <TabPanels style={{width: "648px"}}>
+              <TabPanels style={{width: "600px"}}>
                 <TabPanel>
-                  <Stack direction="row" w="4xl">
-                    <Stack spacing="5" w={"150px"} direction="column" p="2" borderRight={"2px"} borderRightStyle={"dotted"}>
-                      <Box color="navy" fontSize='sm' fontWeight="bold">
-                      Background
-                      </Box>
-                      <Box color="navy" fontSize='sm' fontWeight="bold">
-                        Keypoints
-                      </Box>
-                      <Box color="navy" fontSize='sm' fontWeight="bold">
-                        Stakeholders
-                      </Box>
-                      <Box color="navy" fontSize='sm' fontWeight="bold">
-                        Risks
-                      </Box>
-                    </Stack>
+                  <Stack direction="row" w="3xl">
+
                     <Stack spacing="1" w="full" direction="column" p="2" style={{overflowY: "auto", overflowX: "hidden", height: "350px"}}>
                       <Heading> Background </Heading>
                         <Text color={"navy"} fontSize={"sm"}>Nulla dui purus, eleifend vel, consequat non, dictum porta, nulla. Duis ante mi, laoreet ut, commodo eleifend, cursus nec, lorem. Aenean eu est. Etiam imperdiet turpis. Praesent nec augue. Nulla dui purus, eleifend vel, consequat non, dictum porta, nulla. Duis ante mi, laoreet ut, commodo eleifend, cursus nec, lorem. Aenean eu est. Etiam imperdiet turpis. Praesent nec augue.</Text>

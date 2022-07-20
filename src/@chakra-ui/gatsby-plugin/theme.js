@@ -4,6 +4,7 @@ const theme = {
     white: '#FFFFFF',
     blue: '#729AB0',
     mush: '#5E8195',
+    mushTan: '#F0EBDD',
     navy: '#164057',
     brownE: '#483A4B',
     orange: '#E46B1B',
@@ -49,6 +50,16 @@ const theme = {
           w: '240px',
           borderRadius: '4px',
           bg: 'darkBrown',
+          fontSize: 'sm',
+          color: 'white'
+        },
+        linkLong: {
+          h: '48px',
+          w: '90%',
+          borderRadius: '4px',
+          bg: 'darkBrown',
+          border: "2px solid",
+          borderColor: "darkPurple",
           fontSize: 'sm',
           color: 'white'
         },
@@ -101,6 +112,18 @@ const theme = {
           bg: "darkBrown",
           fontSize: 'xs',
           color: 'white'
+        },
+        "xxs": {
+          md: {
+            h: '39px',
+            w: '151px',
+            borderRadius: '40px',
+            border: "2px solid",
+            borderColor: "darkPurple",
+            bg: "darkBrown",
+            fontSize: 'sm',
+            color: 'white'
+          },
         },
         lp: {
           h: '56px',

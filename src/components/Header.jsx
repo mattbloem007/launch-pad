@@ -6,19 +6,24 @@ import dimensions from "styles/dimensions";
 import Logo from "components/_ui/Logo";
 import logo from '../images/Elyseos Logo.png'
 import { Text, Button, Heading } from '@chakra-ui/react'
+import { Box } from "@chakra-ui/layout"
 import { Stack } from "@chakra-ui/layout"
 import { ArrowBackIcon } from '@chakra-ui/icons'
 
 
 const HeaderContainer = styled("div")`
-margin-left: 280px;
-margin-right: 280px;
+  margin-left: 280px;
+  margin-right: 280px;
+  background: #F0EBDD;
+  z-index: -1;
+
 `
 
 const HeaderContent = styled("div")`
     display: flex;
     justify-content: space-between;
     align-items: center;
+    z-index: 1;
 `
 
 const HeaderLinks = styled("div")`
@@ -28,6 +33,7 @@ const HeaderLinks = styled("div")`
     grid-gap: 2em;
     justify-content: flex-end;
     max-width: 200px;
+    z-index: 2;
 
     @media(max-width: ${dimensions.maxwidthTablet}px) {
         grid-gap: 5.5em;

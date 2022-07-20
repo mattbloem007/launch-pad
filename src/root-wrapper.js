@@ -4,7 +4,7 @@ import Layout from './components/Layout'
 import theme from './@chakra-ui/gatsby-plugin/theme.js'
 import { Web3ReactProvider } from '@web3-react/core'
 import { ethers } from 'ethers'
-import Fonts from './static/fonts.js'
+
 
 
 function getLibrary(provider) {
@@ -15,7 +15,6 @@ export const wrapPageElement = ({ element }) => {
   return (
     <Web3ReactProvider getLibrary={getLibrary}>
       <ChakraProvider theme={theme} resetCSS>
-        <Fonts />
         <Layout>{element}</Layout>
       </ChakraProvider>
     </Web3ReactProvider>

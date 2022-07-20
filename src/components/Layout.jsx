@@ -10,6 +10,7 @@ import Footer from "components/Footer";
 import Header from "components/Header";
 import NavBar from "components/NavBar"
 import 'styles/fonts.scss';
+import Fonts from '../static/fonts.js'
 //padding-left: ${dimensions.paddingHorizontalDesktop}em;
 //padding-right: ${dimensions.paddingHorizontalDesktop}em;
 //    max-width: ${dimensions.maxwidthDesktop}px;
@@ -17,7 +18,7 @@ import 'styles/fonts.scss';
 const LayoutContainer = styled.div`
 
     margin: 0;
-
+    background: #F0EBDD;
     @media(max-width: ${dimensions.maxwidthTablet}px) {
         padding-left: ${dimensions.paddingHorizontalTablet}em;
         padding-right: ${dimensions.paddingHorizontalTablet}em;
@@ -46,10 +47,11 @@ const Layout = ({ children }) => (
         `}
         render={data => (
             <LayoutContainer className="div">
-                <Global styles={[globalStyles, typeStyles]} />
-                <div className="Layout">
+                {/**<Global styles={[globalStyles, typeStyles]} />*/}
+                <Fonts />
+                <div>
                   <NavBar />
-                    <main className="Layout__content">
+                    <main style={{background: "mushTan"}}>
                         {children}
                     </main>
                     <Footer />

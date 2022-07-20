@@ -43,6 +43,44 @@ import {
   Image,
   useDisclosure
 } from '@chakra-ui/react'
+import Select from 'react-select'
+
+const options = [
+  { value: 'producer', label: 'Bonus Proposal: Producer' },
+  { value: 'community', label: 'Bonus Proposal: Community' },
+  { value: 'rememdy', label: 'Remedy Proposal' },
+  { value: 'other', label: 'Other' }
+]
+
+const customStyles = {
+  menu: (provided, state) => ({
+    ...provided,
+    border: '2px solid #4F4051',
+    background: '#CFADD9',
+    width: '70%',
+    borderRadius: '25px',
+  }),
+
+  control: (_, { selectProps: { width }}) => ({
+    display: 'flex',
+    width: '70%',
+    border: '2px solid #4F4051',
+    borderRadius: '25px',
+    background: '#CFADD9',
+  }),
+  // option: (provided, state) => ({
+  //   ...provided,
+  //   borderBottom: '2px solid #4F4051',
+  // }),
+
+  // singleValue: (provided, state) => {
+  //   const opacity = state.isDisabled ? 0.5 : 1;
+  //   const transition = 'opacity 300ms';
+  //   const borderRadius = '25px'
+  //
+  //   return { ...provided, opacity, transition, borderRadius };
+  // }
+}
 
 const ProjectHeroContainer = styled("div")`
     display: flex;
@@ -82,6 +120,7 @@ const AddProposal = () => {
   const { isOpen, onOpen, onClose } = useDisclosure()
   const [title, setTitle] = useState({ title: "" })
   const [desc, setDesc] = useState({ desc: "" })
+  const [proposal, setProposal] = useState({ prop: "" })
 
   function handleInputChange(e) {
 
@@ -90,6 +129,13 @@ const AddProposal = () => {
       title: e,
     }))
   }
+
+  const onChangeHandler = (change) => {
+    setProposal(currentValues => ({
+      ...currentValues,
+      prop: change.label,
+    }))
+  };
 
   function handleTextChange(e) {
 
@@ -151,6 +197,7 @@ const AddProposal = () => {
                   <Text color={"navy"} fontSize='sm' fontWeight='semibold' style={{marginTop: "0px", marginLeft: "5px"}}>Back</Text>
                 </Stack>
               </Link>
+              <Heading marginBottom={'0px'} fontWeight="bold">Add Proposal</Heading>
               <Stack spacing="1" w="70%" direction="column" justifyContent="center" p="2" borderRadius="25px" bg="navy"  padding="1rem">
                 <Text fontSize="sm" color={"white"}><WarningIcon boxSize='2rem' marginRight="15px"/>You need to have a minimum of 1 TOA in order to submit a proposal.</Text>
                 <Text fontSize='sm' color='white' fontWeight='bold'>Learn More</Text>
@@ -162,6 +209,10 @@ const AddProposal = () => {
               <Stack spacing="1" w="full" direction="column" justifyContent="center">
                 <Text textAlign='left' fontSize='sm' color='navy' fontWeight="bold">Description</Text>
                 <Textarea w="70%" h="200px" bg="lavendar" border="2px solid" borderColor='darkBrown' borderRadius='25px' onChange={(e) => handleTextChange(e)} />
+              </Stack>
+              <Stack spacing="1" w="full" direction="column" justifyContent="center">
+                <Text textAlign='left' fontSize='sm' color='navy' fontWeight="bold">Proposal Type</Text>
+                <Select options={options} styles={customStyles} isSearchable={false} placeholder="Select option" onChange={onChangeHandler}/>
               </Stack>
             </Stack>
           </Stack>

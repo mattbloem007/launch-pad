@@ -14,7 +14,7 @@ const VoteMenu = ({ data }) => (
     {/**<Text textAlign="left" fontSize="sm" fontWeight="bold" color="white">Bonus Proposals</Text>
     <Text textAlign="left" fontSize="sm" fontWeight="bold" color="white">Remedy Proposals</Text>
     <Text textAlign="left" fontSize="sm" fontWeight="bold" color="white">Other Proposals</Text>*/}
-    <Link to='addproposal'><Button size='link' bg='darkBrown'>Add Proposals</Button></Link>
+    <Link to='/governance/addproposal'><Button size='link' bg='darkBrown'>Add Proposals</Button></Link>
     </Stack>
   </Box>
 )

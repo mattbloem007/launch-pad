@@ -56,6 +56,7 @@ const ProjectHeroContainer = styled("div")`
     border: 2px;
     border-color: #ec7019;
     border-radius: 2px;
+    background: #F0EBDD;
 
     img {
         max-width: 600px;
