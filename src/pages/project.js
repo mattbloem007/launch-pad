@@ -132,7 +132,11 @@ const Project = () => {
       let avail = await $.crowdsale.available()
       avail = toDec(avail._hex, 0, 1)
       console.log("time", time, date, funds, price, num, avail)
-      settimeLeft(time)
+      let today = new Date(Date.now())
+      let ti = date.getTime() - today.getTime()
+      let daysRemaining = ti/(1000 * 60 * 60 * 24)
+      console.log("days remaining", daysRemaining)
+      settimeLeft(daysRemaining)
       setfundsRaised(funds)
       settoaPrice(price)
       settoaPriceBN(priceBN)
@@ -339,7 +343,7 @@ const Project = () => {
                     <Container centerContent p="3" pt="0" shadow="lg" w="400px" h="385px" borderRadius="25px" bg="navy" style={{position: "relative", bottom: "255px"}}>
                         <Text textAlign="left" w="full" fontSize="5xl" fontWeight="medium" color={"white"} h='95px'>$ {fundsRaised}</Text>
                         <Container px="8">
-                          <Text textAlign={"center"} flexGrow="2" fontSize="lg" color={"white"} >Raised of ${toaPrice*available} Minimum</Text>
+                          <Text textAlign={"center"} flexGrow="2" fontSize="lg" color={"white"} >Raised of ${toaPrice*(parseInt(numPurchased) + parseInt(available))} Minimum</Text>
                           <Progress bg="lavendar" rounded="3xl" value={(fundsRaised/toaPrice)*100} colorScheme="progress" marginBottom={"5px"}/>
                         </Container>
                         <Stack spacing="5" w="full" direction="column" alignItems="flex-end" p="2">
@@ -349,7 +353,7 @@ const Project = () => {
                           </Stack>
                           <Stack spacing="5" w="full" direction="row" justifyContent="space-between" p="2" borderRadius="25px" bg="darkBrown">
                             <Text fontSize="sm" color={"white"}>TOA's left</Text>
-                            <Text fontSize="sm" color={"white"}>{numPurchased}/{available} Sold</Text>
+                            <Text fontSize="sm" color={"white"}>{numPurchased}/{parseInt(numPurchased) + parseInt(available)} Sold</Text>
                           </Stack>
                         </Stack>
                         <Button size="lg" bg="darkBrown" onClick={onOpen}>
