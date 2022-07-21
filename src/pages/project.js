@@ -17,6 +17,7 @@ import $ from 'lib/crwodsale.js'
 import { toDec } from 'lib/bn.js'
 import { useWeb3React } from "@web3-react/core"
 import Sticky from 'react-stickynode';
+import metricsBG from '../images/CardBackground.png'
 import {
   Box,
   Container,
@@ -327,6 +328,8 @@ const Project = () => {
                     <Tab id="toa"><Heading fontSize="md" style={{marginBottom: "0px"}}>TOA Metrics</Heading></Tab>
                     <Tab id="docs"><Heading fontSize="md" style={{marginBottom: "0px"}}>Documentation</Heading></Tab>
                   </TabList>
+                  <TabPanels>
+                    <TabPanel>
                       <AspectRatio margin={"1rem"} w='583px' h='384px' borderRadius='25px' ratio={16 / 9}>
                         <iframe
                         title='elyseos'
@@ -335,6 +338,24 @@ const Project = () => {
                         style={{borderRadius: '25px', width:'593px', height:'384px'}}
                         />
                       </AspectRatio>
+                    </TabPanel>
+                    <TabPanel>
+                      <Stack alignItems="center" margin={"1rem"} w='583px' h='384px' borderRadius='25px' backgroundImage={metricsBG} backgroundPosition="center" backgroundRepeat="no-repeat" backgroundSize="cover">
+                        <Image src={kannaNFT} w='353px' h='353px'/>
+                      </Stack>
+                    </TabPanel>
+                    <TabPanel>
+                      <AspectRatio margin={"1rem"} w='583px' h='384px' borderRadius='25px' ratio={16 / 9}>
+                        <iframe
+                        title='elyseos'
+                        src='https://www.youtube.com/embed/YlU5XwqtTbY'
+                        allowFullScreen
+                        style={{borderRadius: '25px', width:'593px', height:'384px'}}
+                        />
+                      </AspectRatio>
+                    </TabPanel>
+                  </TabPanels>
+
                 </Tabs>
               </GridItem>
               <GridItem h="70%">

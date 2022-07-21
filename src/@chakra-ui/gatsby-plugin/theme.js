@@ -40,7 +40,9 @@ const theme = {
         fontFamily: "HK Grotesk Bold",
         fontSize: "29px",
         color: "navy",
-        lineHeight: "37px"
+        lineHeight: "37px",
+        marginTop: '30px',
+        marginBottom: '30px',
       }
     },
     Button: {
