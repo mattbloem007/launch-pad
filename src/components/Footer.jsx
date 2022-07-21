@@ -3,7 +3,7 @@ import { Link } from "gatsby";
 import styled from "@emotion/styled";
 import colors from "styles/colors";
 import Logo from "components/_ui/Logo";
-import spooch from "images/oscar-icon.png"
+import spooch from "images/Elyseos Logo.png"
 import twitter from "images/Social Media Icons Twiteer - V1.0.png"
 import github from "images/Social Media Icons Github- V1.0.png"
 import medium from "images/Social Media Icons M - V1.0.png"
