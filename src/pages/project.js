@@ -116,7 +116,7 @@ const Project = () => {
   const [toaPriceBN, settoaPriceBN] = useState("")
   const [numPurchased, setnumPurchased] = useState("")
   const [available, setavailable] = useState("")
-  const { account, library } = useWeb3React()
+  const { active, account, library } = useWeb3React()
 
 
 
@@ -157,44 +157,52 @@ const Project = () => {
     }))
   }
 
-  async function approveUSDC( amount) {
+  async function approveUSDC(active, amount) {
     //---> sending transaction to the blockchain (Toaster) approve pending
-    setProcessing(true)
-    toastIdRef.current = toast({
-            containerStyle: {zIndex: "5500"},
-            title: 'Approval pending',
-            position: "top",
+    if(active) {
+      setProcessing(true)
+      toastIdRef.current = toast({
+              containerStyle: {zIndex: "5500"},
+              title: 'Approval pending',
+              position: "top",
+              status: 'info',
+              isClosable: true,
+              duration: 120000
+          })
+
+      let tx = await $.USDC.approve(library.getSigner(account), $.crowdsale.address, amount)
+      //sent approval to the blockchain
+      toast.update(toastIdRef.current, {
+            title: 'Sent approval to the blockchain',
+          //  description: "Sending Transaction to the blockchain.. ",
             status: 'info',
+            duration: 9000,
             isClosable: true,
-            duration: 120000
-        })
-    // toastIdRef.current = toast({
-    //       title: 'Approve Pending',
-    //       description: "Sending transaction to the blockchain.. ",
-    //       status: 'info',
-    //       duration: 9000,
-    //       isClosable: true,
-    // })
-    let tx = await $.USDC.approve(library.getSigner(account), $.crowdsale.address, amount)
-    //sent approval to the blockchain
-    toast.update(toastIdRef.current, {
-          title: 'Sent approval to the blockchain',
-        //  description: "Sending Transaction to the blockchain.. ",
-          status: 'info',
-          duration: 9000,
-          isClosable: true,
-    })
-    await $.confirm(tx.hash)
-    //approval successful
-     toast.update(toastIdRef.current, {
-          title: 'Approval successful',
-        //  description: "Sending Transaction to the blockchain.. ",
-          status: 'success',
-          duration: 9000,
-          isClosable: true,
       })
-      setProcessing(false)
-      setApproved(true)
+      await $.confirm(tx.hash)
+      //approval successful
+       toast.update(toastIdRef.current, {
+            title: 'Approval successful',
+          //  description: "Sending Transaction to the blockchain.. ",
+            status: 'success',
+            duration: 9000,
+            isClosable: true,
+        })
+        setProcessing(false)
+        setApproved(true)
+    }
+    else {
+      toastIdRef.current = toast({
+              containerStyle: {zIndex: "5500"},
+              title: 'Please connect wallet!',
+              position: "bottom",
+              status: 'error',
+              isClosable: true,
+              duration: 120000
+          })
+    }
+
+
   }
 
   async function buyTOA(numTOAs) {
@@ -308,7 +316,7 @@ const Project = () => {
                         Buy TOA
                       </Button>
                       :
-                      <Button size='xl' bg="darkBrown" style={{alignSelf: "center"}} isLoading={processing} onClick={() => approveUSDC(toaPriceBN.mul(nftAmount.amount))}>
+                      <Button size='xl' bg="darkBrown" style={{alignSelf: "center"}} isLoading={processing} onClick={() => approveUSDC(active, toaPriceBN.mul(nftAmount.amount))}>
                         Approve USDC
                       </Button>
                     }
@@ -318,7 +326,7 @@ const Project = () => {
               </ModalBody>
             </ModalContent>
           </Modal>
-          <ProjectHeroContainer id="project" style={{zIndex:"99"}}>
+          <ProjectHeroContainer id="project" style={{zIndex:"33"}}>
             <Image h='353px' w='353px' style={{position: 'relative'}} src={tree}/>
             <Grid templateColumns='5fr 4fr' gap={6} style={{maxHeight: "460px", position: "relative", right: "112px"}}>
               <GridItem h="70%">
