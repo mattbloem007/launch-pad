@@ -21,7 +21,7 @@ const theme = {
   },
   fonts: {
     body: "HK Grotesk Normal",
-    heading: "HK Grotesk Normal, sans-serif",
+    heading: "HK Grotesk Normal",
     mono: "HK Grotesk Normal, sans-serif",
   },
   fontSizes: {
@@ -37,7 +37,7 @@ const theme = {
     Heading: {
       baseStyle: {
         fontWeight: "regular",
-        fontFamily: "Parisine Plus Std Sombre",
+        fontFamily: "HK Grotesk Bold",
         fontSize: "29px",
         color: "navy",
         lineHeight: "37px"
