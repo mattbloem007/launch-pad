@@ -104,6 +104,7 @@ const Project = () => {
 
   const toast = useToast();
   const toastIdRef = useRef();
+  const [tabIndex, setTabIndex] = useState(0)
   const [processing, setProcessing] = useState(false)
   const [approved, setApproved] = useState(false)
   const { isOpen, onOpen, onClose } = useDisclosure()
@@ -320,7 +321,7 @@ const Project = () => {
             <Image h='353px' w='353px' style={{position: 'relative'}} src={tree}/>
             <Grid templateColumns='5fr 4fr' gap={6} style={{maxHeight: "460px", position: "relative", right: "112px"}}>
               <GridItem h="70%">
-                <Tabs isFitted size='sm'>
+                <Tabs isFitted size='sm' id="projectTablist" index={tabIndex} onChange={(index) => setTabIndex(index)}>
                   <TabList>
                     <Tab id="overview"><Heading fontSize="md" style={{marginBottom: "0px"}}>Overview</Heading></Tab>
                     <Tab id="toa"><Heading fontSize="md" style={{marginBottom: "0px"}}>TOA Metrics</Heading></Tab>
@@ -359,7 +360,7 @@ const Project = () => {
                         <Button size="lg" bg="darkBrown" onClick={onOpen}>
                         Buy Now
                         </Button>
-                        <Text textAlign={"center"} flexGrow="2" color={"white"} fontStyle={"italic"}>11 days Remaining</Text>
+                        <Text textAlign={"center"} flexGrow="2" color={"white"} fontStyle={"italic"}>{Math.trunc(timeLeft)} days Remaining</Text>
                     </Container>
                   </Stack>
                 </Sticky>
@@ -381,7 +382,7 @@ const Project = () => {
                   Risks
                 </Box>
               </Stack>
-            <Tabs isFitted>
+            <Tabs isFitted size='sm' id="projectTablist" index={tabIndex} onChange={(index) => setTabIndex(index)}>
               <TabList>
                 <Tab id="overview"><Heading fontSize="md" style={{marginBottom: "0px"}}>Overview</Heading></Tab>
                 <Tab id="toa"><Heading fontSize="md" style={{marginBottom: "0px"}}>TOA Metrics</Heading></Tab>
