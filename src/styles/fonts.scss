@@ -1,67 +1,23 @@
-@import url('https://rsms.me/inter/inter.css');
+@import url('https://fonts.googleapis.com/css2?family=Fira+Sans:wght@500;800&display=swap');
+
 
 @font-face {
-  font-family: "HK Grotesk Extra Bold";
-  src: url("../static/fonts/HKGrotesk-ExtraBold.woff2") format("woff2"),
-    url("../static/fonts/HKGrotesk-ExtraBold.woff") format("woff");
+  font-family: "Fira Sans Extra Bold";
+  src: url("../static/fonts/FiraSans-ExtraBold.ttf") format("ttf");
   /* font-weight: 800; */
-  font-style: normal;
 }
 
 @font-face {
-  font-family: "HK Grotesk Medium";
-  src: url("../static/fonts/HKGrotesk-Medium.woff2") format("woff2"),
-    url("../static/fonts/HKGrotesk-Medium.woff") format("woff");
-  font-style: normal;
+  font-family: "Fira Sans Medium";
+  src: url("../static/fonts/FiraSans-Medium.ttf") format("ttf");
 }
-
-@font-face {
-  font-family: "HK Grotesk Normal";
-  src: url("../static/fonts/HKGrotesk-Regular.woff2") format("woff2"),
-    url("../static/fonts/HKGrotesk-Regular.woff") format("woff");
-  font-weight: normal;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: "HK Grotesk Light";
-  src: url("../static/fonts/HKGrotesk-Light.woff2") format("woff2"),
-    url("../static/fonts/HKGrotesk-Light.woff") format("woff");
-  /* font-weight: 300; */
-  font-style: normal;
-}
-
-@font-face {
-  font-family: "HK Grotesk Black";
-  src: url("../static/fonts/HKGrotesk-Black.woff2") format("woff2"),
-    url("../static/fonts/HKGrotesk-Black.woff") format("woff");
-  /* font-weight: 900; */
-  font-style: normal;
-}
-
-@font-face {
-  font-family: "HK Grotesk Bold";
-  src: url("../static/fonts/HKGrotesk-Bold.woff2") format("woff2"),
-    url("../static/fonts/HKGrotesk-Bold.woff") format("woff");
-  /* font-weight: bold; */
-  font-style: normal;
-}
-
-@font-face {
-  font-family: "HK Grotesk Semibold";
-  src: url("../static/fonts/HKGrotesk-SemiBold.woff2") format("woff2"),
-    url("../static/fonts/HKGrotesk-SemiBold.woff") format("woff");
-  /* font-weight: 600; */
-  font-style: normal;
-}
-
 
 html {
-    font-family: 'HK Grotesk Normal';
+    font-family: 'Fira Sans';
 }
 
 @supports (font-variation-settings: normal) {
     html {
-        font-family: 'HK Grotesk Normal';
+        font-family: 'Fira Sans';
     }
 }

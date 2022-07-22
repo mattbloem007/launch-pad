@@ -119,8 +119,8 @@ const Header = () => {
           <HeaderContent>
             <Stack spacing="5" w="full" direction="row" alignItems="flex-start" p="2">
                   <Stack spacing="5" w="full" direction="column" alignItems="flex-start" p="2">
-                    <Heading fontSize="48px" style={{marginBottom: "0px"}}>Project Name</Heading>
-                    <Text flexGrow="2" color={"navy"} fontSize="sm" style={{marginTop: "0px"}}>A subtitle which describes the project in simple language</Text>
+                    <Heading fontSize="48px" style={{marginBottom: "0px"}}>KQKanna</Heading>
+                    <Text flexGrow="2" color={"navy"} fontSize="sm" style={{marginTop: "0px"}}>A Sceletium growing operation in the Western Cape, South Africa</Text>
                   </Stack>
               </Stack>
               <Link to='/'>

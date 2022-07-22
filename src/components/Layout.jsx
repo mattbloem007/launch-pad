@@ -54,7 +54,7 @@ const Layout = ({ children }) => (
                     <main style={{background: "mushTan"}}>
                         {children}
                     </main>
-                    <Footer />
+                  {/**<Footer />*/}
                 </div>
             </LayoutContainer>
         )}

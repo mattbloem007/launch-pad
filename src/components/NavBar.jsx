@@ -116,24 +116,24 @@ const NavBar = () => {
                     <Link
                         activeClassName="Link--is-active"
                         to="/"
-                        style={{fontSize: "18px"}}>
+                        style={{fontSize: "16px"}}>
                         ELYSEOS HOME
                     </Link>
                     <Link
                         activeClassName="Link--is-active"
                         to="/"
-                        style={{fontSize: "18px"}}>
+                        style={{fontSize: "16px"}}>
                         ELYS TOKEN
                     </Link>
                     <Link
                         activeClassName="Link--is-active"
                         to="/"
-                        style={{fontSize: "18px"}}>
+                        style={{fontSize: "16px"}}>
                         VENDOR DIRECTORY
                     </Link>
                   </HeaderLinks>
                 </Stack>
-              <Stack spacing="5" w="3xs" direction="row" alignItems="center" justifyContent="center" p="2">
+              <Stack spacing="5" w="3xs" direction="row" alignItems="center" justifyContent="center" paddingTop="3" h="6rem">
                 <Link to="/">
                     <Image src={logo} w="102px" h="104px"/>
                 </Link>
@@ -143,13 +143,13 @@ const NavBar = () => {
                       <Link
                           activeClassName="Link--is-active"
                           to="/governance"
-                          style={{fontSize: "18px"}}>
+                          style={{fontSize: "16px"}}>
                           GOVERNANCE
                       </Link>
                       <Link
                           activeClassName="Link--is-active"
                           to="/dashboard"
-                          style={{fontSize: "18px"}}>
+                          style={{fontSize: "16px"}}>
                           DASHBOARD
                       </Link>
                     </HeaderLinks>

@@ -88,7 +88,7 @@ const ProjectBody = styled("div")`
     align-items: center;
     max-width: 550px;
     margin: 0;
-    margin-left: 55px;
+    margin-left: 146px;
     margin-right: 55px;
 
     .block-img {
@@ -137,7 +137,10 @@ const Project = () => {
       let today = new Date(Date.now())
       let ti = date.getTime() - today.getTime()
       let daysRemaining = ti/(1000 * 60 * 60 * 24)
-      console.log("days remaining", daysRemaining)
+      let thi = price* (num+avail)
+      let th = funds/thi
+      let val = th*100
+      console.log("progress value", val)
       settimeLeft(daysRemaining)
       setfundsRaised(funds)
       settoaPrice(price)
@@ -162,7 +165,7 @@ const Project = () => {
     if(active) {
       setProcessing(true)
       toastIdRef.current = toast({
-              containerStyle: {zIndex: "5500"},
+              containerStyle: {position: "relative", zIndex: "1700"},
               title: 'Approval pending',
               position: "top",
               status: 'info',
@@ -328,7 +331,7 @@ const Project = () => {
           </Modal>
           <ProjectHeroContainer id="project" style={{zIndex:"33"}}>
             <Image h='353px' w='353px' style={{position: 'relative'}} src={tree}/>
-            <Grid templateColumns='5fr 4fr' gap={6} style={{maxHeight: "460px", position: "relative", right: "112px"}}>
+            <Grid templateColumns='5fr 4fr' gap={6} style={{maxHeight: "470px", position: "relative", right: "68px"}}>
               <GridItem h="70%">
                 <Tabs isFitted size='sm' id="projectTablist" index={tabIndex} onChange={(index) => setTabIndex(index)}>
                   <TabList>
@@ -366,10 +369,10 @@ const Project = () => {
 
                 </Tabs>
               </GridItem>
-              <GridItem h="70%">
-                <Sticky enabled={true} top={100} bottomBoundary="#footer">
+              <GridItem h="70%" style={{marginTop: "44px"}}>
+                <Sticky enabled={true} top={44} bottomBoundary="#body">
                   <Stack direction="column" alignItems="center">
-                    <Image w='295px' h='295px' src={crystal} style={{position: "relative", bottom: "184px", zIndex: "99"}}/>
+                    <Image w='295px' h='295px' src={crystal} style={{position: "relative", bottom: "184px"}}/>
                     <Container centerContent p="3" pt="0" shadow="lg" w="400px" h="385px" borderRadius="25px" bg="navy" style={{position: "relative", bottom: "255px"}}>
                         <Text textAlign="left" w="full" fontSize="5xl" fontWeight="medium" color={"white"} h='95px'>$ {fundsRaised}</Text>
                         <Container px="8">
@@ -396,33 +399,32 @@ const Project = () => {
               </GridItem>
             </Grid>
           </ProjectHeroContainer>
-            <ProjectBody>
-              <Stack spacing="5" w={"150px"} direction="column" p="2" borderRight={"2px"} borderRightStyle={"dotted"}>
-                <Box color="navy" fontSize='sm' fontWeight="bold">
-                Background
-                </Box>
-                <Box color="navy" fontSize='sm' fontWeight="bold">
-                  Keypoints
-                </Box>
-                <Box color="navy" fontSize='sm' fontWeight="bold">
-                  Stakeholders
-                </Box>
-                <Box color="navy" fontSize='sm' fontWeight="bold">
-                  Risks
-                </Box>
-              </Stack>
+            <ProjectBody id="body">
+
             <Tabs isFitted size='sm' id="projectTablist" index={tabIndex} onChange={(index) => setTabIndex(index)}>
-              <TabList>
+              {/**<TabList>
                 <Tab id="overview"><Heading fontSize="md" style={{marginBottom: "0px"}}>Overview</Heading></Tab>
                 <Tab id="toa"><Heading fontSize="md" style={{marginBottom: "0px"}}>TOA Metrics</Heading></Tab>
                 <Tab id="docs"><Heading fontSize="md" style={{marginBottom: "0px"}}>Documentation</Heading></Tab>
-              </TabList>
-
+              </TabList>*/}
               <TabPanels style={{width: "600px"}}>
                 <TabPanel>
-                  <Stack direction="row" w="3xl">
-
-                    <Stack spacing="1" w="full" direction="column" p="2" style={{overflowY: "auto", overflowX: "hidden", height: "350px"}}>
+                  <Stack direction="row" w="3xl" alignItems="baseline">
+                    <Stack spacing="5" w={"150px"} h='222px' direction="column" p="2" borderRight={"2px"} borderRightStyle={"dotted"}>
+                      <Box color="navy" fontSize='sm' fontWeight="bold">
+                      Background
+                      </Box>
+                      <Box color="navy" fontSize='sm' fontWeight="bold">
+                        Keypoints
+                      </Box>
+                      <Box color="navy" fontSize='sm' fontWeight="bold">
+                        Stakeholders
+                      </Box>
+                      <Box color="navy" fontSize='sm' fontWeight="bold">
+                        Risks
+                      </Box>
+                    </Stack>
+                    <Stack spacing="1" w="xl" direction="column" p="2">
                       <Heading> Background </Heading>
                         <Text color={"navy"} fontSize={"sm"}>Nulla dui purus, eleifend vel, consequat non, dictum porta, nulla. Duis ante mi, laoreet ut, commodo eleifend, cursus nec, lorem. Aenean eu est. Etiam imperdiet turpis. Praesent nec augue. Nulla dui purus, eleifend vel, consequat non, dictum porta, nulla. Duis ante mi, laoreet ut, commodo eleifend, cursus nec, lorem. Aenean eu est. Etiam imperdiet turpis. Praesent nec augue.</Text>
                       <Heading> Keypoints </Heading>
@@ -469,7 +471,22 @@ const Project = () => {
                   </Stack>
                 </TabPanel>
                 <TabPanel>
-                  <Box bg='darkBrown' borderRadius={'25px'}>
+                <Stack direction="row" w="3xl" alignItems="baseline">
+                  <Stack spacing="5" w={"150px"} h='222px' direction="column" p="2" borderRight={"2px"} borderRightStyle={"dotted"}>
+                    <Box color="navy" fontSize='sm' fontWeight="bold">
+                    Background
+                    </Box>
+                    <Box color="navy" fontSize='sm' fontWeight="bold">
+                      Keypoints
+                    </Box>
+                    <Box color="navy" fontSize='sm' fontWeight="bold">
+                      Stakeholders
+                    </Box>
+                    <Box color="navy" fontSize='sm' fontWeight="bold">
+                      Risks
+                    </Box>
+                  </Stack>
+                  <Box bg='darkBrown' borderRadius={'25px'} w='80%'>
                     <Text textAlign={"center"} fontSize="xl" color="white"> Metrics </Text>
                     <Stack spacing="1" w="full" direction="column" alignItems="flex-end" p="2">
                       <Stack spacing="5" w="full" direction="row" justifyContent="space-between" p="2" borderRadius="11px" bg="mush">
@@ -514,14 +531,31 @@ const Project = () => {
                       </Stack>
                     </Stack>
                   </Box>
+                </Stack>
                 </TabPanel>
                 <TabPanel>
-                <Stack spacing="1" w="full" direction="column" p="2" style={{overflowY: "auto", overflowX: "hidden", height: "350px"}}>
-                  <Heading> Background </Heading>
-                    <Text color={"navy"} fontSize={"sm"}>Nulla dui purus, eleifend vel, consequat non, dictum porta, nulla. Duis ante mi, laoreet ut, commodo eleifend, cursus nec, lorem. Aenean eu est. Etiam imperdiet turpis. Praesent nec augue. Nulla dui purus, eleifend vel, consequat non, dictum porta, nulla. Duis ante mi, laoreet ut, commodo eleifend, cursus nec, lorem. Aenean eu est. Etiam imperdiet turpis. Praesent nec augue.</Text>
-                    <Text color={"navy"} fontSize="lg" fontStyle="underline" fontWeight="bold">Producer Financials</Text>
-                    <Text color={"navy"} fontSize="lg" fontStyle="underline" fontWeight="bold">Laboratory Audits</Text>
-                    <Text color={"navy"} fontSize="lg" fontStyle="underline" fontWeight="bold">Land Lease Agreements</Text>
+                <Stack direction="row" w="3xl" alignItems="baseline">
+                  <Stack spacing="5" w={"150px"} h='222px' direction="column" p="2" borderRight={"2px"} borderRightStyle={"dotted"}>
+                    <Box color="navy" fontSize='sm' fontWeight="bold">
+                    Background
+                    </Box>
+                    <Box color="navy" fontSize='sm' fontWeight="bold">
+                      Keypoints
+                    </Box>
+                    <Box color="navy" fontSize='sm' fontWeight="bold">
+                      Stakeholders
+                    </Box>
+                    <Box color="navy" fontSize='sm' fontWeight="bold">
+                      Risks
+                    </Box>
+                  </Stack>
+                  <Stack spacing="1" w="full" direction="column" p="2" style={{overflowY: "auto", overflowX: "hidden", height: "350px"}}>
+                    <Heading> Background </Heading>
+                      <Text color={"navy"} fontSize={"sm"}>Nulla dui purus, eleifend vel, consequat non, dictum porta, nulla. Duis ante mi, laoreet ut, commodo eleifend, cursus nec, lorem. Aenean eu est. Etiam imperdiet turpis. Praesent nec augue. Nulla dui purus, eleifend vel, consequat non, dictum porta, nulla. Duis ante mi, laoreet ut, commodo eleifend, cursus nec, lorem. Aenean eu est. Etiam imperdiet turpis. Praesent nec augue.</Text>
+                      <Text color={"navy"} fontSize="lg" fontStyle="underline" fontWeight="bold">Producer Financials</Text>
+                      <Text color={"navy"} fontSize="lg" fontStyle="underline" fontWeight="bold">Laboratory Audits</Text>
+                      <Text color={"navy"} fontSize="lg" fontStyle="underline" fontWeight="bold">Land Lease Agreements</Text>
+                  </Stack>
                 </Stack>
                 </TabPanel>
               </TabPanels>

@@ -15,14 +15,14 @@ const theme = {
     darkGreen: '#4D9C73',
     lightGreen: '#CFF09E',
     progress: {
-      100: "lavendar",
+      100: "#4F4051",
       500: "#4F4051",
     },
   },
   fonts: {
-    body: "HK Grotesk Normal",
-    heading: "HK Grotesk Normal",
-    mono: "HK Grotesk Normal, sans-serif",
+    body: "Fira Sans",
+    heading: "Fira Sans",
+    mono: "Fira Sans",
   },
   fontSizes: {
     xs: "13px",
@@ -36,8 +36,8 @@ const theme = {
   components: {
     Heading: {
       baseStyle: {
-        fontWeight: "regular",
-        fontFamily: "HK Grotesk Bold",
+        fontWeight: "800",
+        fontFamily: "Fira Sans",
         fontSize: "29px",
         color: "navy",
         lineHeight: "37px",
