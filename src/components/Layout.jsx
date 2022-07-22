@@ -48,7 +48,7 @@ const Layout = ({ children }) => (
         render={data => (
             <LayoutContainer>
                 {/**<Global styles={[globalStyles, typeStyles]} />*/}
-                <Fonts />
+                
                 <div>
                   <NavBar />
                     <main style={{background: "mushTan"}}>

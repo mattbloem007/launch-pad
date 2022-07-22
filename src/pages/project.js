@@ -121,6 +121,7 @@ const Project = () => {
 
 
   useEffect(() => {
+    //----> promise.allSettled()
     async function fetchData() {
       let time = await $.crowdsale.timeUntilEnd()
       //time = toDec(time._hex, 0, 1)
@@ -177,7 +178,6 @@ const Project = () => {
       //sent approval to the blockchain
       toast.update(toastIdRef.current, {
             title: 'Sent approval to the blockchain',
-          //  description: "Sending Transaction to the blockchain.. ",
             status: 'info',
             duration: 9000,
             isClosable: true,
@@ -186,7 +186,6 @@ const Project = () => {
       //approval successful
        toast.update(toastIdRef.current, {
             title: 'Approval successful',
-          //  description: "Sending Transaction to the blockchain.. ",
             status: 'success',
             duration: 9000,
             isClosable: true,
