@@ -190,7 +190,7 @@ const AddProposal = () => {
             <Stack spacing="5" w={"300px"} direction="column" p="2">
               <VoteMenu />
             </Stack>
-            <Stack spacing="3" w="full" direction="column" p="2" style={{overflowY: "auto", overflowX: "hidden", height: "550px"}}>
+            <Stack spacing="3" w="full" direction="column" p="2" style={{marginBottom: "200px"}}>
               <Link to="/governance">
                 <Stack spacing="5" w="sm" direction="row" alignItems="center" justifyContent="flex-start" p="2">
                   <ArrowBackIcon />

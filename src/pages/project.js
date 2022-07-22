@@ -76,6 +76,7 @@ const ProjectHeroContainer = styled("div")`
     border-radius: 2px;
     background: #F0EBDD;
 
+
     img {
         max-width: 600px;
     }
@@ -329,77 +330,78 @@ const Project = () => {
             </ModalContent>
           </Modal>
           <ProjectHeroContainer id="project" style={{zIndex:"33"}}>
-            <Image h='353px' w='353px' style={{position: 'relative'}} src={tree}/>
-            <Grid templateColumns='5fr 4fr' gap={6} style={{maxHeight: "470px", position: "relative", right: "68px"}}>
-              <GridItem h="70%">
-                <Tabs isFitted size='sm' id="projectTablist" index={tabIndex} onChange={(index) => setTabIndex(index)}>
-                  <TabList>
-                    <Tab id="overview"><Heading fontSize="md" style={{marginBottom: "0px"}}>Overview</Heading></Tab>
-                    <Tab id="toa"><Heading fontSize="md" style={{marginBottom: "0px"}}>TOA Metrics</Heading></Tab>
-                    <Tab id="docs"><Heading fontSize="md" style={{marginBottom: "0px"}}>Documentation</Heading></Tab>
-                  </TabList>
-                  <TabPanels>
-                    <TabPanel>
-                      <AspectRatio margin={"1rem"} w='583px' h='384px' borderRadius='25px' ratio={16 / 9}>
-                        <iframe
-                        title='elyseos'
-                        src='https://www.youtube.com/embed/YlU5XwqtTbY'
-                        allowFullScreen
-                        style={{borderRadius: '25px', width:'593px', height:'384px'}}
-                        />
-                      </AspectRatio>
-                    </TabPanel>
-                    <TabPanel>
-                      <Stack alignItems="center" margin={"1rem"} w='583px' h='384px' borderRadius='25px' backgroundImage={metricsBG} backgroundPosition="center" backgroundRepeat="no-repeat" backgroundSize="cover">
-                        <Image src={kannaNFT} w='353px' h='353px'/>
-                      </Stack>
-                    </TabPanel>
-                    <TabPanel>
-                      <AspectRatio margin={"1rem"} w='583px' h='384px' borderRadius='25px' ratio={16 / 9}>
-                        <iframe
-                        title='elyseos'
-                        src='https://www.youtube.com/embed/YlU5XwqtTbY'
-                        allowFullScreen
-                        style={{borderRadius: '25px', width:'593px', height:'384px'}}
-                        />
-                      </AspectRatio>
-                    </TabPanel>
-                  </TabPanels>
-
-                </Tabs>
-              </GridItem>
-              <GridItem h="70%" style={{marginTop: "44px"}}>
-                <Sticky enabled={true} top={44} bottomBoundary="#body">
-                  <Stack direction="column" alignItems="center">
-                    <Image w='295px' h='295px' src={crystal} style={{position: "relative", bottom: "184px"}}/>
-                    <Container centerContent p="3" pt="0" shadow="lg" w="400px" h="385px" borderRadius="25px" bg="navy" style={{position: "relative", bottom: "255px"}}>
-                        <Text textAlign="left" w="full" fontSize="5xl" fontWeight="medium" color={"white"} h='95px'>$ {fundsRaised}</Text>
-                        <Container px="8">
-                          <Text textAlign={"center"} flexGrow="2" fontSize="lg" color={"white"} >Raised of ${toaPrice*(parseInt(numPurchased) + parseInt(available))} Minimum</Text>
-                          <Progress bg="lavendar" rounded="3xl" value={(fundsRaised/toaPrice)*100} colorScheme="progress" marginBottom={"5px"}/>
-                        </Container>
-                        <Stack spacing="5" w="full" direction="column" alignItems="flex-end" p="2">
-                          <Stack spacing="5" w="full" direction="row" justifyContent="space-between" p="2" borderRadius="25px" bg="darkBrown">
-                            <Text fontSize="sm" color={"white"}>Price</Text>
-                            <Text fontSize="sm" color={"white"}>${toaPrice}/TOA</Text>
-                          </Stack>
-                          <Stack spacing="5" w="full" direction="row" justifyContent="space-between" p="2" borderRadius="25px" bg="darkBrown">
-                            <Text fontSize="sm" color={"white"}>TOA's left</Text>
-                            <Text fontSize="sm" color={"white"}>{numPurchased}/{parseInt(numPurchased) + parseInt(available)} Sold</Text>
-                          </Stack>
+          <Stack direction="column">
+            <Stack direction="row" alignItems="flex-end">
+              <Image h='353px' w='353px' style={{position: 'relative'}} src={tree}/>
+              <Grid templateColumns='5fr 4fr' gap={6} style={{maxHeight: "470px", position: "relative", right: "136px"}}>
+                <GridItem h="70%">
+                  <Tabs isFitted size='sm' id="projectTablist" index={tabIndex} onChange={(index) => setTabIndex(index)}>
+                    <TabList>
+                      <Tab id="overview"><Heading fontSize="md" style={{marginBottom: "0px"}}>Overview</Heading></Tab>
+                      <Tab id="toa"><Heading fontSize="md" style={{marginBottom: "0px"}}>TOA Metrics</Heading></Tab>
+                      <Tab id="docs"><Heading fontSize="md" style={{marginBottom: "0px"}}>Documentation</Heading></Tab>
+                    </TabList>
+                    <TabPanels>
+                      <TabPanel>
+                        <AspectRatio margin={"1rem"} w='583px' h='384px' borderRadius='25px' ratio={16 / 9}>
+                          <iframe
+                          title='elyseos'
+                          src='https://www.youtube.com/embed/YlU5XwqtTbY'
+                          allowFullScreen
+                          style={{borderRadius: '25px', width:'593px', height:'384px'}}
+                          />
+                        </AspectRatio>
+                      </TabPanel>
+                      <TabPanel>
+                        <Stack alignItems="center" margin={"1rem"} w='583px' h='384px' borderRadius='25px' backgroundImage={metricsBG} backgroundPosition="center" backgroundRepeat="no-repeat" backgroundSize="cover">
+                          <Image src={kannaNFT} w='353px' h='353px'/>
                         </Stack>
-                        <Button size="lg" bg="darkBrown" onClick={onOpen}>
-                        Buy Now
-                        </Button>
-                        <Text textAlign={"center"} flexGrow="2" color={"white"} fontStyle={"italic"}>{Math.trunc(timeLeft)} days Remaining</Text>
-                    </Container>
-                  </Stack>
-                </Sticky>
-              </GridItem>
-            </Grid>
-          </ProjectHeroContainer>
-            <ProjectBody id="body">
+                      </TabPanel>
+                      <TabPanel>
+                        <AspectRatio margin={"1rem"} w='583px' h='384px' borderRadius='25px' ratio={16 / 9}>
+                          <iframe
+                          title='elyseos'
+                          src='https://www.youtube.com/embed/YlU5XwqtTbY'
+                          allowFullScreen
+                          style={{borderRadius: '25px', width:'593px', height:'384px'}}
+                          />
+                        </AspectRatio>
+                      </TabPanel>
+                    </TabPanels>
 
+                  </Tabs>
+                </GridItem>
+                <GridItem h="70%" style={{marginTop: "44px"}}>
+                  <Sticky enabled={true} top={44} bottomBoundary="#body">
+                    <Stack direction="column" alignItems="center">
+                      <Image w='295px' h='295px' src={crystal} style={{position: "relative", bottom: "184px"}}/>
+                      <Container centerContent p="3" pt="0" shadow="lg" w="400px" h="385px" borderRadius="25px" bg="navy" style={{position: "relative", bottom: "255px"}}>
+                          <Text textAlign="left" w="full" fontSize="5xl" fontWeight="medium" color={"white"} h='95px'>$ {fundsRaised}</Text>
+                          <Container px="8">
+                            <Text textAlign={"center"} flexGrow="2" fontSize="lg" color={"white"} >Raised of ${toaPrice*(parseInt(numPurchased) + parseInt(available))} Minimum</Text>
+                            <Progress bg="lavendar" rounded="3xl" value={(fundsRaised/toaPrice)*100} colorScheme="progress" marginBottom={"5px"}/>
+                          </Container>
+                          <Stack spacing="5" w="full" direction="column" alignItems="flex-end" p="2">
+                            <Stack spacing="5" w="full" direction="row" justifyContent="space-between" p="2" borderRadius="25px" bg="darkBrown">
+                              <Text fontSize="sm" color={"white"}>Price</Text>
+                              <Text fontSize="sm" color={"white"}>${toaPrice}/TOA</Text>
+                            </Stack>
+                            <Stack spacing="5" w="full" direction="row" justifyContent="space-between" p="2" borderRadius="25px" bg="darkBrown">
+                              <Text fontSize="sm" color={"white"}>TOA's left</Text>
+                              <Text fontSize="sm" color={"white"}>{numPurchased}/{parseInt(numPurchased) + parseInt(available)} Sold</Text>
+                            </Stack>
+                          </Stack>
+                          <Button size="lg" bg="darkBrown" onClick={onOpen}>
+                          Buy Now
+                          </Button>
+                          <Text textAlign={"center"} flexGrow="2" color={"white"} fontStyle={"italic"}>{Math.trunc(timeLeft)} days Remaining</Text>
+                      </Container>
+                    </Stack>
+                  </Sticky>
+                </GridItem>
+              </Grid>
+            </Stack>
+            <Stack direction='row' paddingLeft="91px">
             <Tabs isFitted size='sm' id="projectTablist" index={tabIndex} onChange={(index) => setTabIndex(index)}>
               {/**<TabList>
                 <Tab id="overview"><Heading fontSize="md" style={{marginBottom: "0px"}}>Overview</Heading></Tab>
@@ -559,6 +561,12 @@ const Project = () => {
                 </TabPanel>
               </TabPanels>
               </Tabs>
+              </Stack>
+            </Stack>
+          </ProjectHeroContainer>
+            <ProjectBody id="body">
+
+
             </ProjectBody>
     </>
   )
