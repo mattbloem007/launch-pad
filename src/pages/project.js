@@ -329,8 +329,8 @@ const Project = () => {
               </ModalBody>
             </ModalContent>
           </Modal>
-          <ProjectHeroContainer id="project" style={{zIndex:"33"}}>
-          <Stack direction="column">
+          <ProjectHeroContainer style={{zIndex:"33"}} justifyContent="center">
+          <Stack direction="column" id="project">
             <Stack direction="row" alignItems="flex-end">
               <Image h='353px' w='353px' style={{position: 'relative'}} src={tree}/>
               <Grid templateColumns='5fr 4fr' gap={6} style={{maxHeight: "470px", position: "relative", right: "136px"}}>
@@ -372,7 +372,7 @@ const Project = () => {
                   </Tabs>
                 </GridItem>
                 <GridItem h="70%" style={{marginTop: "44px"}}>
-                  <Sticky enabled={true} top={44} bottomBoundary="#body">
+                  <Sticky enabled={true} top={0} bottomBoundary="#body">
                     <Stack direction="column" alignItems="center">
                       <Image w='295px' h='295px' src={crystal} style={{position: "relative", bottom: "184px"}}/>
                       <Container centerContent p="3" pt="0" shadow="lg" w="400px" h="385px" borderRadius="25px" bg="navy" style={{position: "relative", bottom: "255px"}}>
