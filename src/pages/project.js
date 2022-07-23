@@ -332,8 +332,8 @@ const Project = () => {
           <ProjectHeroContainer style={{zIndex:"33"}} justifyContent="center">
           <Stack direction="column" id="project">
             <Stack direction="row" alignItems="flex-end">
-              <Image h='353px' w='353px' style={{position: 'relative'}} src={tree}/>
-              <Grid templateColumns='5fr 4fr' gap={6} style={{maxHeight: "470px", position: "relative", right: "136px"}}>
+              <Image h='353px' w='353px' style={{position: 'relative', right: "51px"}} src={tree}/>
+              <Grid templateColumns='5fr 4fr' gap={6} style={{maxHeight: "470px", position: "relative", right: "200px"}}>
                 <GridItem h="70%">
                   <Tabs isFitted size='sm' id="projectTablist" index={tabIndex} onChange={(index) => setTabIndex(index)}>
                     <TabList>
@@ -426,11 +426,11 @@ const Project = () => {
                       </Box>
                     </Stack>
                     <Stack spacing="1" w="xl" direction="column" p="2">
-                      <Heading> Background </Heading>
+                      <Heading id="background"> Background </Heading>
                         <Text color={"navy"} fontSize={"sm"}>Nulla dui purus, eleifend vel, consequat non, dictum porta, nulla. Duis ante mi, laoreet ut, commodo eleifend, cursus nec, lorem. Aenean eu est. Etiam imperdiet turpis. Praesent nec augue. Nulla dui purus, eleifend vel, consequat non, dictum porta, nulla. Duis ante mi, laoreet ut, commodo eleifend, cursus nec, lorem. Aenean eu est. Etiam imperdiet turpis. Praesent nec augue.</Text>
-                      <Heading> Keypoints </Heading>
+                      <Heading id="heading"> Keypoints </Heading>
                         <Text color={"navy"} fontSize={"sm"}>Nulla dui purus, eleifend vel, consequat non, dictum porta, nulla. Duis ante mi, laoreet ut, commodo eleifend, cursus nec, lorem. Aenean eu est. Etiam imperdiet turpis. Praesent nec augue. Nulla dui purus, eleifend vel, consequat non, dictum porta, nulla. Duis ante mi, laoreet ut, commodo eleifend, cursus nec, lorem. Aenean eu est. Etiam imperdiet turpis. Praesent nec augue.</Text>
-                      <Heading> Stakeholders </Heading>
+                      <Heading id="stake"> Stakeholders </Heading>
                         <Text color={"navy"} fontSize={"sm"}>Nulla dui purus, eleifend vel, consequat non, dictum porta, nulla. Duis ante mi, laoreet ut, commodo eleifend, cursus nec, lorem. Aenean eu est. Etiam imperdiet turpis. Praesent nec augue. Nulla dui purus, eleifend vel, consequat non, dictum porta, nulla. Duis ante mi, laoreet ut, commodo eleifend, cursus nec, lorem. Aenean eu est. Etiam imperdiet turpis. Praesent nec augue.</Text>
                         <Grid templateColumns='repeat(4, 0.5fr)' gap={6}>
                           <GridItem>
@@ -466,7 +466,7 @@ const Project = () => {
                             <Text color={"navy"} fontSize={"sm"}> Stakeholder 1</Text>
                           </GridItem>
                         </Grid>
-                      <Heading> Risks </Heading>
+                      <Heading id="risks"> Risks </Heading>
                         <Text color={"navy"} fontSize={"sm"}>Nulla dui purus, eleifend vel, consequat non, dictum porta, nulla. Duis ante mi, laoreet ut, commodo eleifend, cursus nec, lorem. Aenean eu est. Etiam imperdiet turpis. Praesent nec augue. Nulla dui purus, eleifend vel, consequat non, dictum porta, nulla. Duis ante mi, laoreet ut, commodo eleifend, cursus nec, lorem. Aenean eu est. Etiam imperdiet turpis. Praesent nec augue.</Text>
                     </Stack>
                   </Stack>
