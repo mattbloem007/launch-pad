@@ -247,12 +247,12 @@ const RenderBody = () => {
           <ProjectHeroContainer>
             <Heading> Statistics </Heading>
             <Container centerContent p="3" pt="0" bg={"mush"} rounded="3xl" shadow="lg" maxWidth="1242px" h="232px" justifyContent="space-evenly">
-              <Text textAlign={"center"} fontSize="xl" color="white" style={{position: "relative", top: "40px"}}>Tale of TOA</Text>
+              <Text textAlign={"center"} fontSize="xl" color="white" style={{position: "relative", top: "40px"}}>Tale of TOAs</Text>
               <Stack direction="row" alignItems="center" marginRight={'122px'} spacing="6" h='228px'>
                   <Image w='400px' h='400px' src={tree} style={{position: 'relative', left: '155px', bottom: '55px', zIndex: '0'}}/>
                   <Stack direction="column" justifyContent="center" borderRadius='33px' h='128px' w='188px' bg='darkBrown' style={{position: "relative"}}>
                     <Text textAlign={"center"} fontSize="xl" fontWeight="bold" color={"white"}>1</Text>
-                    <Text textAlign={"center"} fontSize="sm" color={"white"}> Ongoing Projects</Text>
+                    <Text textAlign={"center"} fontSize="sm" color={"white"}>Ongoing Projects</Text>
                   </Stack>
                   <Stack direction="column" justifyContent="center" borderRadius='33px' h='128px' w='188px' bg='darkBrown'>
                     <Text textAlign={"center"} fontSize="xl" fontWeight="bold" color={"white"}>${fundsRaised}</Text>
@@ -275,8 +275,8 @@ const RenderBody = () => {
               <Link to='/project'>
                   <Box style={{display: "flex", alignContent: "flex-end", justifyContent: "center", flexWrap: "wrap", paddingBottom: '16px'}} borderRadius='11px' h='523px' w='312px' bg='orange'>
                     <Image h='416px' w='416px' src={kannaNFT}/>
-                    <Text textAlign={"center"} color={"white"} fontSize="lg" fontWeight="bold" lineHeight="31px"> Sceletium Project</Text>
-                    <Text textAlign={"center"} fontSize="sm" color={"white"} lineHeight="31px">It could be smugglers, it could be. That is the system</Text>
+                    <Text textAlign={"center"} color={"white"} fontSize="lg" fontWeight="bold" lineHeight="31px">KQKanna</Text>
+                    <Text textAlign={"center"} fontSize="sm" color={"white"} lineHeight="31px">A Sceletium growing project in the Western Cape, South Africa</Text>
                   </Box>
               </Link>
               {/**<GridItem>
@@ -298,17 +298,17 @@ const RenderBody = () => {
                 </Box>
               </GridItem>**/}
             </Stack>
-            <Heading>Learn More</Heading>
+            <Heading>About Elyseos Ventures</Heading>
             <Box marginRight={"50px"} marginLeft={"50px"} marginBottom={"100px"} w='1168px'>
-              <Text color={"navy"} textAlign={"center"} fontSize={"sm"}>Elyseos Ventures is a platform which enables the funding of Ethno Medicine projects via Tokenised Offtake Agreements.  EV is part of the Elyseos ecosystem which includes a suite of web 3 tools which facilitate funding, trading & learning about Sacramental Medicines. Learn more at <Link to="https://elyseos.com" style={{textDecoration: "underline"}}>www.elyseos.com</Link></Text>
+              <Text color={"navy"} textAlign={"left"} fontSize={"sm"}>Elyseos Ventures is a platform which enables the funding of Ethno Medicine projects via Tokenised Offtake Agreements.  EV is part of the Elyseos ecosystem which includes a suite of web 3 tools which facilitate funding, trading & learning about Sacramental Medicines. Learn more at <Link to="https://elyseos.com" style={{textDecoration: "underline"}}>www.elyseos.com</Link></Text>
               <br/>
-              <Text color={"navy"} textAlign={"center"}>TOAs form the core offering of Elyseos Ventures. Tokenized Off-take Agreements (TOAs) are Non Fungible Tokens (NFTs) which have attached to them an ‘offtake’ that is a certain amount of actual product produced e.g. 10kgs of cacao for 5 years.</Text>
+              <Text color={"navy"} textAlign={"left"}>TOAs form the core offering of Elyseos Ventures. Tokenized Off-take Agreements (TOAs) are Non Fungible Tokens (NFTs) which have attached to them an ‘offtake’ that is a certain amount of actual product produced e.g. 10kgs of cacao for 5 years.</Text>
               <br />
-              <Text color={"navy"} textAlign={"center"}>Holding one of these NFTs entitles you to delivery of some form of goods (the volume and quality to be specified in the NFT) at specified time or times (again these will be specified in the NFT.</Text>
+              <Text color={"navy"} textAlign={"left"}>Holding one of these NFTs entitles you to delivery of some form of goods (the volume and quality to be specified in the NFT) at specified time or times (again these will be specified in the NFT.</Text>
               <br/>
-              <Text color={"navy"} textAlign={"center"}>TOAs are a new financial instrument which offer the following features not currently  available in the market:</Text>
+              <Text color={"navy"} textAlign={"left"}>TOAs are a new financial instrument which offer the following features not currently  available in the market:</Text>
               <br/>
-              <UnorderedList color={"navy"} textAlign={"center"}>
+              <UnorderedList color={"navy"} textAlign={"left"}>
                 <ListItem>Funding the growing of niche ethnobotanical or ethnomycological sacraments. Traditional funding sources often do not venture into these areas.</ListItem><br/>
                 <ListItem>Allows users of sacraments (traders, product creators, healers, medical facilities) to lock in a guaranteed supply of product for their needs.</ListItem><br/>
                 <ListItem>Allows individuals affordable exposure to sacramental medicine growing operations.  Each individual can calibrate their risk level via the amount of TOAs they purchase.</ListItem><br/>

@@ -115,21 +115,15 @@ const NavBar = () => {
                 <HeaderLinks>
                     <Link
                         activeClassName="Link--is-active"
-                        to="/"
+                        to="https://www.elyseos.com/"
                         style={{fontSize: "16px"}}>
                         ELYSEOS HOME
                     </Link>
                     <Link
                         activeClassName="Link--is-active"
-                        to="/"
+                        to="https://elys.money/"
                         style={{fontSize: "16px"}}>
                         ELYS TOKEN
-                    </Link>
-                    <Link
-                        activeClassName="Link--is-active"
-                        to="/"
-                        style={{fontSize: "16px"}}>
-                        VENDOR DIRECTORY
                     </Link>
                   </HeaderLinks>
                 </Stack>

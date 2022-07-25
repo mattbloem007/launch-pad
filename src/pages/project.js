@@ -114,6 +114,7 @@ const Project = () => {
   const toastIdRef = useRef();
   const [tabIndex, setTabIndex] = useState(0)
   const [processing, setProcessing] = useState(false)
+  const [progress, setProgress] = useState(0)
   const [approved, setApproved] = useState(false)
   const { isOpen, onOpen, onClose } = useDisclosure()
   const [nftAmount, setNftAmount] = useState({ amount: 1 })
@@ -145,11 +146,12 @@ const Project = () => {
       let today = new Date(Date.now())
       let ti = date.getTime() - today.getTime()
       let daysRemaining = ti/(1000 * 60 * 60 * 24)
-      let thi = price* (num+avail)
-      let th = funds/thi
-      let val = th*100
-      console.log("progress value", val, account)
+      let total = price*(parseInt(num) + parseInt(avail))
+      console.log("total value", total, funds)
+      let val = (funds/total)*100
+      console.log("value", val)
 
+      setProgress(val)
       settimeLeft(daysRemaining)
       setfundsRaised(funds)
       settoaPrice(price)
@@ -263,6 +265,16 @@ const Project = () => {
     //  setApproved(true)
   }
 
+  function scroll(id) {
+    if(typeof(document) !== 'undefined') {
+      const violation = document.getElementById(id)
+        window.scrollTo({
+          top:violation.offsetTop,
+          behavior:"smooth"
+      })
+    }
+  }
+
   return(
     <>
         <Helmet
@@ -362,7 +374,7 @@ const Project = () => {
                     <TabList>
                       <Tab id="overview"><Heading fontSize="md" style={{marginBottom: "0px"}}>Overview</Heading></Tab>
                       <Tab id="toa"><Heading fontSize="md" style={{marginBottom: "0px"}}>TOA Metrics</Heading></Tab>
-                      <Tab id="docs"><Heading fontSize="md" style={{marginBottom: "0px"}}>Documentation</Heading></Tab>
+                      <Tab id="docs"><Heading fontSize="md" style={{marginBottom: "0px"}}>Smart Contracts</Heading></Tab>
                     </TabList>
                     <TabPanels>
                       <TabPanel>
@@ -402,7 +414,7 @@ const Project = () => {
                           <Text textAlign="left" w="full" fontSize="5xl" fontWeight="medium" color={"white"} h='95px'>$ {fundsRaised}</Text>
                           <Container px="8">
                             <Text textAlign={"center"} flexGrow="2" fontSize="lg" color={"white"} >Raised of ${toaPrice*(parseInt(numPurchased) + parseInt(available))} Minimum</Text>
-                            <Progress bg="lavendar" rounded="3xl" value={(fundsRaised/toaPrice)*100} colorScheme="progress" marginBottom={"5px"}/>
+                            <Progress bg="lavendar" rounded="3xl" value={progress} colorScheme="progress" marginBottom={"5px"}/>
                           </Container>
                           <Stack spacing="5" w="full" direction="column" alignItems="flex-end" p="2">
                             <Stack spacing="5" w="full" direction="row" justifyContent="space-between" p="2" borderRadius="25px" bg="darkBrown">
@@ -434,25 +446,34 @@ const Project = () => {
               <TabPanels style={{width: "600px"}}>
                 <TabPanel>
                   <Stack direction="row" w="3xl" alignItems="baseline">
-                    <Stack spacing="5" w={"150px"} h='222px' direction="column" p="2" borderRight={"2px"} borderRightStyle={"dotted"}>
-                      <Box color="navy" fontSize='sm' fontWeight="bold">
-                      Background
-                      </Box>
-                      <Box color="navy" fontSize='sm' fontWeight="bold">
-                        Keypoints
-                      </Box>
-                      <Box color="navy" fontSize='sm' fontWeight="bold">
-                        Stakeholders
-                      </Box>
-                      <Box color="navy" fontSize='sm' fontWeight="bold">
-                        Risks
-                      </Box>
-                    </Stack>
+                      <Stack spacing="5" w={"150px"} direction="column" p="2" borderRight={"2px"} borderRightStyle={"dotted"}>
+                        <Box color="navy" fontSize='sm' fontWeight="bold" onClick={() => scroll('background')} style={{cursor: "pointer"}}>
+                        Background
+                        </Box>
+                        <Box color="navy" fontSize='sm' fontWeight="bold" onClick={() => scroll('keypoints')} style={{cursor: "pointer"}}>
+                          Keypoints
+                        </Box>
+                        <Box color="navy" fontSize='sm' fontWeight="bold" onClick={() => scroll('stake')} style={{cursor: "pointer"}}>
+                          Stakeholders
+                        </Box>
+                        <Box color="navy" fontSize='sm' fontWeight="bold" onClick={() => scroll('risks')} style={{cursor: "pointer"}}>
+                          Risks
+                        </Box>
+                        <Box color="navy" fontSize='sm' fontWeight="bold" onClick={() => scroll('documents')} style={{cursor: "pointer"}}>
+                          Documents
+                        </Box>
+                      </Stack>
                     <Stack spacing="1" w="xl" direction="column" p="2">
                       <Heading id="background"> Background </Heading>
                         <Text color={"navy"} fontSize={"sm"}>Nulla dui purus, eleifend vel, consequat non, dictum porta, nulla. Duis ante mi, laoreet ut, commodo eleifend, cursus nec, lorem. Aenean eu est. Etiam imperdiet turpis. Praesent nec augue. Nulla dui purus, eleifend vel, consequat non, dictum porta, nulla. Duis ante mi, laoreet ut, commodo eleifend, cursus nec, lorem. Aenean eu est. Etiam imperdiet turpis. Praesent nec augue.</Text>
-                      <Heading id="heading"> Keypoints </Heading>
+                        <Stack justifyContent="center" alignItems="center">
+                          <Divider orientation='horizontal' style={{borderTop: "2px solid #164057", width: "50%", marginTop: "40px", marginBottom: "40px"}}/>
+                        </Stack>
+                      <Heading id="keypoints"> Keypoints </Heading>
                         <Text color={"navy"} fontSize={"sm"}>Nulla dui purus, eleifend vel, consequat non, dictum porta, nulla. Duis ante mi, laoreet ut, commodo eleifend, cursus nec, lorem. Aenean eu est. Etiam imperdiet turpis. Praesent nec augue. Nulla dui purus, eleifend vel, consequat non, dictum porta, nulla. Duis ante mi, laoreet ut, commodo eleifend, cursus nec, lorem. Aenean eu est. Etiam imperdiet turpis. Praesent nec augue.</Text>
+                        <Stack justifyContent="center" alignItems="center">
+                          <Divider orientation='horizontal' style={{borderTop: "2px solid #164057", width: "50%", marginTop: "40px", marginBottom: "40px"}}/>
+                        </Stack>
                       <Heading id="stake"> Stakeholders </Heading>
                         <Text color={"navy"} fontSize={"sm"}>Nulla dui purus, eleifend vel, consequat non, dictum porta, nulla. Duis ante mi, laoreet ut, commodo eleifend, cursus nec, lorem. Aenean eu est. Etiam imperdiet turpis. Praesent nec augue. Nulla dui purus, eleifend vel, consequat non, dictum porta, nulla. Duis ante mi, laoreet ut, commodo eleifend, cursus nec, lorem. Aenean eu est. Etiam imperdiet turpis. Praesent nec augue.</Text>
                         <Grid templateColumns='repeat(4, 0.5fr)' gap={6}>
@@ -489,28 +510,24 @@ const Project = () => {
                             <Text color={"navy"} fontSize={"sm"}> Stakeholder 1</Text>
                           </GridItem>
                         </Grid>
+                        <Stack justifyContent="center" alignItems="center">
+                          <Divider orientation='horizontal' style={{borderTop: "2px solid #164057", width: "50%", marginTop: "40px", marginBottom: "40px"}}/>
+                        </Stack>
                       <Heading id="risks"> Risks </Heading>
                         <Text color={"navy"} fontSize={"sm"}>Nulla dui purus, eleifend vel, consequat non, dictum porta, nulla. Duis ante mi, laoreet ut, commodo eleifend, cursus nec, lorem. Aenean eu est. Etiam imperdiet turpis. Praesent nec augue. Nulla dui purus, eleifend vel, consequat non, dictum porta, nulla. Duis ante mi, laoreet ut, commodo eleifend, cursus nec, lorem. Aenean eu est. Etiam imperdiet turpis. Praesent nec augue.</Text>
+                        <Stack justifyContent="center" alignItems="center">
+                          <Divider orientation='horizontal' style={{borderTop: "2px solid #164057", width: "50%", marginTop: "40px", marginBottom: "40px"}}/>
+                        </Stack>
+                      <Heading id="documents"> Documents </Heading>
+                      <Text color={"navy"} fontSize={"sm"}>Nulla dui purus, eleifend vel, consequat non, dictum porta, nulla. Duis ante mi, laoreet ut, commodo eleifend, cursus nec, lorem. Aenean eu est. Etiam imperdiet turpis. Praesent nec augue. Nulla dui purus, eleifend vel, consequat non, dictum porta, nulla. Duis ante mi, laoreet ut, commodo eleifend, cursus nec, lorem. Aenean eu est. Etiam imperdiet turpis. Praesent nec augue.</Text>
+                      <Link to="/"><Text color={"navy"} fontSize={"lg"} fontWeight="bold" textDecoration="underline">Producer Financials</Text></Link>
+                      <Link to="/"><Text color={"navy"} fontSize={"lg"} fontWeight="bold" textDecoration="underline">Laboratory Audits</Text></Link>
+                      <Link to="/"><Text color={"navy"} fontSize={"lg"} fontWeight="bold" textDecoration="underline">Land Lease Agreements</Text></Link>
                     </Stack>
                   </Stack>
                 </TabPanel>
                 <TabPanel>
-                <Stack direction="row" w="3xl" alignItems="baseline">
-                  <Stack spacing="5" w={"150px"} h='222px' direction="column" p="2" borderRight={"2px"} borderRightStyle={"dotted"}>
-                    <Box color="navy" fontSize='sm' fontWeight="bold">
-                    Background
-                    </Box>
-                    <Box color="navy" fontSize='sm' fontWeight="bold">
-                      Keypoints
-                    </Box>
-                    <Box color="navy" fontSize='sm' fontWeight="bold">
-                      Stakeholders
-                    </Box>
-                    <Box color="navy" fontSize='sm' fontWeight="bold">
-                      Risks
-                    </Box>
-                  </Stack>
-                  <Stack w='xl' justifyContent="center" alignItems="center">
+                  <Stack w='3xl' justifyContent="center" alignItems="flex-end">
                     <Box bg='darkBrown' borderRadius={'25px'} w='80%'>
                       <Text textAlign={"center"} fontSize="xl" color="white"> Metrics </Text>
                       <Stack spacing="1" w="full" direction="column" alignItems="flex-end" p="2">
@@ -520,11 +537,11 @@ const Project = () => {
                         </Stack>
                         <Stack spacing="5" w="full" direction="row" justifyContent="space-between" p="2">
                           <Text fontSize="sm" color={"white"}>First Offtake</Text>
-                          <Text fontSize="sm" color={"white"} fontWeight="bold">1 May (Anually) 1:00 AM - UTC</Text>
+                          <Text fontSize="sm" color={"white"} fontWeight="bold">1 May 2024</Text>
                         </Stack>
                         <Stack spacing="5" w="full" direction="row" justifyContent="space-between" p="2" borderRadius="11px" bg="mush">
                           <Text fontSize="sm" color={"white"}>Delivery Date</Text>
-                          <Text fontSize="sm" color={"white"} fontWeight="bold">1 May (Anually) 1:00 AM - UTC</Text>
+                          <Text fontSize="sm" color={"white"} fontWeight="bold">1 May Anually</Text>
                         </Stack>
                         <Stack spacing="5" w="full" direction="row" justifyContent="space-between" p="2">
                           <Text fontSize="sm" color={"white"}>Duration</Text>
@@ -557,32 +574,20 @@ const Project = () => {
                       </Stack>
                     </Box>
                   </Stack>
-                </Stack>
                 </TabPanel>
                 <TabPanel>
-                <Stack direction="row" w="3xl" alignItems="baseline">
-                  <Stack spacing="5" w={"150px"} h='222px' direction="column" p="2" borderRight={"2px"} borderRightStyle={"dotted"}>
-                    <Box color="navy" fontSize='sm' fontWeight="bold">
-                    Background
-                    </Box>
-                    <Box color="navy" fontSize='sm' fontWeight="bold">
-                      Keypoints
-                    </Box>
-                    <Box color="navy" fontSize='sm' fontWeight="bold">
-                      Stakeholders
-                    </Box>
-                    <Box color="navy" fontSize='sm' fontWeight="bold">
-                      Risks
-                    </Box>
+                  <Stack spacing="1" w="full" direction="column" p="2" style={{marginLeft: "166px"}}>
+                    <Heading> NFT Contracts </Heading>
+                      <Link to="https://ftmscan.com/token/0xd89cc0d2a28a769eadef50fff74ebc07405db9fc"><Text color={"navy"} fontSize={"lg"} fontWeight="bold" textDecoration="underline">FTMScan</Text></Link>
+                      <Text color={"navy"} fontSize="sm">https://ftmscan.com/token/0xd89cc0d2a28a769eadef50fff74ebc07405db9fc</Text>
+                      <Link to="https://github.com/elyseos/contracts/blob/main/ElysForest.sol"><Text color={"navy"} fontSize={"lg"} fontWeight="bold" textDecoration="underline">Github</Text></Link>
+                      <Text color={"navy"} fontSize="sm">https://github.com/elyseos/contracts/blob/main/ElysForest.sol</Text>
+                      <Heading> Governance Contracts</Heading>
+                      <Link to="https://ftmscan.com/token/0xd89cc0d2a28a769eadef50fff74ebc07405db9fc"><Text color={"navy"} fontSize={"lg"} fontWeight="bold" textDecoration="underline">FTMScan</Text></Link>
+                      <Text color={"navy"} fontSize="sm">https://ftmscan.com/token/0xd89cc0d2a28a769eadef50fff74ebc07405db9fc</Text>
+                      <Link to="https://github.com/elyseos/contracts/blob/main/ElysForest.sol"><Text color={"navy"} fontSize={"lg"} fontWeight="bold" textDecoration="underline">Github</Text></Link>
+                      <Text color={"navy"} fontSize="sm">https://github.com/elyseos/contracts/blob/main/ElysForest.sol</Text>
                   </Stack>
-                  <Stack spacing="1" w="full" direction="column" p="2">
-                    <Heading> Background </Heading>
-                      <Text color={"navy"} fontSize={"sm"}>Nulla dui purus, eleifend vel, consequat non, dictum porta, nulla. Duis ante mi, laoreet ut, commodo eleifend, cursus nec, lorem. Aenean eu est. Etiam imperdiet turpis. Praesent nec augue. Nulla dui purus, eleifend vel, consequat non, dictum porta, nulla. Duis ante mi, laoreet ut, commodo eleifend, cursus nec, lorem. Aenean eu est. Etiam imperdiet turpis. Praesent nec augue.</Text>
-                      <Text color={"navy"} fontSize="lg" fontStyle="underline" fontWeight="bold">Producer Financials</Text>
-                      <Text color={"navy"} fontSize="lg" fontStyle="underline" fontWeight="bold">Laboratory Audits</Text>
-                      <Text color={"navy"} fontSize="lg" fontStyle="underline" fontWeight="bold">Land Lease Agreements</Text>
-                  </Stack>
-                </Stack>
                 </TabPanel>
               </TabPanels>
               </Tabs>
