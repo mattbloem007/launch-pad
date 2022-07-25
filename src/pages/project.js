@@ -19,7 +19,6 @@ import { useWeb3React } from "@web3-react/core"
 import Sticky from 'react-stickynode';
 import metricsBG from '../images/CardBackground.png'
 import { Flasher, flash } from "react-universal-flash";
-import Message from 'components/Message'
 import { createStandaloneToast } from '@chakra-ui/toast'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
