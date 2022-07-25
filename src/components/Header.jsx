@@ -12,8 +12,8 @@ import { ArrowBackIcon } from '@chakra-ui/icons'
 
 
 const HeaderContainer = styled("div")`
-  margin-left: 280px;
-  margin-right: 280px;
+  margin-left: 156px;
+  margin-right: 349px;
   background: #F0EBDD;
   z-index: -1;
 

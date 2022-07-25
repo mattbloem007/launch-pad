@@ -18,6 +18,12 @@ import { toDec } from 'lib/bn.js'
 import { useWeb3React } from "@web3-react/core"
 import Sticky from 'react-stickynode';
 import metricsBG from '../images/CardBackground.png'
+import { Flasher, flash } from "react-universal-flash";
+import Message from 'components/Message'
+import { createStandaloneToast } from '@chakra-ui/toast'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 import {
   Box,
   Container,
@@ -104,7 +110,8 @@ const ProjectBody = styled("div")`
 
 const Project = () => {
 
-  const toast = useToast();
+  //const toast = useToast();
+//  const { ToastContainer, toast } = createStandaloneToast()
   const toastIdRef = useRef();
   const [tabIndex, setTabIndex] = useState(0)
   const [processing, setProcessing] = useState(false)
@@ -142,7 +149,8 @@ const Project = () => {
       let thi = price* (num+avail)
       let th = funds/thi
       let val = th*100
-      console.log("progress value", val)
+      console.log("progress value", val, account)
+
       settimeLeft(daysRemaining)
       setfundsRaised(funds)
       settoaPrice(price)
@@ -154,55 +162,83 @@ const Project = () => {
 
     }, [])
 
+    // useEffect(() => {
+    //
+    //   if(processing) {
+    //     console.log(processing)
+    //     toastIdRef.current = toast({
+    //             title: 'Please connect wallet!',
+    //             position: "bottom",
+    //             status: 'error',
+    //             isClosable: true,
+    //             duration: 120000
+    //     })
+    //   }
+    //
+    //     setProcessing(false)
+    // }, [processing])
 
-  function handleInputChange(e) {
+
+  async function handleInputChange(e) {
     setNftAmount(currentValues => ({
       ...currentValues,
       nftAmount: e,
     }))
+    if (approved) {
+      let allow = await $.USDC.allowance(account, $.crowdsale.address)
+      let allowance = toDec(allow._hex, 6, 1)
+      if (allowance < toaPriceBN.mul(e)) {
+        setApproved(false)
+      }
+    }
   }
 
   async function approveUSDC(active, amount) {
-    //---> sending transaction to the blockchain (Toaster) approve pending
-    if(active) {
-      setProcessing(true)
-      toastIdRef.current = toast({
-              containerStyle: {position: "relative", zIndex: "1700"},
-              title: 'Approval pending',
-              position: "top",
-              status: 'info',
-              isClosable: true,
-              duration: 120000
-          })
 
-      let tx = await $.USDC.approve(library.getSigner(account), $.crowdsale.address, amount)
-      //sent approval to the blockchain
-      toast.update(toastIdRef.current, {
-            title: 'Sent approval to the blockchain',
-            status: 'info',
-            duration: 9000,
-            isClosable: true,
-      })
-      await $.confirm(tx.hash)
-      //approval successful
-       toast.update(toastIdRef.current, {
-            title: 'Approval successful',
-            status: 'success',
-            duration: 9000,
-            isClosable: true,
-        })
-        setProcessing(false)
-        setApproved(true)
+      // let allow = await $.USDC.allowance(account, $.crowdsale.address)
+      // let allowance = toDec(allow._hex, 6, 1)
+      // console.log("Allow", allowance)
+      // if (allowance > 0 && allowance >= amount) {
+      //     setApproved(true)
+      // }
+      if(active) {
+      setProcessing(true)
+          let allow = await $.USDC.allowance(account, $.crowdsale.address)
+          let bal = await $.USDC.balanceOf(account)
+          let balance = toDec(bal._hex, 6, 1)
+          let allowance = toDec(allow._hex, 6, 1)
+          console.log("balance", balance, amount)
+          if (parseInt(balance) >= parseInt(toDec(amount._hex, 6, 1))) {
+
+            toastIdRef.current = toast.info("Approval pending", {
+              position: toast.POSITION.BOTTOM_CENTER
+            });
+
+            let tx = await $.USDC.approve(library.getSigner(account), $.crowdsale.address, amount)
+
+            //sent approval to the blockchain
+            toast.update(toastIdRef.current, { render: "Sent approval to the blockchain", type: toast.TYPE.INFO })
+
+            await $.confirm(tx.hash)
+            //approval successful
+            toast.update(toastIdRef.current, { render: "Approval successful", type: toast.TYPE.SUCCESS })
+            setProcessing(false)
+            setApproved(true)
+          }
+          else {
+            toastIdRef.current = toast.error("Insuffcient funds", {
+                  position: toast.POSITION.BOTTOM_CENTER
+                });
+            setProcessing(false)
+          }
+
     }
     else {
-      toastIdRef.current = toast({
-              containerStyle: {zIndex: "5500"},
-              title: 'Please connect wallet!',
-              position: "bottom",
-              status: 'error',
-              isClosable: true,
-              duration: 120000
-          })
+      setProcessing(true)
+      toastIdRef.current = toast.error("Please connect wallet!", {
+        position: toast.POSITION.BOTTOM_CENTER
+      });
+      setProcessing(false)
     }
 
 
@@ -211,33 +247,20 @@ const Project = () => {
   async function buyTOA(numTOAs) {
     //---> sending transaction to the blockchain (Toaster) approve pending
     setProcessing(true)
+    toastIdRef.current = toast.info("Buy pending", {
+      position: toast.POSITION.BOTTOM_CENTER
+    });
 
-    toastIdRef.current = toast({
-          title: 'Buy Pending',
-          description: "Sending transaction to the blockchain.. ",
-          status: 'info',
-          duration: 9000,
-          isClosable: true,
-        })
     let tx = await $.crowdsale.buy(library.getSigner(account), numTOAs)
     //sent approval to the blockchain
-    toast.update(toastIdRef.current, {
-          title: 'Sent transaction to the blockchain',
-        //  description: "Sending Transaction to the blockchain.. ",
-          status: 'info',
-          duration: 9000,
-          isClosable: true,
-        })
+
+    toast.update(toastIdRef.current, { render: "Sent transaction to the blockchain", type: toast.TYPE.INFO })
+
     await $.confirm(tx.hash)
     //approval successful
-    toast.update(toastIdRef.current, {
-          title: 'Transaction successful',
-        //  description: "Sending Transaction to the blockchain.. ",
-          status: 'success',
-          duration: 9000,
-          isClosable: true,
-        })
-      setProcessing(false)
+    toast.update(toastIdRef.current, { render: "Transaction successful", type: toast.TYPE.SUCCESS })
+
+     setProcessing(false)
     //  setApproved(true)
   }
 
@@ -282,13 +305,14 @@ const Project = () => {
             ]}
         />
           <Header id="header" style={{zIndex: '-1'}}/>
-          <Modal isCentered onClose={onClose} isOpen={isOpen}>
+          <Modal isCentered useInert={false} trapFocus={false} onClose={onClose} isOpen={isOpen}>
             <ModalOverlay
               bg='none'
               backdropFilter='auto'
               backdropInvert='80%'
               backdropBlur='2px'
             />
+            <ToastContainer autoClose={120000}/>
             <ModalContent alignItems="center" style={{background: "#164057", color: "white", borderRadius: "44px"}}>
               <ModalHeader style={{fontSize: "29px", fontFamily: "Parisine Plus Std Sombre", textTransform: "uppercase"}}>Sceletium TOA NFT'S</ModalHeader>
               <ModalCloseButton />
@@ -401,7 +425,7 @@ const Project = () => {
                 </GridItem>
               </Grid>
             </Stack>
-            <Stack direction='row' paddingLeft="91px">
+            <Stack direction='row' paddingLeft="16px">
             <Tabs isFitted size='sm' id="projectTablist" index={tabIndex} onChange={(index) => setTabIndex(index)}>
               {/**<TabList>
                 <Tab id="overview"><Heading fontSize="md" style={{marginBottom: "0px"}}>Overview</Heading></Tab>
@@ -487,51 +511,53 @@ const Project = () => {
                       Risks
                     </Box>
                   </Stack>
-                  <Box bg='darkBrown' borderRadius={'25px'} w='80%'>
-                    <Text textAlign={"center"} fontSize="xl" color="white"> Metrics </Text>
-                    <Stack spacing="1" w="full" direction="column" alignItems="flex-end" p="2">
-                      <Stack spacing="5" w="full" direction="row" justifyContent="space-between" p="2" borderRadius="11px" bg="mush">
-                        <Text fontSize="sm" color={"white"}>Product</Text>
-                        <Text fontSize="sm" color={"white"} fontWeight="bold">Mesembryanthemum Tortuousum</Text>
+                  <Stack w='xl' justifyContent="center" alignItems="center">
+                    <Box bg='darkBrown' borderRadius={'25px'} w='80%'>
+                      <Text textAlign={"center"} fontSize="xl" color="white"> Metrics </Text>
+                      <Stack spacing="1" w="full" direction="column" alignItems="flex-end" p="2">
+                        <Stack spacing="5" w="full" direction="row" justifyContent="space-between" p="2" borderRadius="11px" bg="mush">
+                          <Text fontSize="sm" color={"white"}>Product</Text>
+                          <Text fontSize="sm" color={"white"} fontWeight="bold">Mesembryanthemum Tortuousum</Text>
+                        </Stack>
+                        <Stack spacing="5" w="full" direction="row" justifyContent="space-between" p="2">
+                          <Text fontSize="sm" color={"white"}>First Offtake</Text>
+                          <Text fontSize="sm" color={"white"} fontWeight="bold">1 May (Anually) 1:00 AM - UTC</Text>
+                        </Stack>
+                        <Stack spacing="5" w="full" direction="row" justifyContent="space-between" p="2" borderRadius="11px" bg="mush">
+                          <Text fontSize="sm" color={"white"}>Delivery Date</Text>
+                          <Text fontSize="sm" color={"white"} fontWeight="bold">1 May (Anually) 1:00 AM - UTC</Text>
+                        </Stack>
+                        <Stack spacing="5" w="full" direction="row" justifyContent="space-between" p="2">
+                          <Text fontSize="sm" color={"white"}>Duration</Text>
+                          <Text fontSize="sm" color={"white"} fontWeight="bold">10 years</Text>
+                        </Stack>
+                        <Stack spacing="5" w="full" direction="row" justifyContent="space-between" p="2" borderRadius="11px" bg="mush">
+                          <Text fontSize="sm" color={"white"}>Volume</Text>
+                          <Text fontSize="sm" color={"white"} fontWeight="bold">10kgs</Text>
+                        </Stack>
+                        <Stack spacing="5" w="full" direction="row" justifyContent="space-between" p="2">
+                          <Text fontSize="sm" color={"white"}>Min/ Total Alkaloids</Text>
+                          <Text fontSize="sm" color={"white"} fontWeight="bold">0.9%</Text>
+                        </Stack>
+                        <Stack spacing="5" w="full" direction="row" justifyContent="space-between" p="2" borderRadius="11px" bg="mush">
+                          <Text fontSize="sm" color={"white"}>Min Mesembrine</Text>
+                          <Text fontSize="sm" color={"white"} fontWeight="bold">0.5%</Text>
+                        </Stack>
+                        <Stack spacing="5" w="full" direction="row" justifyContent="space-between" p="2">
+                          <Text fontSize="sm" color={"white"}>Max Moisture</Text>
+                          <Text fontSize="sm" color={"white"} fontWeight="bold">12%</Text>
+                        </Stack>
+                        <Stack spacing="5" w="full" direction="row" justifyContent="space-between" p="2" borderRadius="11px" bg="mush">
+                          <Text fontSize="sm" color={"white"}>Cut</Text>
+                          <Text fontSize="sm" color={"white"} fontWeight="bold">Tea or milled</Text>
+                        </Stack>
+                        <Stack spacing="5" w="full" direction="row" justifyContent="space-between" p="2">
+                          <Text fontSize="sm" color={"white"}>Frequency</Text>
+                          <Text fontSize="sm" color={"white"} fontWeight="bold">Annual</Text>
+                        </Stack>
                       </Stack>
-                      <Stack spacing="5" w="full" direction="row" justifyContent="space-between" p="2">
-                        <Text fontSize="sm" color={"white"}>First Offtake</Text>
-                        <Text fontSize="sm" color={"white"} fontWeight="bold">1 May (Anually) 1:00 AM - UTC</Text>
-                      </Stack>
-                      <Stack spacing="5" w="full" direction="row" justifyContent="space-between" p="2" borderRadius="11px" bg="mush">
-                        <Text fontSize="sm" color={"white"}>Delivery Date</Text>
-                        <Text fontSize="sm" color={"white"} fontWeight="bold">1 May (Anually) 1:00 AM - UTC</Text>
-                      </Stack>
-                      <Stack spacing="5" w="full" direction="row" justifyContent="space-between" p="2">
-                        <Text fontSize="sm" color={"white"}>Duration</Text>
-                        <Text fontSize="sm" color={"white"} fontWeight="bold">10 years</Text>
-                      </Stack>
-                      <Stack spacing="5" w="full" direction="row" justifyContent="space-between" p="2" borderRadius="11px" bg="mush">
-                        <Text fontSize="sm" color={"white"}>Volume</Text>
-                        <Text fontSize="sm" color={"white"} fontWeight="bold">10kgs</Text>
-                      </Stack>
-                      <Stack spacing="5" w="full" direction="row" justifyContent="space-between" p="2">
-                        <Text fontSize="sm" color={"white"}>Min/ Total Alkaloids</Text>
-                        <Text fontSize="sm" color={"white"} fontWeight="bold">0.9%</Text>
-                      </Stack>
-                      <Stack spacing="5" w="full" direction="row" justifyContent="space-between" p="2" borderRadius="11px" bg="mush">
-                        <Text fontSize="sm" color={"white"}>Min Mesembrine</Text>
-                        <Text fontSize="sm" color={"white"} fontWeight="bold">0.5%</Text>
-                      </Stack>
-                      <Stack spacing="5" w="full" direction="row" justifyContent="space-between" p="2">
-                        <Text fontSize="sm" color={"white"}>Max Moisture</Text>
-                        <Text fontSize="sm" color={"white"} fontWeight="bold">12%</Text>
-                      </Stack>
-                      <Stack spacing="5" w="full" direction="row" justifyContent="space-between" p="2" borderRadius="11px" bg="mush">
-                        <Text fontSize="sm" color={"white"}>Cut</Text>
-                        <Text fontSize="sm" color={"white"} fontWeight="bold">Tea or milled</Text>
-                      </Stack>
-                      <Stack spacing="5" w="full" direction="row" justifyContent="space-between" p="2">
-                        <Text fontSize="sm" color={"white"}>Frequency</Text>
-                        <Text fontSize="sm" color={"white"} fontWeight="bold">Annual</Text>
-                      </Stack>
-                    </Stack>
-                  </Box>
+                    </Box>
+                  </Stack>
                 </Stack>
                 </TabPanel>
                 <TabPanel>
@@ -550,7 +576,7 @@ const Project = () => {
                       Risks
                     </Box>
                   </Stack>
-                  <Stack spacing="1" w="full" direction="column" p="2" style={{overflowY: "auto", overflowX: "hidden", height: "350px"}}>
+                  <Stack spacing="1" w="full" direction="column" p="2">
                     <Heading> Background </Heading>
                       <Text color={"navy"} fontSize={"sm"}>Nulla dui purus, eleifend vel, consequat non, dictum porta, nulla. Duis ante mi, laoreet ut, commodo eleifend, cursus nec, lorem. Aenean eu est. Etiam imperdiet turpis. Praesent nec augue. Nulla dui purus, eleifend vel, consequat non, dictum porta, nulla. Duis ante mi, laoreet ut, commodo eleifend, cursus nec, lorem. Aenean eu est. Etiam imperdiet turpis. Praesent nec augue.</Text>
                       <Text color={"navy"} fontSize="lg" fontStyle="underline" fontWeight="bold">Producer Financials</Text>
