@@ -68,7 +68,6 @@ import {
 // gap: 40px;
 // align-items: flex-start;
 const ProjectHeroContainer = styled("div")`
-
     display: flex;
     justify-content: flex-start;
     align-items: flex-end;
@@ -80,8 +79,6 @@ const ProjectHeroContainer = styled("div")`
     border-color: #ec7019;
     border-radius: 2px;
     background: #F0EBDD;
-
-
     img {
         max-width: 600px;
     }
@@ -96,11 +93,9 @@ const ProjectBody = styled("div")`
     margin: 0;
     margin-left: 146px;
     margin-right: 55px;
-
     .block-img {
         margin-top: 3.5em;
         margin-bottom: 0.5em;
-
         img {
             width: 100%;
         }

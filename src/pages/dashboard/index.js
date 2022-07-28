@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import PropTypes from "prop-types";
 import Helmet from "react-helmet";
 import { RichText } from "prismic-reactjs";
-import { graphql, Link } from "gatsby";
+import { graphql, Link, useStaticQuery } from "gatsby";
 import styled from "@emotion/styled";
 import colors from "styles/colors";
 import dimensions from "styles/dimensions";
@@ -12,6 +12,9 @@ import ProjectCard from "components/ProjectCard";
 import kannaNFT from "../../images/Sceletium Tortuosum - NFT Card - V1.0.2.png"
 import VoteMenu from "components/VoteMenu"
 import { ArrowBackIcon, WarningIcon, CopyIcon } from '@chakra-ui/icons'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { useWeb3React } from "@web3-react/core"
 import {
   Box,
   Container,
@@ -114,22 +117,109 @@ const ProjectBody = styled("div")`
     }
 `
 
-const DashBoard = () => {
+const DashBoard = (props) => {
 
+  const toastIdRef = useRef();
   const { isOpen, onOpen, onClose } = useDisclosure()
   const { isOpen: isEditOpen , onOpen: onEditOpen, onClose: onEditClose } = useDisclosure()
   const { isOpen: isDeliveryOpen , onOpen: onDeliveryOpen, onClose: onDeliveryClose } = useDisclosure()
   const [address, setAddress] = useState({ wAddrs: "" })
-  const [gender, setGender] = useState({ prop: "" })
+  const [gender, setGender] = useState({ gender: "" })
   const [deliveryPerson, setDP] = useState({ name: "", surname: "" })
   const [deliveryAddress, setDA] = useState({ name: "", surname: "", company: "", houseNo: "", unitNo: "", city: "", country: "", postalCode: "" })
   const [courier, setCourier] = useState({ name: "" })
+  const [updated, setUpdated] = useState({ updated: false, delivery_person: "", current_courier: "", current_address: "" })
+  const [deliveryInfo, setDeliveryInfo] = useState({ wallet_address: "", toa_no: "", delivery_person: "", current_courier: "", current_address: "" })
+  const { active, account } = useWeb3React()
+
+  async function updateDelivery() {
+    let personName = ""
+    let addr = deliveryAddress.name + " " + deliveryAddress.surname
+    if (deliveryAddress.company != "") {
+      addr = addr + ", " + deliveryAddress.company
+    }
+    addr = addr + ", " + deliveryAddress.houseNo
+    if (deliveryAddress.unitNo != "") {
+      addr = addr + ", " + deliveryAddress.unitNo
+    }
+    addr = addr + ", " + deliveryAddress.city + ", " + deliveryAddress.country + ", " + deliveryAddress.postalCode
+
+    if (gender.gender == 'male') {
+      personName = personName + "Mr."
+    } else if (gender.gender == 'female') {
+      personName = personName + "Ms."
+    }
+
+    personName = personName + " " + deliveryPerson.name + " " + deliveryPerson.surname
+
+
+    const body = JSON.stringify({
+      wallet_address: account,
+      person: personName,
+      address: addr,
+      courier: courier.name
+
+    })
+
+    try{
+      await fetch("/.netlify/functions/updateDelivery", {
+        method: "POST",
+        body,
+      })
+      toastIdRef.current = toast.success("Changed your delivery address information", {
+            position: toast.POSITION.BOTTOM_CENTER
+      });
+
+      setUpdated({ delivery_person: personName, current_courier: courier.name, current_address: addr, updated: true })
+
+    } catch(error) {
+      toastIdRef.current = toast.error("Error updating delivery address", {
+            position: toast.POSITION.BOTTOM_CENTER
+          });
+      console.log("Error", error)
+    }
+
+  }
+
+  useEffect(() => {
+
+      async function fetchData() {
+        let body = JSON.stringify({
+          wallet_address: account
+
+        })
+        try{
+          await fetch("/.netlify/functions/getDeliveryInfo", {
+            method: "POST",
+            body,
+          })
+          .then((res) => res.json())
+          .then((result) => {
+            console.log(result.info)
+            setDeliveryInfo(result.info)
+          })
+        } catch(error) {
+          toastIdRef.current = toast.error("Error getting delivery address", {
+                position: toast.POSITION.BOTTOM_CENTER
+              });
+          console.log("Error", error)
+        }
+      }
+    if (updated.updated) {
+      // deliveryInfo.delivery_person = updated.delivery_person
+      // deliveryInfo.current_courier = updated.current_courier
+      // deliveryInfo.current_address = updated.current_address
+      onEditClose()
+    }
+    fetchData()
+  }, [updated])
 
   const onChangeHandler = (change) => {
     setGender(currentValues => ({
       ...currentValues,
-      gender: change.label,
+      gender: change.value,
     }))
+    console.log("Gender", gender.gender)
   };
 
   function handleDeliveryPerson(e) {
@@ -246,6 +336,7 @@ const DashBoard = () => {
             backdropInvert='80%'
             backdropBlur='2px'
           />
+          <ToastContainer autoClose={120000}/>
           <ModalContent alignItems="center" style={{background: "#164057", color: "white", borderRadius: "44px"}}>
             <Stack direction="row" w='full'>
               <Stack spacing="5" w="3xs" direction="row" alignItems="center" justifyContent="flex-start" p="2" style={{paddingLeft: "20px"}} onClick={onDeliveryClose}>
@@ -258,19 +349,19 @@ const DashBoard = () => {
             <Stack spacing="1" w="full" direction="column" alignItems="flex-end" p="2">
               <Stack spacing="5" w="full" direction="row" justifyContent="space-between" p="2" borderRadius="11px" bg="darkPurple">
                 <Text fontSize="sm" color={"white"}>Wallet Address</Text>
-                <Text fontSize="sm" color={"white"} fontWeight="bold">0x8f725cef531c3277eb902e...</Text>
+                <Text fontSize="sm" color={"white"} fontWeight="bold">{deliveryInfo.wallet_address}...</Text>
               </Stack>
               <Stack spacing="1" w="full" direction="row" justifyContent="space-between" p="2" marginTop="0px">
                 <Text fontSize="sm" color={"white"}>TOA Number</Text>
-                <Text fontSize="sm" color={"white"} fontWeight="bold">#81 / 500</Text>
+                <Text fontSize="sm" color={"white"} fontWeight="bold">{deliveryInfo.toa_no}</Text>
               </Stack>
               <Stack spacing="5" w="full" direction="row" justifyContent="space-between" p="2" borderRadius="11px" bg="darkPurple">
                 <Text fontSize="sm" color={"white"}>Delivery Person</Text>
-                <Text fontSize="sm" color={"white"} fontWeight="bold">Mr. Mogana Nkhotsi</Text>
+                <Text fontSize="sm" color={"white"} fontWeight="bold">{deliveryInfo.delivery_person}</Text>
               </Stack>
               <Stack spacing="1" w="full" direction="row" justifyContent="space-between" p="2">
                 <Text fontSize="sm" color={"white"}>Current Courier</Text>
-                <Text fontSize="sm" color={"white"} fontWeight="bold">The Courier Guy</Text>
+                <Text fontSize="sm" color={"white"} fontWeight="bold">{deliveryInfo.current_courier}</Text>
               </Stack>
               <Stack spacing="5" w="full" direction="row" justifyContent="space-between" p="2" borderRadius="11px" bg="darkPurple">
                 <Stack direction="column" justifyContent="center">
@@ -278,12 +369,12 @@ const DashBoard = () => {
                   <Text fontSize="12px" color="white" fontStyle="italic" style={{marginTop:"0px"}}>Note: Shipping & Delivery Cost must be borne by the Customer</Text>
                 </Stack>
                 <Stack direction="column" alignItems="flex-end">
-                  <Text fontSize="sm" color={"white"} fontWeight="bold">James Whitmore</Text>
-                  <Text fontSize="sm" color={"white"} fontWeight="bold">29 Witteboom Street</Text>
+                  <Text fontSize="sm" color={"white"} fontWeight="bold">{deliveryInfo.current_address}</Text>
+                  {/**<Text fontSize="sm" color={"white"} fontWeight="bold">29 Witteboom Street</Text>
                   <Text fontSize="sm" color={"white"} fontWeight="bold">Protea Village</Text>
                   <Text fontSize="sm" color={"white"} fontWeight="bold">Brackenfell</Text>
                   <Text fontSize="sm" color={"white"} fontWeight="bold">6850</Text>
-                  <Text fontSize="sm" color={"white"} fontWeight="bold">South Africa</Text>
+                  <Text fontSize="sm" color={"white"} fontWeight="bold">South Africa</Text>*/}
                 </Stack>
               </Stack>
               <Button size='linkLong' bg='darkBrown' alignSelf="center">Confirm Order</Button>
@@ -299,6 +390,7 @@ const DashBoard = () => {
             backdropInvert='80%'
             backdropBlur='2px'
           />
+          <ToastContainer autoClose={120000}/>
           <ModalContent alignItems="center" style={{background: "#164057", color: "white", borderRadius: "44px"}}>
             <Stack direction="row" w='full'>
               <Stack spacing="5" w="3xs" direction="row" alignItems="center" justifyContent="flex-start" p="2" style={{paddingLeft: "20px", width: "8rem"}} onClick={onEditClose}>
@@ -315,32 +407,32 @@ const DashBoard = () => {
                 <Text fontSize="sm" color={"white"}>Delivery Person</Text>
                 <Stack direction="column" justifyContent="flex-end">
                   <Select options={options} styles={customStyles} isSearchable={false} placeholder="Select gender..." onChange={onChangeHandler}/>
-                  <Input size='sm' w="360px" h="40px" bg="lavendar" border="1px solid" borderColor='darkBrown' borderRadius='25px' placeholder="Name..." onChange={(e) => handleDeliveryPerson(e)} />
-                  <Input size='sm' w="360px" h="40px" bg="lavendar" border="1px solid" borderColor='darkBrown' borderRadius='25px' placeholder="Surname..." onChange={(e) => handleDeliveryPerson(e)} />
+                  <Input size='sm' w="360px" h="40px" bg="lavendar" border="1px solid" borderColor='darkBrown' borderRadius='25px' placeholder="Name..." name="name" onChange={(e) => handleDeliveryPerson(e)} />
+                  <Input size='sm' w="360px" h="40px" bg="lavendar" border="1px solid" borderColor='darkBrown' borderRadius='25px' placeholder="Surname..." name="surname" onChange={(e) => handleDeliveryPerson(e)} />
                 </Stack>
               </Stack>
               <Stack spacing="2" w="90%" direction="row" justifyContent="space-between" p="2" borderRadius="25px" bg="blue"  padding="1rem">
                 <Text fontSize="sm" color={"white"}>Delivery Address</Text>
                 <Stack direction="column" justifyContent="flex-end">
-                  <Input size='sm' w="360px" h="40px" bg="lavendar" border="1px solid" borderColor='darkBrown' borderRadius='25px' placeholder="Name..." onChange={(e) => handleDeliveryAddress(e)} />
-                  <Input size='sm' w="360px" h="40px" bg="lavendar" border="1px solid" borderColor='darkBrown' borderRadius='25px' placeholder="Surname..." onChange={(e) => handleDeliveryAddress(e)} />
-                  <Input size='sm' w="360px" h="40px" bg="lavendar" border="1px solid" borderColor='darkBrown' borderRadius='25px' placeholder="Company (Optional)..." onChange={(e) => handleDeliveryAddress(e)} />
-                  <Input size='sm' w="360px" h="40px" bg="lavendar" border="1px solid" borderColor='darkBrown' borderRadius='25px' placeholder="House Number & Street Name..." onChange={(e) => handleDeliveryAddress(e)} />
-                  <Input size='sm' w="360px" h="40px" bg="lavendar" border="1px solid" borderColor='darkBrown' borderRadius='25px' placeholder="Unit Number (Optional)..." onChange={(e) => handleDeliveryAddress(e)} />
-                  <Input size='sm' w="360px" h="40px" bg="lavendar" border="1px solid" borderColor='darkBrown' borderRadius='25px' placeholder="City..." onChange={(e) => handleDeliveryAddress(e)} />
-                  <Input size='sm' w="360px" h="40px" bg="lavendar" border="1px solid" borderColor='darkBrown' borderRadius='25px' placeholder="Country..." onChange={(e) => handleDeliveryAddress(e)} />
-                  <Input size='sm' w="360px" h="40px" bg="lavendar" border="1px solid" borderColor='darkBrown' borderRadius='25px' placeholder="Postal Code..." onChange={(e) => handleDeliveryAddress(e)} />
+                  <Input size='sm' w="360px" h="40px" bg="lavendar" border="1px solid" borderColor='darkBrown' borderRadius='25px' placeholder="Name..." name="name" onChange={(e) => handleDeliveryAddress(e)} />
+                  <Input size='sm' w="360px" h="40px" bg="lavendar" border="1px solid" borderColor='darkBrown' borderRadius='25px' placeholder="Surname..." name="surname" onChange={(e) => handleDeliveryAddress(e)} />
+                  <Input size='sm' w="360px" h="40px" bg="lavendar" border="1px solid" borderColor='darkBrown' borderRadius='25px' placeholder="Company (Optional)..." name="company" onChange={(e) => handleDeliveryAddress(e)} />
+                  <Input size='sm' w="360px" h="40px" bg="lavendar" border="1px solid" borderColor='darkBrown' borderRadius='25px' placeholder="House Number & Street Name..." name="houseNo" onChange={(e) => handleDeliveryAddress(e)} />
+                  <Input size='sm' w="360px" h="40px" bg="lavendar" border="1px solid" borderColor='darkBrown' borderRadius='25px' placeholder="Unit Number (Optional)..." name="unitNo" onChange={(e) => handleDeliveryAddress(e)} />
+                  <Input size='sm' w="360px" h="40px" bg="lavendar" border="1px solid" borderColor='darkBrown' borderRadius='25px' placeholder="City..." name="city" onChange={(e) => handleDeliveryAddress(e)} />
+                  <Input size='sm' w="360px" h="40px" bg="lavendar" border="1px solid" borderColor='darkBrown' borderRadius='25px' placeholder="Country..." name="country" onChange={(e) => handleDeliveryAddress(e)} />
+                  <Input size='sm' w="360px" h="40px" bg="lavendar" border="1px solid" borderColor='darkBrown' borderRadius='25px' placeholder="Postal Code..." name="postalCode" onChange={(e) => handleDeliveryAddress(e)} />
                 </Stack>
               </Stack>
               <Stack spacing="2" w="full" direction="column" alignItems="center" p="2">
                 <Stack spacing="2" w="90%" direction="row" justifyContent="space-between" p="2" borderRadius="25px" bg="blue"  padding="1rem">
                   <Text fontSize="sm" color={"white"}>Courier</Text>
                   <Stack direction="column" justifyContent="flex-end">
-                    <Input size='sm' w="360px" h="40px" bg="lavendar" border="1px solid" borderColor='darkBrown' borderRadius='25px' placeholder="Name..." onChange={(e) => handleCourier(e)} />
+                    <Input size='sm' w="360px" h="40px" bg="lavendar" border="1px solid" borderColor='darkBrown' borderRadius='25px' placeholder="Name..." name="name" onChange={(e) => handleCourier(e)} />
                   </Stack>
                 </Stack>
               </Stack>
-                <Button size="linkLong" bg="darkBrown">Confirm Details</Button>
+                <Button size="linkLong" bg="darkBrown" onClick={() => updateDelivery()}>Confirm Details</Button>
             </Stack>
             </ModalBody>
           </ModalContent>
@@ -498,11 +590,20 @@ const DashBoard = () => {
   )
 }
 
-export default () => {
-    //Required check for no data being returned
+export default DashBoard
 
-
-    return (
-            <DashBoard />
-    )
-}
+// export const pageQuery = graphql`
+// query featureItemQuery {
+//   allMongodbDeliveryDataElyseosVentures {
+//     edges {
+//       node {
+//         wallet_address
+//         toa_no
+//         delivery_person
+//         current_courier
+//         current_address
+//       }
+//     }
+//   }
+// }
+// `

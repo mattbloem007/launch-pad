@@ -20,6 +20,29 @@ module.exports = {
     `gatsby-plugin-emotion`,
     `gatsby-plugin-image`,
     {
+      // The name of the plugin
+      resolve: 'gatsby-source-mongodb',
+      options: {
+          // Name of the database and collection where are books reside
+          dbName: 'deliveryData',
+          collection: 'ElyseosVentures',
+          server: {
+              address: 'cluster0-shard-00-02.t8btn.mongodb.net:27017',
+              port: 27017
+          },
+          auth: {
+              user: 'ssElyseos',
+              password: '$$elyseos2022'
+          },
+          extraParams: {
+              replicaSet: 'cluster0-shard-0',
+              ssl: true,
+              authSource: 'admin',
+              retryWrites: true
+          }
+      }
+    },
+    {
       resolve: `gatsby-source-filesystem`,
       options: {
         name: `images`,
