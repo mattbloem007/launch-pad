@@ -197,7 +197,13 @@ const DashBoard = (props) => {
           .then((res) => res.json())
           .then((result) => {
             console.log(result.info)
-            setDeliveryInfo(result.info)
+            if (result.info == null) {
+              setDeliveryInfo({wallet_address: account, toa_no: "", delivery_person: "", current_courier: "", current_address: ""})
+            }
+            else {
+              setDeliveryInfo(result.info)
+            }
+
           })
         } catch(error) {
           toastIdRef.current = toast.error("Error getting delivery address", {
