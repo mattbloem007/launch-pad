@@ -106,6 +106,7 @@ const ProjectHeroContainer = styled("div")`
 const ProjectBody = styled("div")`
     max-width: 550px;
     margin: 0;
+    height: 1500px;
 
     .block-img {
         margin-top: 3.5em;
@@ -211,8 +212,10 @@ const DashBoard = (props) => {
       // deliveryInfo.current_address = updated.current_address
       onEditClose()
     }
-    fetchData()
-  }, [updated])
+    if (active) {
+      fetchData()
+    }
+  }, [updated, active])
 
   const onChangeHandler = (change) => {
     setGender(currentValues => ({
@@ -294,6 +297,9 @@ const DashBoard = (props) => {
                 },
             ]}
         />
+        {
+          active ?
+      <>
         <Modal isCentered onClose={onClose} isOpen={isOpen}>
           <ModalOverlay
             bg='none'
@@ -349,7 +355,7 @@ const DashBoard = (props) => {
             <Stack spacing="1" w="full" direction="column" alignItems="flex-end" p="2">
               <Stack spacing="5" w="full" direction="row" justifyContent="space-between" p="2" borderRadius="11px" bg="darkPurple">
                 <Text fontSize="sm" color={"white"}>Wallet Address</Text>
-                <Text fontSize="sm" color={"white"} fontWeight="bold">{deliveryInfo.wallet_address}...</Text>
+                <Text fontSize="sm" color={"white"} fontWeight="bold" style={{overflow: "hidden", textOverflow: "ellipsis", whiteSpace:'nowrap'}}>{deliveryInfo.wallet_address}</Text>
               </Stack>
               <Stack spacing="1" w="full" direction="row" justifyContent="space-between" p="2" marginTop="0px">
                 <Text fontSize="sm" color={"white"}>TOA Number</Text>
@@ -437,155 +443,165 @@ const DashBoard = (props) => {
             </ModalBody>
           </ModalContent>
         </Modal>
-        <ProjectHeroContainer>
+         <ProjectHeroContainer>
+            <Stack direction="column" w="6xl" alignItems='flex-start'>
+              <Text color='navy' fontSize='2xl' fontWeight='bold'>Dashboard</Text>
+              <Stack direction='row' w='full' justifyContent="flex-start" alignItems="center">
+                <Text color='navy' textAlign='left' fontSize='sm'>{account}</Text>
+                <CopyIcon onClick={() => {if(typeof(window) !== 'undefined') { navigator.clipboard.writeText(account)}}}/>
+              </Stack>
+              <Tabs>
+                <TabList style={{borderBottom: "2px", borderStyle: "dashed"}}>
+                  <Tab>TOA's Held</Tab>
+                  <Tab>History</Tab>
+                </TabList>
+                <TabPanels>
+                  <TabPanel>
+                  <Stack  w="full" direction="column" p="1">
+                    <Stack w="full" padding="1.5rem" borderRadius="25px" bg="mush" direction="row" justifyContent="center" alignItems="center">
+                      <Image borderRadius='15px' w='84px' h='83px' border={'1px solid'} borderColor="#164057" src='https://bit.ly/dan-abramov' />
+                      <Stack direction='column' style={{marginRight: "60px", cursor: "pointer"}} onClick={onOpen}>
+                        <Text color='white' textAlign='left' fontSize='sm'>Sceletium Project</Text>
+                        <Text color='white' textAlign='left' fontSize='sm' style={{marginTop: "0px"}}>0xf45664ds65fdfgg654616</Text>
+                      </Stack>
+                      <Text color='white' textAlign='left' fontSize='sm'>NFT #81 / 500</Text>
+                      <Stack flexWrap="wrap" direction="row">
+                        <Stack direction="column">
+                          <Box flex={"1 1 calc(100% - 50px)"}>
+                            <Button size='xs' bg='darkBrown'>Sell on Artion</Button>
+                          </Box>
+                          <Box flex={"0 0 50px"}>
+                            <Link to='/project'><Button size='xs' bg='darkBrown'>View Project</Button></Link>
+                          </Box>
+                        </Stack>
+                        <Stack direction="column">
+                          <Box flex={"1 1 calc(100% - 50px)"}>
+                            <Button size='xs' bg='darkBrown'>Transfer</Button>
+                          </Box>
+                          <Box flex={"0 0 50px"}>
+                            <Button size='xs' bg='darkBrown'>View in FTM Scan</Button>
+                          </Box>
+                        </Stack>
+                      </Stack>
+                      <Button size='link' bg='darkBrown' onClick={onDeliveryOpen}>Delivery</Button>
+                    </Stack>
+                  </Stack>
+                  <Stack  w="full" direction="column"  p="1">
+                    <Stack w="full" padding="1.5rem" borderRadius="25px" bg="mush" direction="row" justifyContent="center" alignItems="center">
+                      <Image borderRadius='15px' w='84px' h='83px' border={'1px solid'} borderColor="#164057" src='https://bit.ly/dan-abramov' />
+                      <Stack direction='column' style={{marginRight: "60px", cursor: "pointer"}} onClick={onOpen}>
+                        <Text color='white' textAlign='left' fontSize='sm'>Sceletium Project</Text>
+                        <Text color='white' textAlign='left' fontSize='sm' style={{marginTop: "0px"}}>0xf45664ds65fdfgg654616</Text>
+                      </Stack>
+                      <Text color='white' textAlign='left' fontSize='sm'>NFT #81 / 500</Text>
+                      <Stack flexWrap="wrap" direction="row">
+                        <Stack direction="column">
+                          <Box flex={"1 1 calc(100% - 50px)"}>
+                            <Button size='xs' bg='darkBrown'>Sell on Artion</Button>
+                          </Box>
+                          <Box flex={"0 0 50px"}>
+                            <Link to='/project'><Button size='xs' bg='darkBrown'>View Project</Button></Link>
+                          </Box>
+                        </Stack>
+                        <Stack direction="column">
+                          <Box flex={"1 1 calc(100% - 50px)"}>
+                            <Button size='xs' bg='darkBrown'>Transfer</Button>
+                          </Box>
+                          <Box flex={"0 0 50px"}>
+                            <Button size='xs' bg='darkBrown'>View in FTM Scan</Button>
+                          </Box>
+                        </Stack>
+                      </Stack>
+                      <Button size='link' bg='darkBrown' onClick={onDeliveryOpen}>Delivery</Button>
+                    </Stack>
+                  </Stack>
+                  <Stack  w="full" direction="column"  p="1">
+                    <Stack w="full" padding="1.5rem" borderRadius="25px" bg="mush" direction="row" justifyContent="center" alignItems="center">
+                      <Image borderRadius='15px' w='84px' h='83px' border={'1px solid'} borderColor="#164057" src='https://bit.ly/dan-abramov' />
+                      <Stack direction='column' style={{marginRight: "60px", cursor: "pointer"}} onClick={onOpen}>
+                        <Text color='white' textAlign='left' fontSize='sm'>Sceletium Project</Text>
+                        <Text color='white' textAlign='left' fontSize='sm' style={{marginTop: "0px"}}>0xf45664ds65fdfgg654616</Text>
+                      </Stack>
+                      <Text color='white' textAlign='left' fontSize='sm'>NFT #81 / 500</Text>
+                      <Stack flexWrap="wrap" direction="row">
+                        <Stack direction="column">
+                          <Box flex={"1 1 calc(100% - 50px)"}>
+                            <Button size='xs' bg='darkBrown'>Sell on Artion</Button>
+                          </Box>
+                          <Box flex={"0 0 50px"}>
+                            <Link to='/project'><Button size='xs' bg='darkBrown'>View Project</Button></Link>
+                          </Box>
+                        </Stack>
+                        <Stack direction="column">
+                          <Box flex={"1 1 calc(100% - 50px)"}>
+                            <Button size='xs' bg='darkBrown'>Transfer</Button>
+                          </Box>
+                          <Box flex={"0 0 50px"}>
+                            <Button size='xs' bg='darkBrown'>View in FTM Scan</Button>
+                          </Box>
+                        </Stack>
+                      </Stack>
+                      <Button size='link' bg='darkBrown' onClick={onDeliveryOpen}>Delivery</Button>
+                    </Stack>
+                  </Stack>
+                  </TabPanel>
+                  <TabPanel>
+                  <Stack  w="full" direction="column" p="1">
+                    <Stack w="full" padding="1.5rem" borderRadius="25px" bg="mush" direction="row" justifyContent="center" alignItems="center">
+                      <Image borderRadius='15px' w='84px' h='83px' border={'1px solid'} borderColor="#164057" src='https://bit.ly/dan-abramov' />
+                      <Stack direction='row'>
+                        <Text color='white' textAlign='left' fontSize='sm' w='90px' style={{overflow: "hidden", textOverflow: "ellipsis", whiteSpace:'nowrap', textDecoration:"underline"}}>0x8f725cef531c3277eb902ea8fec44fcc0e0b7bac</Text>
+                        <Text color='white' textAlign='left' fontSize='sm'>Transferred</Text>
+                        <Text color='white' textAlign='left' fontSize='sm' fontWeight="bold">Sceletium Project #24 / 500</Text>
+                        <Text color='white' textAlign='left' fontSize='sm'>To</Text>
+                        <Text color='white' textAlign='left' fontSize='sm' w='90px' style={{overflow: "hidden", textOverflow: "ellipsis", whiteSpace:'nowrap', marginRight: '70px', textDecoration:"underline"}}>0x8f725cef531c3277eb902ea8fec44fcc0e0b7bac</Text>
+                      </Stack>
+                      <Text textAlign="left" fontSize="sm" color="white" fontWeight="bold" fontStyle="italic">3 Days ago</Text>
+                    </Stack>
+                  </Stack>
+                  <Stack  w="full" direction="column" p="1">
+                    <Stack w="full" padding="1.5rem" borderRadius="25px" bg="mush" direction="row" justifyContent="center" alignItems="center">
+                      <Image borderRadius='15px' w='84px' h='83px' border={'1px solid'} borderColor="#164057" src='https://bit.ly/dan-abramov' />
+                      <Stack direction='row'>
+                        <Text color='white' textAlign='left' fontSize='sm' w='90px' style={{overflow: "hidden", textOverflow: "ellipsis", whiteSpace:'nowrap', textDecoration:"underline"}}>0x8f725cef531c3277eb902ea8fec44fcc0e0b7bac</Text>
+                        <Text color='white' textAlign='left' fontSize='sm'>Transferred</Text>
+                        <Text color='white' textAlign='left' fontSize='sm' fontWeight="bold">Sceletium Project #24 / 500</Text>
+                        <Text color='white' textAlign='left' fontSize='sm'>To</Text>
+                        <Text color='white' textAlign='left' fontSize='sm' w='90px' style={{overflow: "hidden", textOverflow: "ellipsis", whiteSpace:'nowrap', marginRight: '70px', textDecoration:"underline"}}>0x8f725cef531c3277eb902ea8fec44fcc0e0b7bac</Text>
+                      </Stack>
+                      <Text textAlign="left" fontSize="sm" color="white" fontWeight="bold" fontStyle="italic">1 Week ago</Text>
+                    </Stack>
+                  </Stack>
+                  <Stack  w="full" direction="column" p="1">
+                    <Stack w="full" padding="1.5rem" borderRadius="25px" bg="mush" direction="row" justifyContent="center" alignItems="center">
+                      <Image borderRadius='15px' w='84px' h='83px' border={'1px solid'} borderColor="#164057" src='https://bit.ly/dan-abramov' />
+                      <Stack direction='row'>
+                        <Text color='white' textAlign='left' fontSize='sm' w='90px' style={{overflow: "hidden", textOverflow: "ellipsis", whiteSpace:'nowrap', textDecoration:"underline"}}>0x8f725cef531c3277eb902ea8fec44fcc0e0b7bac</Text>
+                        <Text color='white' textAlign='left' fontSize='sm'>Transferred</Text>
+                        <Text color='white' textAlign='left' fontSize='sm' fontWeight="bold">Sceletium Project #24 / 500</Text>
+                        <Text color='white' textAlign='left' fontSize='sm'>To</Text>
+                        <Text color='white' textAlign='left' fontSize='sm' w='90px' style={{overflow: "hidden", textOverflow: "ellipsis", whiteSpace:'nowrap', marginRight: '70px', textDecoration:"underline"}}>0x8f725cef531c3277eb902ea8fec44fcc0e0b7bac</Text>
+                      </Stack>
+                      <Text textAlign="left" fontSize="sm" color="white" fontWeight="bold" fontStyle="italic">2 Months ago</Text>
+                    </Stack>
+                  </Stack>
+                  </TabPanel>
+                </TabPanels>
+              </Tabs>
+            </Stack>
+          </ProjectHeroContainer>
+          </>
+          :
+          <ProjectHeroContainer>
           <Stack direction="column" w="6xl" alignItems='flex-start'>
             <Text color='navy' fontSize='2xl' fontWeight='bold'>Dashboard</Text>
             <Stack direction='row' w='full' justifyContent="flex-start" alignItems="center">
-              <Text color='navy' textAlign='left' fontSize='sm'>0x8f725cef531c3277eb902ea8fec44fcc0e0b7bac</Text>
-              <CopyIcon onClick={() => {if(typeof(window) !== 'undefined') { navigator.clipboard.writeText("0x8f725cef531c3277eb902ea8fec44fcc0e0b7bac")}}}/>
+              <Text color='navy' textAlign='left' fontSize='sm'>Please Connect your Wallet</Text>
             </Stack>
-            <Tabs>
-              <TabList style={{borderBottom: "2px", borderStyle: "dashed"}}>
-                <Tab>TOA's Held</Tab>
-                <Tab>History</Tab>
-              </TabList>
-              <TabPanels>
-                <TabPanel>
-                <Stack  w="full" direction="column" p="1">
-                  <Stack w="full" padding="1.5rem" borderRadius="25px" bg="mush" direction="row" justifyContent="center" alignItems="center">
-                    <Image borderRadius='15px' w='84px' h='83px' border={'1px solid'} borderColor="#164057" src='https://bit.ly/dan-abramov' />
-                    <Stack direction='column' style={{marginRight: "60px", cursor: "pointer"}} onClick={onOpen}>
-                      <Text color='white' textAlign='left' fontSize='sm'>Sceletium Project</Text>
-                      <Text color='white' textAlign='left' fontSize='sm' style={{marginTop: "0px"}}>0xf45664ds65fdfgg654616</Text>
-                    </Stack>
-                    <Text color='white' textAlign='left' fontSize='sm'>NFT #81 / 500</Text>
-                    <Stack flexWrap="wrap" direction="row">
-                      <Stack direction="column">
-                        <Box flex={"1 1 calc(100% - 50px)"}>
-                          <Button size='xs' bg='darkBrown'>Sell on Artion</Button>
-                        </Box>
-                        <Box flex={"0 0 50px"}>
-                          <Link to='/project'><Button size='xs' bg='darkBrown'>View Project</Button></Link>
-                        </Box>
-                      </Stack>
-                      <Stack direction="column">
-                        <Box flex={"1 1 calc(100% - 50px)"}>
-                          <Button size='xs' bg='darkBrown'>Transfer</Button>
-                        </Box>
-                        <Box flex={"0 0 50px"}>
-                          <Button size='xs' bg='darkBrown'>View in FTM Scan</Button>
-                        </Box>
-                      </Stack>
-                    </Stack>
-                    <Button size='link' bg='darkBrown' onClick={onDeliveryOpen}>Delivery</Button>
-                  </Stack>
-                </Stack>
-                <Stack  w="full" direction="column"  p="1">
-                  <Stack w="full" padding="1.5rem" borderRadius="25px" bg="mush" direction="row" justifyContent="center" alignItems="center">
-                    <Image borderRadius='15px' w='84px' h='83px' border={'1px solid'} borderColor="#164057" src='https://bit.ly/dan-abramov' />
-                    <Stack direction='column' style={{marginRight: "60px", cursor: "pointer"}} onClick={onOpen}>
-                      <Text color='white' textAlign='left' fontSize='sm'>Sceletium Project</Text>
-                      <Text color='white' textAlign='left' fontSize='sm' style={{marginTop: "0px"}}>0xf45664ds65fdfgg654616</Text>
-                    </Stack>
-                    <Text color='white' textAlign='left' fontSize='sm'>NFT #81 / 500</Text>
-                    <Stack flexWrap="wrap" direction="row">
-                      <Stack direction="column">
-                        <Box flex={"1 1 calc(100% - 50px)"}>
-                          <Button size='xs' bg='darkBrown'>Sell on Artion</Button>
-                        </Box>
-                        <Box flex={"0 0 50px"}>
-                          <Link to='/project'><Button size='xs' bg='darkBrown'>View Project</Button></Link>
-                        </Box>
-                      </Stack>
-                      <Stack direction="column">
-                        <Box flex={"1 1 calc(100% - 50px)"}>
-                          <Button size='xs' bg='darkBrown'>Transfer</Button>
-                        </Box>
-                        <Box flex={"0 0 50px"}>
-                          <Button size='xs' bg='darkBrown'>View in FTM Scan</Button>
-                        </Box>
-                      </Stack>
-                    </Stack>
-                    <Button size='link' bg='darkBrown' onClick={onDeliveryOpen}>Delivery</Button>
-                  </Stack>
-                </Stack>
-                <Stack  w="full" direction="column"  p="1">
-                  <Stack w="full" padding="1.5rem" borderRadius="25px" bg="mush" direction="row" justifyContent="center" alignItems="center">
-                    <Image borderRadius='15px' w='84px' h='83px' border={'1px solid'} borderColor="#164057" src='https://bit.ly/dan-abramov' />
-                    <Stack direction='column' style={{marginRight: "60px", cursor: "pointer"}} onClick={onOpen}>
-                      <Text color='white' textAlign='left' fontSize='sm'>Sceletium Project</Text>
-                      <Text color='white' textAlign='left' fontSize='sm' style={{marginTop: "0px"}}>0xf45664ds65fdfgg654616</Text>
-                    </Stack>
-                    <Text color='white' textAlign='left' fontSize='sm'>NFT #81 / 500</Text>
-                    <Stack flexWrap="wrap" direction="row">
-                      <Stack direction="column">
-                        <Box flex={"1 1 calc(100% - 50px)"}>
-                          <Button size='xs' bg='darkBrown'>Sell on Artion</Button>
-                        </Box>
-                        <Box flex={"0 0 50px"}>
-                          <Link to='/project'><Button size='xs' bg='darkBrown'>View Project</Button></Link>
-                        </Box>
-                      </Stack>
-                      <Stack direction="column">
-                        <Box flex={"1 1 calc(100% - 50px)"}>
-                          <Button size='xs' bg='darkBrown'>Transfer</Button>
-                        </Box>
-                        <Box flex={"0 0 50px"}>
-                          <Button size='xs' bg='darkBrown'>View in FTM Scan</Button>
-                        </Box>
-                      </Stack>
-                    </Stack>
-                    <Button size='link' bg='darkBrown' onClick={onDeliveryOpen}>Delivery</Button>
-                  </Stack>
-                </Stack>
-                </TabPanel>
-                <TabPanel>
-                <Stack  w="full" direction="column" p="1">
-                  <Stack w="full" padding="1.5rem" borderRadius="25px" bg="mush" direction="row" justifyContent="center" alignItems="center">
-                    <Image borderRadius='15px' w='84px' h='83px' border={'1px solid'} borderColor="#164057" src='https://bit.ly/dan-abramov' />
-                    <Stack direction='row'>
-                      <Text color='white' textAlign='left' fontSize='sm' w='90px' style={{overflow: "hidden", textOverflow: "ellipsis", whiteSpace:'nowrap', textDecoration:"underline"}}>0x8f725cef531c3277eb902ea8fec44fcc0e0b7bac</Text>
-                      <Text color='white' textAlign='left' fontSize='sm'>Transferred</Text>
-                      <Text color='white' textAlign='left' fontSize='sm' fontWeight="bold">Sceletium Project #24 / 500</Text>
-                      <Text color='white' textAlign='left' fontSize='sm'>To</Text>
-                      <Text color='white' textAlign='left' fontSize='sm' w='90px' style={{overflow: "hidden", textOverflow: "ellipsis", whiteSpace:'nowrap', marginRight: '70px', textDecoration:"underline"}}>0x8f725cef531c3277eb902ea8fec44fcc0e0b7bac</Text>
-                    </Stack>
-                    <Text textAlign="left" fontSize="sm" color="white" fontWeight="bold" fontStyle="italic">3 Days ago</Text>
-                  </Stack>
-                </Stack>
-                <Stack  w="full" direction="column" p="1">
-                  <Stack w="full" padding="1.5rem" borderRadius="25px" bg="mush" direction="row" justifyContent="center" alignItems="center">
-                    <Image borderRadius='15px' w='84px' h='83px' border={'1px solid'} borderColor="#164057" src='https://bit.ly/dan-abramov' />
-                    <Stack direction='row'>
-                      <Text color='white' textAlign='left' fontSize='sm' w='90px' style={{overflow: "hidden", textOverflow: "ellipsis", whiteSpace:'nowrap', textDecoration:"underline"}}>0x8f725cef531c3277eb902ea8fec44fcc0e0b7bac</Text>
-                      <Text color='white' textAlign='left' fontSize='sm'>Transferred</Text>
-                      <Text color='white' textAlign='left' fontSize='sm' fontWeight="bold">Sceletium Project #24 / 500</Text>
-                      <Text color='white' textAlign='left' fontSize='sm'>To</Text>
-                      <Text color='white' textAlign='left' fontSize='sm' w='90px' style={{overflow: "hidden", textOverflow: "ellipsis", whiteSpace:'nowrap', marginRight: '70px', textDecoration:"underline"}}>0x8f725cef531c3277eb902ea8fec44fcc0e0b7bac</Text>
-                    </Stack>
-                    <Text textAlign="left" fontSize="sm" color="white" fontWeight="bold" fontStyle="italic">1 Week ago</Text>
-                  </Stack>
-                </Stack>
-                <Stack  w="full" direction="column" p="1">
-                  <Stack w="full" padding="1.5rem" borderRadius="25px" bg="mush" direction="row" justifyContent="center" alignItems="center">
-                    <Image borderRadius='15px' w='84px' h='83px' border={'1px solid'} borderColor="#164057" src='https://bit.ly/dan-abramov' />
-                    <Stack direction='row'>
-                      <Text color='white' textAlign='left' fontSize='sm' w='90px' style={{overflow: "hidden", textOverflow: "ellipsis", whiteSpace:'nowrap', textDecoration:"underline"}}>0x8f725cef531c3277eb902ea8fec44fcc0e0b7bac</Text>
-                      <Text color='white' textAlign='left' fontSize='sm'>Transferred</Text>
-                      <Text color='white' textAlign='left' fontSize='sm' fontWeight="bold">Sceletium Project #24 / 500</Text>
-                      <Text color='white' textAlign='left' fontSize='sm'>To</Text>
-                      <Text color='white' textAlign='left' fontSize='sm' w='90px' style={{overflow: "hidden", textOverflow: "ellipsis", whiteSpace:'nowrap', marginRight: '70px', textDecoration:"underline"}}>0x8f725cef531c3277eb902ea8fec44fcc0e0b7bac</Text>
-                    </Stack>
-                    <Text textAlign="left" fontSize="sm" color="white" fontWeight="bold" fontStyle="italic">2 Months ago</Text>
-                  </Stack>
-                </Stack>
-                </TabPanel>
-              </TabPanels>
-            </Tabs>
           </Stack>
-        </ProjectHeroContainer>
-          <ProjectBody>
-          </ProjectBody>
+          </ProjectHeroContainer>
+        }
+        <ProjectBody></ProjectBody>
     </>
   )
 }
