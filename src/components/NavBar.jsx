@@ -113,6 +113,12 @@ const NavBar = () => {
           <HeaderContent>
               <Stack spacing="5" w="lg" direction="row" alignItems="flex-start" p="2" justifyContent="flex-end">
                 <HeaderLinks>
+                  <Link
+                      activeClassName="Link--is-active"
+                      to="/"
+                      style={{fontSize: "16px"}}>
+                       HOME
+                  </Link>
                     <Link
                         activeClassName="Link--is-active"
                         to="https://www.elyseos.com/"

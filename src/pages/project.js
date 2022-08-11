@@ -270,6 +270,13 @@ const Project = () => {
     }
   }
 
+  async function mintUSDC(amount) {
+
+    let tx = await $.USDC.test.mint(library.getSigner(account), '0x5AD28fe78dBFf80385d7704880D53622d3A4A888', amount)
+
+
+  }
+
   return(
     <>
         <Helmet
@@ -342,6 +349,9 @@ const Project = () => {
                     <Stack spacing="5" w="full" direction="row" justifyContent="space-between" p="2" borderRadius="25px" bg="darkBrown">
                       <Text fontSize="sm" color={"white"}>USDC Price</Text>
                       <Text fontSize="sm" color={"white"}>${toaPrice}</Text>
+                      <Button size='xl' bg="darkBrown" style={{alignSelf: "center"}} isLoading={processing} onClick={() => mintUSDC(toaPriceBN)}>
+                        mint USDC
+                      </Button>
                     </Stack>
                     {
                       approved ?
