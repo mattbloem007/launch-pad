@@ -176,9 +176,10 @@ const Project = () => {
 
 
   async function handleInputChange(e) {
+    console.log("NFT AMOUNT", nftAmount, e)
     setNftAmount(currentValues => ({
       ...currentValues,
-      nftAmount: e,
+      amount: parseInt(e),
     }))
     if (approved) {
       let allow = await $.USDC.allowance(account, $.crowdsale.address)
@@ -242,6 +243,7 @@ const Project = () => {
 
   async function buyTOA(numTOAs) {
     //---> sending transaction to the blockchain (Toaster) approve pending
+    console.log("NUM", numTOAs)
     setProcessing(true)
     toastIdRef.current = toast.info("Buy pending", {
       position: toast.POSITION.BOTTOM_CENTER
@@ -349,9 +351,9 @@ const Project = () => {
                     <Stack spacing="5" w="full" direction="row" justifyContent="space-between" p="2" borderRadius="25px" bg="darkBrown">
                       <Text fontSize="sm" color={"white"}>USDC Price</Text>
                       <Text fontSize="sm" color={"white"}>${toaPrice}</Text>
-                      <Button size='xl' bg="darkBrown" style={{alignSelf: "center"}} isLoading={processing} onClick={() => mintUSDC(toaPriceBN)}>
+{/**                      <Button size='xl' bg="darkBrown" style={{alignSelf: "center"}} isLoading={processing} onClick={() => mintUSDC(toaPriceBN)}>
                         mint USDC
-                      </Button>
+                      </Button>*/}
                     </Stack>
                     {
                       approved ?
