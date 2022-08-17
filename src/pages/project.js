@@ -211,16 +211,22 @@ const Project = () => {
               position: toast.POSITION.BOTTOM_CENTER
             });
 
-            let tx = await $.USDC.approve(library.getSigner(account), $.crowdsale.address, amount)
+            try {
+              let tx = await $.USDC.approve(library.getSigner(account), $.crowdsale.address, amount)
 
-            //sent approval to the blockchain
-            toast.update(toastIdRef.current, { render: "Sent approval to the blockchain", type: toast.TYPE.INFO })
+              //sent approval to the blockchain
+              toast.update(toastIdRef.current, { render: "Sent approval to the blockchain", type: toast.TYPE.INFO })
 
-            await $.confirm(tx.hash)
-            //approval successful
-            toast.update(toastIdRef.current, { render: "Approval successful", type: toast.TYPE.SUCCESS })
-            setProcessing(false)
-            setApproved(true)
+              await $.confirm(tx.hash)
+              //approval successful
+              toast.update(toastIdRef.current, { render: "Approval successful", type: toast.TYPE.SUCCESS })
+              setProcessing(false)
+              setApproved(true)
+            }
+            catch(e) {
+              toast.update(toastIdRef.current, { render: e.message, type: toast.TYPE.ERROR })
+            }
+
           }
           else {
             toastIdRef.current = toast.error("Insuffcient funds", {
@@ -249,16 +255,22 @@ const Project = () => {
       position: toast.POSITION.BOTTOM_CENTER
     });
 
-    let tx = await $.crowdsale.buy(library.getSigner(account), numTOAs)
-    //sent approval to the blockchain
+    try {
+      let tx = await $.crowdsale.buy(library.getSigner(account), numTOAs)
+      //sent approval to the blockchain
 
-    toast.update(toastIdRef.current, { render: "Sent transaction to the blockchain", type: toast.TYPE.INFO })
+      toast.update(toastIdRef.current, { render: "Sent transaction to the blockchain", type: toast.TYPE.INFO })
 
-    await $.confirm(tx.hash)
-    //approval successful
-    toast.update(toastIdRef.current, { render: "Transaction successful", type: toast.TYPE.SUCCESS })
+      await $.confirm(tx.hash)
+      //approval successful
+      toast.update(toastIdRef.current, { render: "Transaction successful", type: toast.TYPE.SUCCESS })
 
-     setProcessing(false)
+       setProcessing(false)
+    }
+    catch (e) {
+      toast.update(toastIdRef.current, { render: e.message, type: toast.TYPE.ERROR })
+    }
+
     //  setApproved(true)
   }
 
