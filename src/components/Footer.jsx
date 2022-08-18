@@ -25,7 +25,6 @@ const FooterWrapper = styled("footer")`
 const FooterColumn = styled("div")`
   span {
     font-size: 16px;
-    font-family: Parisine Plus Std;
     font-weight: bold;
     color: ${colors.white};
   }
@@ -36,7 +35,6 @@ const FooterColumn = styled("div")`
     color: ${colors.white};
     li {
       margin-bottom: 12px;
-      font-family: Parisine Plus Std;
       font-size: 16px;
       margin-left: 2px;
     }
