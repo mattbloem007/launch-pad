@@ -268,7 +268,7 @@ const Project = () => {
        setProcessing(false)
     }
     catch (e) {
-      toast.update(toastIdRef.current, { render: e.message, type: toast.TYPE.ERROR })
+      toast.update(toastIdRef.current, { render: "No more TOAs available for this crowdsale", type: toast.TYPE.ERROR })
     }
 
     //  setApproved(true)
@@ -362,14 +362,14 @@ const Project = () => {
                     </Stack>
                     <Stack spacing="5" w="full" direction="row" justifyContent="space-between" p="2" borderRadius="25px" bg="darkBrown">
                       <Text fontSize="sm" color={"white"}>USDC Price</Text>
-                      <Text fontSize="sm" color={"white"}>${toaPrice}</Text>
+                      <Text fontSize="sm" color={"white"}>${toaPrice*nftAmount.amount}</Text>
 {/**                      <Button size='xl' bg="darkBrown" style={{alignSelf: "center"}} isLoading={processing} onClick={() => mintUSDC(toaPriceBN)}>
                         mint USDC
                       </Button>*/}
                     </Stack>
                     {
                       approved ?
-                      <Button size='xl' bg="darkBrown" style={{alignSelf: "center"}} isLoading={processing} onClick={() => buyTOA(nftAmount.amount)}>
+                      <Button size='xl2' bg="darkPurple" style={{alignSelf: "center"}} isLoading={processing} onClick={() => buyTOA(nftAmount.amount)}>
                         Buy TOA
                       </Button>
                       :

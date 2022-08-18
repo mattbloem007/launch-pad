@@ -134,23 +134,22 @@ const Footer = () => (
         <span>General</span>
         <ul>
           <ListLink href="/home"><li>About</li></ListLink>
-          <ListLink href="/faq"><li>FAQ</li></ListLink>
+          <ListLink href="/"><li>FAQ</li></ListLink>
           <li>Support</li>
         </ul>
       </FooterColumn>
       <FooterColumn>
         <span>Technology</span>
         <ul>
-          <ListLink href="/token-timelines"><li>Token</li></ListLink>
-          <ListLink href="/litepaper"><li>Litepaper</li></ListLink>
+          <ListLink href="https://www.elyseos.com/token-timelines"><li>Token</li></ListLink>
+          <ListLink href="https://www.elyseos.com/litepaper"><li>Litepaper</li></ListLink>
         </ul>
       </FooterColumn>
       <FooterColumn>
         <span>Community</span>
         <ul>
-        <ListLink href="/roadmap"><li>Roadmap</li></ListLink>
-        <li>Governance</li>
-        <ListLink href="/litepaper"><li>Litepaper</li></ListLink>
+        <ListLink href="https://app.gitbook.com/c/5deeMaOeXG1Hj9HVcM5U"><li>Guidebook</li></ListLink>
+        <ListLink href="https://snapshot.org/#/elyseos.eth"><li>Governance</li></ListLink>
         </ul>
       </FooterColumn>
       <FooterColumn>
@@ -161,22 +160,25 @@ const Footer = () => (
       </FooterColumn>
       <FooterColumn>
       <SocialContainer>
-        <a target="_blank" href="https://t.me/joinchat/kJCUkY1WacpkZTVk">
-          <SocialSymbol src={telegram}/>
+        <a target="_blank" href="https://twitter.com/ElyseosFDN">
+          <SocialSymbol src={twitter} />
         </a>
         <a target="_blank" href="https://discord.gg/gY2WMAnBem">
           <SocialSymbol src={discord} />
         </a>
-        <a target="_blank" href="https://twitter.com/ElyseosFDN">
-          <SocialSymbol src={twitter} />
-        </a>
         <a target="_blank" href="https://github.com/elyseos/contracts">
           <SocialSymbol src={github} />
         </a>
+        <a target="_blank" href="https://t.me/joinchat/kJCUkY1WacpkZTVk">
+          <SocialSymbol src={telegram}/>
+        </a>
+        <Link to="/email-signup">
+          <SocialSymbol src={email} />
+        </Link>
         <a target="_blank" href="https://medium.com/@Elyseos">
           <SocialSymbol src={medium} />
         </a>
-        <a target="_blank" href="https://medium.com/@Elyseos">
+{/**        <a target="_blank" href="https://medium.com/@Elyseos">
           <SocialSymbol src={facebook} />
         </a>
         <a target="_blank" href="https://medium.com/@Elyseos">
@@ -193,10 +195,8 @@ const Footer = () => (
         </a>
         <a target="_blank" href="https://medium.com/@Elyseos">
           <SocialSymbol src={rss} />
-        </a>
-        <Link to="/email-signup">
-          <SocialSymbol src={email} />
-        </Link>
+        </a>*/}
+
       </SocialContainer>
       </FooterColumn>
     </FooterContainer>

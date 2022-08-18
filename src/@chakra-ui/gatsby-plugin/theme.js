@@ -85,6 +85,16 @@ const theme = {
           fontSize: '31px',
           color: 'white'
         },
+        xl2: {
+          h: '45px',
+          w: '221px',
+          borderRadius: '40px',
+          border: "3px solid",
+          borderColor: "darkBrown",
+          bg: "darkPurple",
+          fontSize: 'lg',
+          color: 'white'
+        },
         md: {
           h: '39px',
           w: '192px',

@@ -246,10 +246,10 @@ const RenderBody = () => {
         />
           <ProjectHeroContainer>
             <Heading> Statistics </Heading>
-            <Container centerContent p="3" pt="0" bg={"mush"} rounded="3xl" shadow="lg" maxWidth="1242px" h="232px" justifyContent="space-evenly">
+            <Container centerContent p="3" pt="0" bg={"mush"} rounded="3xl" shadow="lg" maxWidth="1185px" h="232px" justifyContent="space-evenly">
               <Text textAlign={"center"} fontSize="xl" color="white" style={{position: "relative", top: "40px"}}>Tale of TOAs</Text>
               <Stack direction="row" alignItems="center" marginRight={'122px'} spacing="6" h='228px'>
-                  <Image w='400px' h='400px' src={tree} style={{position: 'relative', left: '155px', bottom: '55px', zIndex: '0'}}/>
+                  <Image w='300px' h='300px' src={tree} style={{position: 'relative', left: '114px', bottom: '55px', zIndex: '0'}}/>
                   <Stack direction="column" justifyContent="center" borderRadius='33px' h='128px' w='188px' bg='darkBrown' style={{position: "relative"}}>
                     <Text textAlign={"center"} fontSize="xl" fontWeight="bold" color={"white"}>1</Text>
                     <Text textAlign={"center"} fontSize="sm" color={"white"}>Ongoing Projects</Text>
@@ -262,10 +262,10 @@ const RenderBody = () => {
                     <Text textAlign={"center"} fontSize="xl" fontWeight="bold" color={"white"}>{numPurchased}</Text>
                     <Text textAlign={"center"} fontSize="sm" color={"white"}>Total TOAs sold</Text>
                   </Stack>
-                  <Stack direction="column" justifyContent="center" borderRadius='33px' h='128px' w='188px' bg='darkBrown' style={{position: "relative", zIndex: "1"}}>
+                  {/**<Stack direction="column" justifyContent="center" borderRadius='33px' h='128px' w='188px' bg='darkBrown' style={{position: "relative", zIndex: "1"}}>
                     <Text textAlign={"center"} fontSize="xl" fontWeight="bold" color={"white"}>48</Text>
                     <Text textAlign={"center"} fontSize="sm" color={"white"}>TOA Beneficiaries</Text>
-                  </Stack>
+                  </Stack>*/}
                   <Image w='196px' h='196px' src={crystal} style={{position: "relative", zIndex: "0", right: "55px"}}/>
               </Stack>
             </Container>

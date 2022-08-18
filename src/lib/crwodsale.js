@@ -116,8 +116,8 @@ const $ = {
         balanceOf: async (account) => await CrowdsaleContract.balanceOf(account), //USDC balance available
         //Write functions - include provider
         buy: async (provider, numTOAs) => await send(crowdsaleAddress,provider,'buy',[numTOAs]),
-        returnFunds: async (provider, to) => await send(crowdsaleAddress,provider,'returnFunds',[to]),
-        withdrawFunds: async (provider, to) => await send(crowdsaleAddress,provider,'withdrawFunds',[to]),
+        returnFunds: async (provider, to) => await send(crowdsaleAddress,provider,'returnFunds',[to]), //not successful - beneficaries
+        withdrawFunds: async (provider, to) => await send(crowdsaleAddress,provider,'withdrawFunds',[to]), //successful - not beneficaries
         assignTOAs: async (provider, to) => await send(crowdsaleAddress,provider,'assignTOAs',[to])
     }
 

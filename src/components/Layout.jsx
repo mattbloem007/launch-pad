@@ -48,13 +48,13 @@ const Layout = ({ children }) => (
         render={data => (
             <LayoutContainer>
                 {/**<Global styles={[globalStyles, typeStyles]} />*/}
-                
+
                 <div>
                   <NavBar />
                     <main style={{background: "mushTan"}}>
                         {children}
                     </main>
-                  {/**<Footer />*/}
+                  <Footer />
                 </div>
             </LayoutContainer>
         )}

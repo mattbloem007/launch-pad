@@ -322,7 +322,7 @@ const DashBoard = (props) => {
                   <Stack flexWrap="wrap" direction="row">
                     <Stack direction="column">
                       <Box flex={"1 1 calc(100% - 50px)"}>
-                        <Button size='xs' bg='darkBrown'>Sell on Artion</Button>
+                        <a href="https://www.artion.io/" target="_blank"><Button size='xs' bg='darkBrown'>Sell on Artion</Button></a>
                       </Box>
                       <Box flex={"0 0 50px"}>
                         <Link to='/project'><Button size='xs' bg='darkBrown'>View Project</Button></Link>
@@ -474,7 +474,7 @@ const DashBoard = (props) => {
                       <Stack flexWrap="wrap" direction="row">
                         <Stack direction="column">
                           <Box flex={"1 1 calc(100% - 50px)"}>
-                            <Button size='xs' bg='darkBrown'>Sell on Artion</Button>
+                            <a href="https://www.artion.io/" target="_blank"><Button size='xs' bg='darkBrown'>Sell on Artion</Button></a>
                           </Box>
                           <Box flex={"0 0 50px"}>
                             <Link to='/project'><Button size='xs' bg='darkBrown'>View Project</Button></Link>
@@ -503,7 +503,7 @@ const DashBoard = (props) => {
                       <Stack flexWrap="wrap" direction="row">
                         <Stack direction="column">
                           <Box flex={"1 1 calc(100% - 50px)"}>
-                            <Button size='xs' bg='darkBrown'>Sell on Artion</Button>
+                          <a href="https://www.artion.io/" target="_blank"><Button size='xs' bg='darkBrown'>Sell on Artion</Button></a>
                           </Box>
                           <Box flex={"0 0 50px"}>
                             <Link to='/project'><Button size='xs' bg='darkBrown'>View Project</Button></Link>
@@ -532,7 +532,7 @@ const DashBoard = (props) => {
                       <Stack flexWrap="wrap" direction="row">
                         <Stack direction="column">
                           <Box flex={"1 1 calc(100% - 50px)"}>
-                            <Button size='xs' bg='darkBrown'>Sell on Artion</Button>
+                            <a href="https://www.artion.io/" target="_blank"><Button size='xs' bg='darkBrown'>Sell on Artion</Button></a>
                           </Box>
                           <Box flex={"0 0 50px"}>
                             <Link to='/project'><Button size='xs' bg='darkBrown'>View Project</Button></Link>
