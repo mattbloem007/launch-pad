@@ -15,6 +15,7 @@ import { ArrowBackIcon, WarningIcon, CopyIcon } from '@chakra-ui/icons'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useWeb3React } from "@web3-react/core"
+import $ from 'lib/crwodsale.js'
 import {
   Box,
   Container,
@@ -131,7 +132,7 @@ const DashBoard = (props) => {
   const [courier, setCourier] = useState({ name: "" })
   const [updated, setUpdated] = useState({ updated: false, delivery_person: "", current_courier: "", current_address: "" })
   const [deliveryInfo, setDeliveryInfo] = useState({ wallet_address: "", toa_no: "", delivery_person: "", current_courier: "", current_address: "" })
-  const { active, account } = useWeb3React()
+  const { library, active, account } = useWeb3React()
 
   async function updateDelivery() {
     let personName = ""
@@ -230,6 +231,15 @@ const DashBoard = (props) => {
     }))
     console.log("Gender", gender.gender)
   };
+
+  const assignTOA = () => {
+    try {
+      $.crowdsale.assignTOAs(library.getSigner(account), account)
+    }
+    catch(e) {
+      console.log(e.message)
+    }
+  }
 
   function handleDeliveryPerson(e) {
     e.persist()
@@ -482,7 +492,7 @@ const DashBoard = (props) => {
                         </Stack>
                         <Stack direction="column">
                           <Box flex={"1 1 calc(100% - 50px)"}>
-                            <Button size='xs' bg='darkBrown'>Transfer</Button>
+                            <Button size='xs' bg='darkBrown' onClick={() => assignTOA()}>Transfer</Button>
                           </Box>
                           <Box flex={"0 0 50px"}>
                             <Button size='xs' bg='darkBrown'>View in FTM Scan</Button>

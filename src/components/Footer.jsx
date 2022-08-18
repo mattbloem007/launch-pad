@@ -75,7 +75,7 @@ const FooterContainer = styled("div")`
 
 const SocialContainer = styled("div")`
   display: grid;
-  grid-template-columns: 40px 40px 40px 40px;
+  grid-template-columns: 40px 40px 40px;
   align-items: center;
   margin-right: 20px;
   column-gap: 30px;

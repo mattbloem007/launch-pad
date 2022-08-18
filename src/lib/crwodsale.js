@@ -36,7 +36,7 @@ const confirm = (txhash) => {
 
 const send = async (address, provider, func, params) => {
     console.log(address)
-    console.log(params)
+    console.log(provider)
     const contract = new ethers.Contract(address, abis[address], provider)
     let ret
     try{
