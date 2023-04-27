@@ -16,6 +16,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useWeb3React } from "@web3-react/core"
 import $ from 'lib/crwodsale.js'
+import { toDec } from 'lib/bn.js'
 import {
   Box,
   Container,
@@ -182,6 +183,14 @@ const DashBoard = (props) => {
     }
 
   }
+
+  useEffect(async () => {
+    let balance = await $.crowdsale.balanceOf(account)
+    let balTOA = await $.crowdsale.TOABalance(account)
+    balance = toDec(balance._hex, 6, 1)
+    balTOA = toDec(balTOA._hex, 6, 1)
+    console.log("Balance: ", balance, balTOA)
+  })
 
   useEffect(() => {
 
@@ -469,7 +478,7 @@ const DashBoard = (props) => {
               <Tabs>
                 <TabList style={{borderBottom: "2px", borderStyle: "dashed"}}>
                   <Tab>TOA's Held</Tab>
-                  <Tab>History</Tab>
+                  <Tab>Claim</Tab>
                 </TabList>
                 <TabPanels>
                   <TabPanel>
@@ -563,19 +572,49 @@ const DashBoard = (props) => {
                   </TabPanel>
                   <TabPanel>
                   <Stack  w="full" direction="column" p="1">
-                    <Stack w="full" padding="1.5rem" borderRadius="25px" bg="mush" direction="row" justifyContent="center" alignItems="center">
-                      <Image borderRadius='15px' w='84px' h='83px' border={'1px solid'} borderColor="#164057" src='https://bit.ly/dan-abramov' />
-                      <Stack direction='row'>
-                        <Text color='white' textAlign='left' fontSize='sm' w='90px' style={{overflow: "hidden", textOverflow: "ellipsis", whiteSpace:'nowrap', textDecoration:"underline"}}>0x8f725cef531c3277eb902ea8fec44fcc0e0b7bac</Text>
-                        <Text color='white' textAlign='left' fontSize='sm'>Transferred</Text>
-                        <Text color='white' textAlign='left' fontSize='sm' fontWeight="bold">Sceletium Project #24 / 500</Text>
-                        <Text color='white' textAlign='left' fontSize='sm'>To</Text>
-                        <Text color='white' textAlign='left' fontSize='sm' w='90px' style={{overflow: "hidden", textOverflow: "ellipsis", whiteSpace:'nowrap', marginRight: '70px', textDecoration:"underline"}}>0x8f725cef531c3277eb902ea8fec44fcc0e0b7bac</Text>
+                    <Stack w="full" spacing="5" padding="1.5rem" borderRadius="25px" bg="mush" direction="column" justifyContent="center" alignItems="center">
+
+                      <Stack direction="row">
+                        <Stack direction='column' w="full" style={{marginRight: "60px"}}>
+                          <Text color='white' textAlign='left' fontSize='lg'>USDC Refund</Text>
+                          <Text color='white' textAlign='left' fontSize='sm' fontStyle="italic" style={{marginTop: "0px"}}>If the crowd sale did not hit its target, you may claim back your USDC here.</Text>
+                        </Stack>
+                        <Stack w='3xl' justifyContent="center" alignItems="flex-end">
+                          <Stack spacing="5" w="full" direction="row" justifyContent="space-between" p="2" borderRadius="40px" bg="navy" style={{paddingLeft: "20px"}}>
+                            <Text fontSize="lg" color={"white"}>200,00 USDC Due</Text>
+                            <Button size='claim' bg='darkBrown'>Claim</Button>
+                          </Stack>
+                        </Stack>
                       </Stack>
-                      <Text textAlign="left" fontSize="sm" color="white" fontWeight="bold" fontStyle="italic">3 Days ago</Text>
+
+                      <Stack direction="row">
+                        <Stack direction='column' w="full" style={{marginRight: "60px"}}>
+                          <Text color='white' textAlign='left' fontSize='lg'>TOA Claim</Text>
+                          <Text color='white' textAlign='left' fontSize='sm' fontStyle="italic" style={{marginTop: "0px"}}>If the crowdsale was a success you can claim your TOA's here.</Text>
+                        </Stack>
+                        <Stack w='3xl' justifyContent="center" alignItems="flex-end">
+                          <Stack spacing="5" w="full" direction="row" justifyContent="space-between" p="2" borderRadius="40px" bg="navy" style={{paddingLeft: "20px"}}>
+                            <Text fontSize="lg" color={"white"}>5 TOA's Due</Text>
+                            <Button size='claim' bg='darkBrown'>Claim</Button>
+                          </Stack>
+                        </Stack>
+                      </Stack>
+
+                      <Stack direction="row">
+                        <Stack direction='column' w="full" style={{marginRight: "60px"}}>
+                          <Text color='white' textAlign='left' fontSize='lg'>USDC Payout</Text>
+                          <Text color='white' textAlign='left' fontSize='sm' fontStyle="italic" style={{marginTop: "0px"}}>If you are a stakeholder due USDC as a payout you can claim it here.</Text>
+                        </Stack>
+                        <Stack w='3xl' justifyContent="center" alignItems="flex-end">
+                          <Stack spacing="5" w="full" direction="row" justifyContent="space-between" p="2" borderRadius="40px" bg="navy" style={{paddingLeft: "20px"}}>
+                            <Text fontSize="lg" color={"white"}>158 00,00 USDC Due</Text>
+                            <Button size='claim' bg='darkBrown'>Claim</Button>
+                          </Stack>
+                        </Stack>
+                      </Stack>
                     </Stack>
                   </Stack>
-                  <Stack  w="full" direction="column" p="1">
+                  {/**<Stack  w="full" direction="column" p="1">
                     <Stack w="full" padding="1.5rem" borderRadius="25px" bg="mush" direction="row" justifyContent="center" alignItems="center">
                       <Image borderRadius='15px' w='84px' h='83px' border={'1px solid'} borderColor="#164057" src='https://bit.ly/dan-abramov' />
                       <Stack direction='row'>
@@ -600,7 +639,7 @@ const DashBoard = (props) => {
                       </Stack>
                       <Text textAlign="left" fontSize="sm" color="white" fontWeight="bold" fontStyle="italic">2 Months ago</Text>
                     </Stack>
-                  </Stack>
+                  </Stack>*/}
                   </TabPanel>
                 </TabPanels>
               </Tabs>

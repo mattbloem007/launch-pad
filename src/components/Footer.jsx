@@ -17,6 +17,8 @@ import soundcloud from "images/Social Media Icons Soundclourd- V1.0.png"
 import spotify from "images/Social Media Icons Spotify - V1.0.png"
 import rss from "images/Social Media Icons RSS - V1.0.png"
 import dimensions from "styles/dimensions";
+import { Tooltip } from '@chakra-ui/react'
+
 
 const FooterWrapper = styled("footer")`
   background-color: ${colors.mush};
@@ -131,9 +133,9 @@ const Footer = () => (
       <FooterColumn>
         <span>General</span>
         <ul>
-          <ListLink href="/home"><li>About</li></ListLink>
-          <ListLink href="/"><li>FAQ</li></ListLink>
-          <li>Support</li>
+          <ListLink href="/about"><li>About</li></ListLink>
+          <ListLink href="/faq"><li>FAQ</li></ListLink>
+          <ListLink href="/support"><li>Support</li></ListLink>
         </ul>
       </FooterColumn>
       <FooterColumn>
@@ -155,27 +157,42 @@ const Footer = () => (
         <ul>
           <ListLink target="_blank" href="https://nomics.com/assets/elys-elyseos"><li>Nomics</li></ListLink>
         </ul>
+        <ul>
+          <ListLink target="_blank" href="https://beets.fi"><li>Beethoven</li></ListLink>
+        </ul>
       </FooterColumn>
       <FooterColumn>
       <SocialContainer>
-        <a target="_blank" href="https://twitter.com/ElyseosFDN">
-          <SocialSymbol src={twitter} />
-        </a>
-        <a target="_blank" href="https://discord.gg/gY2WMAnBem">
-          <SocialSymbol src={discord} />
-        </a>
-        <a target="_blank" href="https://github.com/elyseos/contracts">
-          <SocialSymbol src={github} />
-        </a>
-        <a target="_blank" href="https://t.me/joinchat/kJCUkY1WacpkZTVk">
-          <SocialSymbol src={telegram}/>
-        </a>
-        <Link to="/email-signup">
-          <SocialSymbol src={email} />
-        </Link>
-        <a target="_blank" href="https://medium.com/@Elyseos">
-          <SocialSymbol src={medium} />
-        </a>
+        <Tooltip hasArrow label='Twitter' bg='gray.300' color='black' placement='top'>
+          <a target="_blank" href="https://twitter.com/ElyseosFDN">
+            <SocialSymbol src={twitter} />
+          </a>
+        </Tooltip>
+        <Tooltip hasArrow label='Discord' bg='gray.300' color='black' placement='top'>
+          <a target="_blank" href="https://discord.gg/gY2WMAnBem">
+            <SocialSymbol src={discord} />
+          </a>
+        </Tooltip>
+        <Tooltip hasArrow label='Github' bg='gray.300' color='black' placement='top'>
+          <a target="_blank" href="https://github.com/elyseos/contracts">
+            <SocialSymbol src={github} />
+          </a>
+        </Tooltip>
+        <Tooltip hasArrow label='Telegram' bg='gray.300' color='black' placement='top'>
+          <a target="_blank" href="https://t.me/joinchat/kJCUkY1WacpkZTVk">
+            <SocialSymbol src={telegram}/>
+          </a>
+        </Tooltip>
+        <Tooltip hasArrow label='Email' bg='gray.300' color='black' placement='top'>
+          <Link to="/email-signup">
+            <SocialSymbol src={email} />
+          </Link>
+        </Tooltip>
+        <Tooltip hasArrow label='Medium' bg='gray.300' color='black' placement='top'>
+          <a target="_blank" href="https://medium.com/@Elyseos">
+            <SocialSymbol src={medium} />
+          </a>
+        </Tooltip>
 {/**        <a target="_blank" href="https://medium.com/@Elyseos">
           <SocialSymbol src={facebook} />
         </a>

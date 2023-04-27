@@ -13,6 +13,14 @@ import Header from "components/Header";
 import kannaNFT from "../images/Sceletium Tortuosum - NFT Card - V1.0.2.png"
 import tree from '../images/Tree Artwork - V1.0.png'
 import crystal from '../images/Crystal Artwork - V1.0.png'
+import beneficiary from '../images/Group 138.svg'
+import guardian from '../images/Group 140.svg'
+import producer from '../images/Group 142.svg'
+import rainmaker from '../images/Group 144.svg'
+import salesperson from '../images/Group 146.svg'
+import auditor from '../images/Group 148.svg'
+import lawyer from '../images/Group 150.svg'
+import stakeholder from '../images/Group 152.svg'
 import $ from 'lib/crwodsale.js'
 import { toDec } from 'lib/bn.js'
 import { useWeb3React } from "@web3-react/core"
@@ -412,14 +420,9 @@ const Project = () => {
                         </Stack>
                       </TabPanel>
                       <TabPanel>
-                        <AspectRatio margin={"1rem"} w='583px' h='384px' borderRadius='25px' ratio={16 / 9}>
-                          <iframe
-                          title='elyseos'
-                          src='https://www.youtube.com/embed/YlU5XwqtTbY'
-                          allowFullScreen
-                          style={{borderRadius: '25px', width:'593px', height:'384px'}}
-                          />
-                        </AspectRatio>
+                        <Stack alignItems="center" margin={"1rem"} w='583px' h='384px' borderRadius='25px' backgroundImage={metricsBG} backgroundPosition="center" backgroundRepeat="no-repeat" backgroundSize="cover">
+                          <Image src={kannaNFT} w='353px' h='353px'/>
+                        </Stack>
                       </TabPanel>
                     </TabPanels>
 
@@ -496,36 +499,36 @@ const Project = () => {
                       <Heading id="stake"> Stakeholders </Heading>
                         <Text color={"navy"} fontSize={"sm"}>Nulla dui purus, eleifend vel, consequat non, dictum porta, nulla. Duis ante mi, laoreet ut, commodo eleifend, cursus nec, lorem. Aenean eu est. Etiam imperdiet turpis. Praesent nec augue. Nulla dui purus, eleifend vel, consequat non, dictum porta, nulla. Duis ante mi, laoreet ut, commodo eleifend, cursus nec, lorem. Aenean eu est. Etiam imperdiet turpis. Praesent nec augue.</Text>
                         <Grid templateColumns='repeat(4, 0.5fr)' gap={6}>
-                          <GridItem>
-                            <Image borderRadius='33px' boxSize='100px' src='https://bit.ly/dan-abramov' />
-                            <Text color={"navy"} fontSize={"sm"}> Stakeholder 1</Text>
+                          <GridItem style={{display: "flex", flexDirection: "column", alignItems: "center"}}>
+                            <Image boxSize='100px' src={beneficiary} />
+                            <Text color={"navy"} fontSize={"sm"}> Beneficiary</Text>
                           </GridItem>
-                          <GridItem>
-                            <Image borderRadius='33px' boxSize='100px' src='https://bit.ly/dan-abramov' />
-                            <Text color={"navy"} fontSize={"sm"}> Stakeholder 1</Text>
+                          <GridItem style={{display: "flex", flexDirection: "column", alignItems: "center"}}>
+                            <Image boxSize='100px' src={guardian} style={{alignSelf: "flex-end"}} />
+                            <Text color={"navy"} fontSize={"sm"}> Guardian</Text>
                           </GridItem>
-                          <GridItem>
-                            <Image borderRadius='33px' boxSize='100px' src='https://bit.ly/dan-abramov' />
-                            <Text color={"navy"} fontSize={"sm"}> Stakeholder 1</Text>
+                          <GridItem style={{display: "flex", flexDirection: "column", alignItems: "center"}}>
+                            <Image boxSize='100px' src={producer} />
+                            <Text color={"navy"} fontSize={"sm"}> Producer</Text>
                           </GridItem>
-                          <GridItem>
-                            <Image borderRadius='33px' boxSize='100px' src='https://bit.ly/dan-abramov' />
-                            <Text color={"navy"} fontSize={"sm"}> Stakeholder 1</Text>
+                          <GridItem style={{display: "flex", flexDirection: "column", alignItems: "center"}}>
+                            <Image boxSize='100px' src={rainmaker} />
+                            <Text color={"navy"} fontSize={"sm"}>Rainmaker</Text>
                           </GridItem>
-                          <GridItem>
-                            <Image borderRadius='33px' boxSize='100px' src='https://bit.ly/dan-abramov' />
-                            <Text color={"navy"} fontSize={"sm"}> Stakeholder 1</Text>
+                          <GridItem style={{display: "flex", flexDirection: "column", alignItems: "center"}}>
+                            <Image boxSize='100px' src={salesperson} />
+                            <Text color={"navy"} fontSize={"sm"}> Sales Person</Text>
                           </GridItem>
-                          <GridItem>
-                            <Image borderRadius='33px' boxSize='100px' src='https://bit.ly/dan-abramov' />
-                            <Text color={"navy"} fontSize={"sm"}> Stakeholder 1</Text>
+                          <GridItem style={{display: "flex", flexDirection: "column", alignItems: "center"}}>
+                            <Image boxSize='100px' src={auditor} style={{alignSelf: "flex-end"}} />
+                            <Text color={"navy"} fontSize={"sm"}>Auditor</Text>
                           </GridItem>
-                          <GridItem>
-                            <Image borderRadius='33px' boxSize='100px' src='https://bit.ly/dan-abramov' />
-                            <Text color={"navy"} fontSize={"sm"}> Stakeholder 1</Text>
+                          <GridItem style={{display: "flex", flexDirection: "column", alignItems: "center"}}>
+                            <Image boxSize='100px' src={lawyer} style={{alignSelf: "flex-end"}} />
+                            <Text color={"navy"} fontSize={"sm"}>Lawyer</Text>
                           </GridItem>
-                          <GridItem>
-                            <Image borderRadius='33px' boxSize='100px' src='https://bit.ly/dan-abramov' />
+                          <GridItem style={{display: "flex", flexDirection: "column", alignItems: "center"}}>
+                            <Image boxSize='100px' src={stakeholder} />
                             <Text color={"navy"} fontSize={"sm"}> Stakeholder 1</Text>
                           </GridItem>
                         </Grid>
@@ -556,11 +559,11 @@ const Project = () => {
                         </Stack>
                         <Stack spacing="5" w="full" direction="row" justifyContent="space-between" p="2">
                           <Text fontSize="sm" color={"white"}>First Offtake</Text>
-                          <Text fontSize="sm" color={"white"} fontWeight="bold">1 May 2024</Text>
+                          <Text fontSize="sm" color={"white"} fontWeight="bold">1 December 2024</Text>
                         </Stack>
                         <Stack spacing="5" w="full" direction="row" justifyContent="space-between" p="2" borderRadius="11px" bg="mush">
                           <Text fontSize="sm" color={"white"}>Delivery Date</Text>
-                          <Text fontSize="sm" color={"white"} fontWeight="bold">1 May Anually</Text>
+                          <Text fontSize="sm" color={"white"} fontWeight="bold">1 December Anually</Text>
                         </Stack>
                         <Stack spacing="5" w="full" direction="row" justifyContent="space-between" p="2">
                           <Text fontSize="sm" color={"white"}>Duration</Text>

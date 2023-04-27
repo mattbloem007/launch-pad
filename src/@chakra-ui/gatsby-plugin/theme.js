@@ -125,8 +125,7 @@ const theme = {
           fontSize: 'xs',
           color: 'white'
         },
-        "xxs": {
-          md: {
+          claim: {
             h: '39px',
             w: '151px',
             borderRadius: '40px',
@@ -136,7 +135,6 @@ const theme = {
             fontSize: 'sm',
             color: 'white'
           },
-        },
         lp: {
           h: '56px',
           w: '264px',

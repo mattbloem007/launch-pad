@@ -119,7 +119,7 @@ const Header = () => {
           <HeaderContent>
             <Stack spacing="5" w="full" direction="row" alignItems="flex-start" p="2">
                   <Stack spacing="5" w="full" direction="column" alignItems="flex-start" p="2">
-                    <Heading fontSize="48px" style={{marginBottom: "0px"}}>KQKanna</Heading>
+                    <Heading fontSize="48px" style={{marginBottom: "0px"}}>CQKanna</Heading>
                     <Text flexGrow="2" color={"navy"} fontSize="sm" style={{marginTop: "0px"}}>A Sceletium growing operation in the Western Cape, South Africa</Text>
                   </Stack>
               </Stack>

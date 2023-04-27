@@ -14,6 +14,7 @@ import $ from 'lib/crwodsale.js'
 import { toDec } from 'lib/bn.js'
 import tree from '../images/Tree Artwork - V1.0.png'
 import crystal from '../images/Crystal Artwork - V1.0.png'
+
 import {
   Box,
   Container,
@@ -245,6 +246,14 @@ const RenderBody = () => {
             ]}
         />
           <ProjectHeroContainer>
+            <AspectRatio margin={"1rem"} w='583px' h='384px' borderRadius='25px' ratio={16 / 9}>
+              <iframe
+              title='elyseos'
+              src='https://www.youtube.com/embed/YlU5XwqtTbY'
+              allowFullScreen
+              style={{borderRadius: '25px', width:'593px', height:'384px'}}
+              />
+            </AspectRatio>
             <Heading> Statistics </Heading>
             <Container centerContent p="3" pt="0" bg={"mush"} rounded="3xl" shadow="lg" maxWidth="1185px" h="232px" justifyContent="space-evenly">
               <Text textAlign={"center"} fontSize="xl" color="white" style={{position: "relative", top: "40px"}}>Tale of TOAs</Text>
@@ -275,7 +284,7 @@ const RenderBody = () => {
               <Link to='/project'>
                   <Box style={{display: "flex", alignContent: "flex-end", justifyContent: "center", flexWrap: "wrap", paddingBottom: '16px'}} borderRadius='11px' h='523px' w='312px' bg='orange'>
                     <Image h='416px' w='416px' src={kannaNFT}/>
-                    <Text textAlign={"center"} color={"white"} fontSize="lg" fontWeight="bold" lineHeight="31px">KQKanna</Text>
+                    <Text textAlign={"center"} color={"white"} fontSize="lg" fontWeight="bold" lineHeight="31px">CQKanna</Text>
                     <Text textAlign={"center"} fontSize="sm" color={"white"} lineHeight="31px">A Sceletium growing project in the Western Cape, South Africa</Text>
                   </Box>
               </Link>
@@ -304,7 +313,7 @@ const RenderBody = () => {
               <br/>
               <Text color={"navy"} textAlign={"left"}>TOAs form the core offering of Elyseos Ventures. Tokenized Off-take Agreements (TOAs) are Non Fungible Tokens (NFTs) which have attached to them an ‘offtake’ that is a certain amount of actual product produced e.g. 10kgs of cacao for 5 years.</Text>
               <br />
-              <Text color={"navy"} textAlign={"left"}>Holding one of these NFTs entitles you to delivery of some form of goods (the volume and quality to be specified in the NFT) at specified time or times (again these will be specified in the NFT.</Text>
+              <Text color={"navy"} textAlign={"left"}>Holding one of these NFTs entitles you to delivery of some form of goods (the volume and quality to be specified in the NFT) at specified time or times (again these will be specified in the NFT).</Text>
               <br/>
               <Text color={"navy"} textAlign={"left"}>TOAs are a new financial instrument which offer the following features not currently  available in the market:</Text>
               <br/>

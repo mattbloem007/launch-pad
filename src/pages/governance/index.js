@@ -137,7 +137,10 @@ const Governance = () => {
             <Stack spacing="1" w="full" direction="column" p="2" style={{overflowY: "auto", overflowX: "hidden", height: "550px"}}>
               <Heading marginBottom={'0px'}>Proposals</Heading>
               <Stack spacing="5" w="full" direction="row" justifyContent="center" p="2" borderRadius="25px" bg="navy"  padding="1rem">
-                <Text fontSize="sm" color={"white"}>What was your job when you were based here? Sanitation. Sanitation? Then how do you know how to disable the shields? I don't. I'm just here to get Rey. People are counting on us! The galaxy is counting on us--! Solo, we'll figure it out! We'll use the Force!</Text>
+                <Text fontSize="sm" color={"white"}>Are you a small-scale farmer?  An extraction lab?
+                An educator in this field?  Do you have an idea for small scale production of an
+                ethnobotanical that you are needing funding for? Will you have an ongoing “Offtake” in the
+                form of a regular delivery of some sort of goods or service?</Text>
               </Stack>
               <Link to='vote1'>
                 <VoteBlock title={"Sceletium Project"} active={true} voteDesc="These Jedi are not to be underestimated. Oh, noooooooooo! Quick! Get out of here! Get off! Whas dat? Hey wait! Oyi, mooie-mooie! I luv yous! You almost got us killed! Are you brainless? I spake. The ability to speak does not make you intelligent. Now get outta here! No, no! Mesa stay, Mesa culled Ja Ja Binksss. Mesa yous humble servaunt. That won't be necessary." voteText="Vote Proposal: I can't believe there is still slavery in the galaxy. The Republic's anti-slavery laws?" days="3" />
