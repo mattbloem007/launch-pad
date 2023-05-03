@@ -64,6 +64,9 @@ import {
   NumberInputStepper,
   NumberIncrementStepper,
   NumberDecrementStepper,
+  UnorderedList,
+  OrderedList,
+  ListItem,
   useToast,
   useDisclosure
 } from '@chakra-ui/react'
@@ -486,18 +489,53 @@ const Project = () => {
                         </Box>
                       </Stack>
                     <Stack spacing="1" w="xl" direction="column" p="2">
-                      <Heading id="background"> Background </Heading>
-                        <Text color={"navy"} fontSize={"sm"}>Nulla dui purus, eleifend vel, consequat non, dictum porta, nulla. Duis ante mi, laoreet ut, commodo eleifend, cursus nec, lorem. Aenean eu est. Etiam imperdiet turpis. Praesent nec augue. Nulla dui purus, eleifend vel, consequat non, dictum porta, nulla. Duis ante mi, laoreet ut, commodo eleifend, cursus nec, lorem. Aenean eu est. Etiam imperdiet turpis. Praesent nec augue.</Text>
+                      <Heading id="background"> Background </Heading><br/>
+                        <Text color={"navy"} fontSize={"sm"}>The CQKanna project by Kelquin Botanicals on Talana farm in the Western Cape region of South Africa will produce 1.25 Tons of Sceletium per year.</Text>
+                        <Text color={"navy"} fontSize={"sm"}>Sceletium is a small succulent ground cover plant native to South Africa that has been used for centuries by indigenous peoples for its mood-enhancing and stress-relieving properties. The plant, also known as Kanna, is a member of the Mesembryanthemaceae family and grows in the arid regions of the country.</Text><br/>
+                        <Text color={"navy"} fontSize={"sm"}>The active compounds in Sceletium are mesembrine, mesembrenone, and mesembrenol, which act on the brain's serotonin system. Serotonin is a neurotransmitter responsible for regulating mood, sleep, and appetite, among other functions. By modulating serotonin levels in the brain, Sceletium can help reduce anxiety and depression symptoms, promote relaxation, and improve cognitive function.</Text><br/>
+                        <Text color={"navy"} fontSize={"sm"}>Sceletium is fast gaining popularity as a natural supplement for managing anxiety and depression, and its recreational effects are becoming more widely embraced.. As more people become interested in natural remedies for mental health issues, the demand for Sceletium is likely to increase -  prices have been significantly trending upward in the last few years.</Text><br/>
+                        <Text color={"navy"} fontSize={"sm"}>The CQKanna project will supply TOA holders with 10kgs of dried Sceletium every year for 10- years . This  Sceletium will have a minimum mesembrine content of 0.6% OR a minimum of 0.9% total alkaloid content..  The TOAs cost $1250 each - this equates to a price of  $12.50 per kilo of Sceletium.</Text>
                         <Stack justifyContent="center" alignItems="center">
                           <Divider orientation='horizontal' style={{borderTop: "2px solid #164057", width: "50%", marginTop: "40px", marginBottom: "40px"}}/>
                         </Stack>
-                      <Heading id="keypoints"> Keypoints </Heading>
-                        <Text color={"navy"} fontSize={"sm"}>Nulla dui purus, eleifend vel, consequat non, dictum porta, nulla. Duis ante mi, laoreet ut, commodo eleifend, cursus nec, lorem. Aenean eu est. Etiam imperdiet turpis. Praesent nec augue. Nulla dui purus, eleifend vel, consequat non, dictum porta, nulla. Duis ante mi, laoreet ut, commodo eleifend, cursus nec, lorem. Aenean eu est. Etiam imperdiet turpis. Praesent nec augue.</Text>
+                      <Heading id="keypoints"> Keypoints </Heading><br/>
+                        <UnorderedList color={"navy"} textAlign={"left"}>
+                          <ListItem>CQKanna TOAs offers the  potential to get high quality Sceletium at $12.50 per/kg a considerable discount front the current wholesale price of $40-$70 per kg</ListItem><br/>
+                          <ListItem>The TOA can also be sold on should you no longer wish to hold the rights to receive the offtake</ListItem><br/>
+                          <ListItem>The Sales agent will sell your product and send you money (less commission) should you wish to continue to hold the TOA but not wish the get any sceletium</ListItem><br/>
+                          <ListItem>Risks of the Producer failing to deliver are mitigated by the role of the Guardian who has a legal contractual relationship with the Producer.</ListItem><br/>
+                          <ListItem>The Guardian has skin in the game and is the largest holder of TOAs in this project. The Guardian only receives their offtake after all other beneficiaries agree they are happy with their offtake from the harvest.</ListItem><br/>
+                          <ListItem>There is built in governance (1 TOA = 1 vote) and so all TOA holders will have a voice</ListItem><br/>
+                          <ListItem>Sceletium is fast gaining popularity as a natural supplement for managing anxiety and depression.</ListItem><br/>
+                          <ListItem> As more people become interested in natural remedies for mental health issues, the demand for Sceletium is likely to increase.</ListItem><br/>
+                          <ListItem>Sceletium supply has not been matching demand and  prices have been trending upward in the last few years.</ListItem><br/>
+                          <ListItem>Participating in Sceletium farming via these TOAs can be a both profitable and socially and environmentally responsible choice.</ListItem><br/>
+                        </UnorderedList>
                         <Stack justifyContent="center" alignItems="center">
                           <Divider orientation='horizontal' style={{borderTop: "2px solid #164057", width: "50%", marginTop: "40px", marginBottom: "40px"}}/>
                         </Stack>
-                      <Heading id="stake"> Stakeholders </Heading>
-                        <Text color={"navy"} fontSize={"sm"}>Nulla dui purus, eleifend vel, consequat non, dictum porta, nulla. Duis ante mi, laoreet ut, commodo eleifend, cursus nec, lorem. Aenean eu est. Etiam imperdiet turpis. Praesent nec augue. Nulla dui purus, eleifend vel, consequat non, dictum porta, nulla. Duis ante mi, laoreet ut, commodo eleifend, cursus nec, lorem. Aenean eu est. Etiam imperdiet turpis. Praesent nec augue.</Text>
+                      <Heading id="stake"> Stakeholders </Heading><br/>
+                        <Text color={"navy"} fontSize={"sm"}>Producer - Kelquin Botanicals
+Principals: Lizande Kelleher, Quintus Slabbet, Charl Slabbert, Lynette Slabbert
+You may contact Kelquin Botanicals via the  Elyseos Telegram group or the Launchpad Channel on the Elyseos Discord
+</Text><br/>
+                        <Text color={"navy"} fontSize={"sm"}>Guardian - Botanical Investment Guardians
+Principals: Armand Verschuur, Paul Boulton, Simon Anderson
+You may contact B.I.G via the  Elyseos Telegram group or the Launchpad Channel on the Elyseos Discord
+</Text><br/>
+                        <Text color={"navy"} fontSize={"sm"}>Rainmaker - Andrew Lawson
+You may contact Andrew via the  Elyseos Telegram group or the Launchpad Channel on the Elyseos Discord
+</Text><br/>
+                        <Text color={"navy"} fontSize={"sm"}>Sales Agent - The Sceletium Source
+Principals: Jean-Pierre Le Roux
+www.sceletium.com </Text><br/>
+                        <Text color={"navy"} fontSize={"sm"}>Lawyer - Gerhard Swart
+You may contact Gerhard via the  Elyseos Telegram group or the Launchpad Channel on the Elyseos Discord
+</Text><br/>
+                        <Text color={"navy"} fontSize={"sm"}>Auditor - Mark Solomon
+You may contact Mark via the  Elyseos Telegram group or the Launchpad Channel on the Elyseos Discord
+</Text><br/>
+                        <Text color={"navy"} fontSize={"sm"}>Local Peoples - Net Vir Pret, Barrydale</Text><br/>
                         <Grid templateColumns='repeat(4, 0.5fr)' gap={6}>
                           <GridItem style={{display: "flex", flexDirection: "column", alignItems: "center"}}>
                             <Image boxSize='100px' src={beneficiary} />
@@ -509,7 +547,7 @@ const Project = () => {
                           </GridItem>
                           <GridItem style={{display: "flex", flexDirection: "column", alignItems: "center"}}>
                             <Image boxSize='100px' src={producer} />
-                            <Text color={"navy"} fontSize={"sm"}> Producer</Text>
+                            <Text color={"navy"} fontSize={"sm"}>Producer</Text><br/>
                           </GridItem>
                           <GridItem style={{display: "flex", flexDirection: "column", alignItems: "center"}}>
                             <Image boxSize='100px' src={rainmaker} />
@@ -535,8 +573,17 @@ const Project = () => {
                         <Stack justifyContent="center" alignItems="center">
                           <Divider orientation='horizontal' style={{borderTop: "2px solid #164057", width: "50%", marginTop: "40px", marginBottom: "40px"}}/>
                         </Stack>
-                      <Heading id="risks"> Risks </Heading>
-                        <Text color={"navy"} fontSize={"sm"}>Nulla dui purus, eleifend vel, consequat non, dictum porta, nulla. Duis ante mi, laoreet ut, commodo eleifend, cursus nec, lorem. Aenean eu est. Etiam imperdiet turpis. Praesent nec augue. Nulla dui purus, eleifend vel, consequat non, dictum porta, nulla. Duis ante mi, laoreet ut, commodo eleifend, cursus nec, lorem. Aenean eu est. Etiam imperdiet turpis. Praesent nec augue.</Text>
+                      <Heading id="risks"> Risks </Heading><br/>
+                        <Text color={"navy"} fontSize={"sm"}>This project is a innovative way of applying emerging technologies in a new ways.  There are a number of risk vectors when it comes to buying these TOAs.</Text><br/>
+                        <OrderedList color={"navy"} textAlign={"left"}>
+                          <ListItem>Some event happens and the funds never reach the Producer(e.g. the crowdsale is hacked, or the producer has their personal wallet hacked after withdrawal)  and so they are unable to start farming.</ListItem><br/>
+                          <ListItem>Producer is unreliable and does not apply the investment funds properly according to the laid out plat and so production is low and beneficiaries do not receive the correct amount of Sceletium</ListItem><br/>
+                          <ListItem>The Guardian does not correctly manage risk and hold  the producer to account</ListItem><br/>
+                          <ListItem>The Guardian offtake is insufficient to make up any shortfall from the producer</ListItem><br/>
+                          <ListItem>Your personal TOA NFTs get stolen from your wallet</ListItem><br/>
+                          <ListItem>The Sales agent is unable to sell Sceletium on your behalf and you have to take delivery</ListItem><br/>
+                          <ListItem>The Sceletium you receive is not as agreed</ListItem><br/>
+                        </OrderedList>
                         <Stack justifyContent="center" alignItems="center">
                           <Divider orientation='horizontal' style={{borderTop: "2px solid #164057", width: "50%", marginTop: "40px", marginBottom: "40px"}}/>
                         </Stack>
