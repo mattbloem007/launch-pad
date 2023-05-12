@@ -493,7 +493,7 @@ const Project = () => {
                       </Stack>
                     <Stack spacing="1" w="xl" direction="column" p="2">
                       <Heading id="background"> Background </Heading><br/>
-                        <Text color={"navy"} fontSize={"sm"}>The CQKanna project by Kelquin Botanicals on Talana farm in the Western Cape region of South Africa will produce 1.25 Tons of Sceletium per year.</Text>
+                        <Text color={"navy"} fontSize={"sm"}>The CQKanna project by Kellquin Botanicals on Talana farm in the Western Cape region of South Africa will produce 1.25 Tons of Sceletium per year.</Text>
                         <Text color={"navy"} fontSize={"sm"}>Sceletium is a small succulent ground cover plant native to South Africa that has been used for centuries by indigenous peoples for its mood-enhancing and stress-relieving properties. The plant, also known as Kanna, is a member of the Mesembryanthemaceae family and grows in the arid regions of the country.</Text><br/>
                         <Text color={"navy"} fontSize={"sm"}>The active compounds in Sceletium are mesembrine, mesembrenone, and mesembrenol, which act on the brain's serotonin system. Serotonin is a neurotransmitter responsible for regulating mood, sleep, and appetite, among other functions. By modulating serotonin levels in the brain, Sceletium can help reduce anxiety and depression symptoms, promote relaxation, and improve cognitive function.</Text><br/>
                         <Text color={"navy"} fontSize={"sm"}>Sceletium is fast gaining popularity as a natural supplement for managing anxiety and depression, and its recreational effects are becoming more widely embraced.. As more people become interested in natural remedies for mental health issues, the demand for Sceletium is likely to increase -  prices have been significantly trending upward in the last few years.</Text><br/>
@@ -518,9 +518,9 @@ const Project = () => {
                           <Divider orientation='horizontal' style={{borderTop: "2px solid #164057", width: "50%", marginTop: "40px", marginBottom: "40px"}}/>
                         </Stack>
                       <Heading id="stake"> Stakeholders </Heading><br/>
-                        <Text color={"navy"} fontSize={"sm"}>Producer - Kelquin Botanicals
+                        <Text color={"navy"} fontSize={"sm"}>Producer - Kellquin Botanicals
 Principals: Lizande Kelleher, Quintus Slabbet, Charl Slabbert, Lynette Slabbert
-You may contact Kelquin Botanicals via the  Elyseos Telegram group or the Launchpad Channel on the Elyseos Discord
+You may contact Kellquin Botanicals via the  Elyseos Telegram group or the Launchpad Channel on the Elyseos Discord
 </Text><br/>
                         <Text color={"navy"} fontSize={"sm"}>Guardian - Botanical Investment Guardians
 Principals: Armand Verschuur, Paul Boulton, Simon Anderson
