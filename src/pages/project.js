@@ -30,6 +30,9 @@ import { Flasher, flash } from "react-universal-flash";
 import { createStandaloneToast } from '@chakra-ui/toast'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Brochure from '../static/documents/Kellquin_Botanicals_Company_Brochure.pdf'
+import Charity from '../static/documents/Net_Vir_Pret_Newsletter_March_2023.pdf'
+import Reports from '../static/documents/SUN_CAF_Kellquin_Sceletium Analysis_Sept2022.pdf'
 
 import {
   Box,
@@ -588,10 +591,10 @@ You may contact Mark via the  Elyseos Telegram group or the Launchpad Channel on
                           <Divider orientation='horizontal' style={{borderTop: "2px solid #164057", width: "50%", marginTop: "40px", marginBottom: "40px"}}/>
                         </Stack>
                       <Heading id="documents"> Documents </Heading>
-                      <Text color={"navy"} fontSize={"sm"}>Nulla dui purus, eleifend vel, consequat non, dictum porta, nulla. Duis ante mi, laoreet ut, commodo eleifend, cursus nec, lorem. Aenean eu est. Etiam imperdiet turpis. Praesent nec augue. Nulla dui purus, eleifend vel, consequat non, dictum porta, nulla. Duis ante mi, laoreet ut, commodo eleifend, cursus nec, lorem. Aenean eu est. Etiam imperdiet turpis. Praesent nec augue.</Text>
-                      <Link to="/"><Text color={"navy"} fontSize={"lg"} fontWeight="bold" textDecoration="underline">Producer Financials</Text></Link>
-                      <Link to="/"><Text color={"navy"} fontSize={"lg"} fontWeight="bold" textDecoration="underline">Laboratory Audits</Text></Link>
-                      <Link to="/"><Text color={"navy"} fontSize={"lg"} fontWeight="bold" textDecoration="underline">Land Lease Agreements</Text></Link>
+                      <Text color={"navy"} fontSize={"sm"}>Here are links to documents of the producer brochure, the charity involved, and the lab reports of the Kanna</Text>
+                      <a href={Brochure} target="_blank"><Text color={"navy"} fontSize={"lg"} fontWeight="bold" textDecoration="underline">Producer Brochure</Text></a>
+                      <a href={Charity} target="_blank"><Text color={"navy"} fontSize={"lg"} fontWeight="bold" textDecoration="underline">the Net Vir Pret newsletter </Text></a>
+                      <a href={Reports} target="_blank"><Text color={"navy"} fontSize={"lg"} fontWeight="bold" textDecoration="underline">Laboratory Audits</Text></a>
                     </Stack>
                   </Stack>
                 </TabPanel>
