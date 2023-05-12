@@ -512,30 +512,30 @@ const Project = () => {
                           <ListItem>Sceletium is fast gaining popularity as a natural supplement for managing anxiety and depression.</ListItem><br/>
                           <ListItem> As more people become interested in natural remedies for mental health issues, the demand for Sceletium is likely to increase.</ListItem><br/>
                           <ListItem>Sceletium supply has not been matching demand and  prices have been trending upward in the last few years.</ListItem><br/>
-                          <ListItem>Participating in Sceletium farming via these TOAs can be a both profitable and socially and environmentally responsible choice.</ListItem><br/>
+                          <ListItem>Participating in Sceletium farming via these TOAs can be both profitable and socially and environmentally responsible choice.</ListItem><br/>
                         </UnorderedList>
                         <Stack justifyContent="center" alignItems="center">
                           <Divider orientation='horizontal' style={{borderTop: "2px solid #164057", width: "50%", marginTop: "40px", marginBottom: "40px"}}/>
                         </Stack>
                       <Heading id="stake"> Stakeholders </Heading><br/>
-                        <Text color={"navy"} fontSize={"sm"}>Producer - Kellquin Botanicals
-Principals: Lizande Kelleher, Quintus Slabbet, Charl Slabbert, Lynette Slabbert
+                        <Text color={"navy"} fontSize={"sm"}>Producer - Kellquin Botanicals<br/>
+Principals: Lizande Kelleher, Quintus Slabbet, Charl Slabbert, Lynette Slabbert<br/>
 You may contact Kellquin Botanicals via the  Elyseos Telegram group or the Launchpad Channel on the Elyseos Discord
 </Text><br/>
-                        <Text color={"navy"} fontSize={"sm"}>Guardian - Botanical Investment Guardians
-Principals: Armand Verschuur, Paul Boulton, Simon Anderson
+                        <Text color={"navy"} fontSize={"sm"}>Guardian - Botanical Investment Guardians<br/>
+Principals: Armand Verschuur, Paul Boulton, Simon Anderson<br/>
 You may contact B.I.G via the  Elyseos Telegram group or the Launchpad Channel on the Elyseos Discord
 </Text><br/>
-                        <Text color={"navy"} fontSize={"sm"}>Rainmaker - Andrew Lawson
+                        <Text color={"navy"} fontSize={"sm"}>Rainmaker - Andrew Lawson<br/>
 You may contact Andrew via the  Elyseos Telegram group or the Launchpad Channel on the Elyseos Discord
 </Text><br/>
-                        <Text color={"navy"} fontSize={"sm"}>Sales Agent - The Sceletium Source
-Principals: Jean-Pierre Le Roux
+                        <Text color={"navy"} fontSize={"sm"}>Sales Agent - The Sceletium Source<br/>
+Principals: Jean-Pierre Le Roux<br/>
 www.sceletium.com </Text><br/>
-                        <Text color={"navy"} fontSize={"sm"}>Lawyer - Gerhard Swart
+                        <Text color={"navy"} fontSize={"sm"}>Lawyer - Gerhard Swart<br/>
 You may contact Gerhard via the  Elyseos Telegram group or the Launchpad Channel on the Elyseos Discord
 </Text><br/>
-                        <Text color={"navy"} fontSize={"sm"}>Auditor - Mark Solomon
+                        <Text color={"navy"} fontSize={"sm"}>Auditor - Mark Solomon<br/>
 You may contact Mark via the  Elyseos Telegram group or the Launchpad Channel on the Elyseos Discord
 </Text><br/>
                         <Text color={"navy"} fontSize={"sm"}>Local Peoples - Net Vir Pret, Barrydale</Text><br/>
