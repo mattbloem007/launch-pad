@@ -12,8 +12,6 @@ import ProjectCard from "components/ProjectCard";
 import kannaNFT from "../../images/Sceletium Tortuosum - NFT Card - V1.0.2.png"
 import VoteMenu from "components/VoteMenu"
 import VoteBlock from "components/VoteBlock"
-import ListItem from "components/ListItem"
-
 import {
   Box,
   Container,
@@ -133,9 +131,17 @@ const Governance = () => {
         />
           <ProjectHeroContainer>
           <Stack direction="row" w="6xl">
+            <Stack spacing="5" w={"300px"} direction="column" p="2">
+              <VoteMenu />
+            </Stack>
             <Stack spacing="1" w="full" direction="column" p="2" style={{overflowY: "auto", overflowX: "hidden", height: "550px"}}>
               <Heading marginBottom={'0px'}>Proposals</Heading>
-              <ListItem />
+              <Stack spacing="5" w="full" direction="row" justifyContent="center" p="2" borderRadius="25px" bg="navy"  padding="1rem">
+                <Text fontSize="sm" color={"white"}>Vote 1</Text>
+              </Stack>
+              <Link to='vote1'>
+                <VoteBlock title={"Sceletium Project"} active={true} voteDesc="Example Vote" voteText="Vote Proposal 1" days="3" />
+              </Link>
             </Stack>
           </Stack>
           </ProjectHeroContainer>
