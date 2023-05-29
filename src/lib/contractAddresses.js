@@ -1,8 +1,10 @@
 const $ = {
-    toaAddress: '0x303103f1cd0e7C2CA44765Ee37715cf1FFEC5432', //'0x815e5C08f63d88981e6eB76BECCE98E623B313Fd', //'0xE047ab9226AB10D0D4aC6F962a1b610AfBc19DD9',
-    crowdsaleAddress: '0x5e98F70e46bFF3093aF758372E4b9dB92e04C7B2',  //'0x01AeEEaCc3c714678C49A82Dba65E244B5A00526',
+    toaAddress: '0xD498eF589059C117b558fEF3cBaFeb49fe905765',
+    crowdsaleAddress: '0xCbE77C22De85fcfCEd48F0e26212AcA7bEEAc703',
     USDC: '0x9b76deD4C2386E214dB5B6B70Dd26c37abf39E13',
-    Elys: '0x52f1f3d2f38bdbe2377cda0b0dbeb993dc242b98'
+    Elys: '0x52f1f3d2f38bdbe2377cda0b0dbeb993dc242b98',
+    tradepool: ''
 }
 
 export default $
+
