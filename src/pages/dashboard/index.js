@@ -185,11 +185,11 @@ const DashBoard = (props) => {
   }
 
   useEffect(async () => {
-    let balance = await $.crowdsale.balanceOf(account)
+  //  let balance = await $.crowdsale.balanceOf(account)
     let balTOA = await $.crowdsale.TOABalance(account)
-    balance = toDec(balance._hex, 6, 1)
+  //  balance = toDec(balance._hex, 6, 1)
     balTOA = toDec(balTOA._hex, 6, 1)
-    console.log("Balance: ", balance, balTOA)
+    console.log("Balance: ", balTOA)
   })
 
   useEffect(() => {
