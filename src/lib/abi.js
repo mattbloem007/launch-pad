@@ -85,13 +85,7 @@ const abi = {
             "type": "function"
         },
         {
-            "inputs": [
-                {
-                    "internalType": "address",
-                    "name": "to",
-                    "type": "address"
-                }
-            ],
+            "inputs": [],
             "name": "assignTOAs",
             "outputs": [],
             "stateMutability": "nonpayable",
@@ -307,13 +301,7 @@ const abi = {
     ],
     toa: [
         {
-            "inputs": [
-                {
-                    "internalType": "string",
-                    "name": "imageSrc",
-                    "type": "string"
-                }
-            ],
+            "inputs": [],
             "stateMutability": "nonpayable",
             "type": "constructor"
         },
@@ -598,7 +586,7 @@ const abi = {
                 },
                 {
                     "internalType": "bytes",
-                    "name": "_data",
+                    "name": "data",
                     "type": "bytes"
                 }
             ],
@@ -621,6 +609,37 @@ const abi = {
                 }
             ],
             "name": "setApprovalForAll",
+            "outputs": [],
+            "stateMutability": "nonpayable",
+            "type": "function"
+        },
+        {
+            "inputs": [
+                {
+                    "internalType": "address",
+                    "name": "crowdsale",
+                    "type": "address"
+                }
+            ],
+            "name": "setCrowdsaleContract",
+            "outputs": [],
+            "stateMutability": "nonpayable",
+            "type": "function"
+        },
+        {
+            "inputs": [
+                {
+                    "internalType": "uint256",
+                    "name": "tokenId",
+                    "type": "uint256"
+                },
+                {
+                    "internalType": "string",
+                    "name": "CID",
+                    "type": "string"
+                }
+            ],
+            "name": "setMetadata",
             "outputs": [],
             "stateMutability": "nonpayable",
             "type": "function"
@@ -1356,6 +1375,195 @@ const abi = {
                 }
             ],
             "stateMutability": "view",
+            "type": "function"
+        }
+    ],
+    tradepool: [
+        {
+            "inputs": [
+                {
+                    "internalType": "address",
+                    "name": "toa",
+                    "type": "address"
+                },
+                {
+                    "internalType": "address",
+                    "name": "token",
+                    "type": "address"
+                }
+            ],
+            "stateMutability": "nonpayable",
+            "type": "constructor"
+        },
+        {
+            "anonymous": false,
+            "inputs": [
+                {
+                    "indexed": true,
+                    "internalType": "address",
+                    "name": "previousOwner",
+                    "type": "address"
+                },
+                {
+                    "indexed": true,
+                    "internalType": "address",
+                    "name": "newOwner",
+                    "type": "address"
+                }
+            ],
+            "name": "OwnershipTransferred",
+            "type": "event"
+        },
+        {
+            "inputs": [
+                {
+                    "internalType": "uint256",
+                    "name": "tokenId",
+                    "type": "uint256"
+                }
+            ],
+            "name": "bid",
+            "outputs": [],
+            "stateMutability": "nonpayable",
+            "type": "function"
+        },
+        {
+            "inputs": [
+                {
+                    "internalType": "uint256",
+                    "name": "feePerc",
+                    "type": "uint256"
+                }
+            ],
+            "name": "changeFeePerc",
+            "outputs": [],
+            "stateMutability": "nonpayable",
+            "type": "function"
+        },
+        {
+            "inputs": [
+                {
+                    "internalType": "uint256",
+                    "name": "tokenId",
+                    "type": "uint256"
+                },
+                {
+                    "internalType": "uint256",
+                    "name": "price",
+                    "type": "uint256"
+                }
+            ],
+            "name": "createOffer",
+            "outputs": [],
+            "stateMutability": "nonpayable",
+            "type": "function"
+        },
+        {
+            "inputs": [
+                {
+                    "internalType": "uint256",
+                    "name": "index",
+                    "type": "uint256"
+                }
+            ],
+            "name": "getOfferByIndex",
+            "outputs": [
+                {
+                    "components": [
+                        {
+                            "internalType": "uint256",
+                            "name": "tokenId",
+                            "type": "uint256"
+                        },
+                        {
+                            "internalType": "uint256",
+                            "name": "price",
+                            "type": "uint256"
+                        },
+                        {
+                            "internalType": "address",
+                            "name": "owner",
+                            "type": "address"
+                        }
+                    ],
+                    "internalType": "struct TradingPool.Offer",
+                    "name": "",
+                    "type": "tuple"
+                }
+            ],
+            "stateMutability": "view",
+            "type": "function"
+        },
+        {
+            "inputs": [],
+            "name": "numOffers",
+            "outputs": [
+                {
+                    "internalType": "uint256",
+                    "name": "",
+                    "type": "uint256"
+                }
+            ],
+            "stateMutability": "view",
+            "type": "function"
+        },
+        {
+            "inputs": [],
+            "name": "owner",
+            "outputs": [
+                {
+                    "internalType": "address",
+                    "name": "",
+                    "type": "address"
+                }
+            ],
+            "stateMutability": "view",
+            "type": "function"
+        },
+        {
+            "inputs": [],
+            "name": "renounceOwnership",
+            "outputs": [],
+            "stateMutability": "nonpayable",
+            "type": "function"
+        },
+        {
+            "inputs": [
+                {
+                    "internalType": "address",
+                    "name": "newOwner",
+                    "type": "address"
+                }
+            ],
+            "name": "transferOwnership",
+            "outputs": [],
+            "stateMutability": "nonpayable",
+            "type": "function"
+        },
+        {
+            "inputs": [
+                {
+                    "internalType": "address",
+                    "name": "to",
+                    "type": "address"
+                }
+            ],
+            "name": "withdrawFee",
+            "outputs": [],
+            "stateMutability": "nonpayable",
+            "type": "function"
+        },
+        {
+            "inputs": [
+                {
+                    "internalType": "uint256",
+                    "name": "tokenId",
+                    "type": "uint256"
+                }
+            ],
+            "name": "withdrawOffer",
+            "outputs": [],
+            "stateMutability": "nonpayable",
             "type": "function"
         }
     ]
