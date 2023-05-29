@@ -9,7 +9,7 @@ import dimensions from "styles/dimensions";
 import Layout from "components/Layout";
 import ProjectCard from "components/ProjectCard";
 import kannaNFT from "../images/Sceletium Tortuosum - NFT Card - V1.0.2.png"
-import $ from 'lib/crwodsale.js'
+import $ from 'lib/crowdsale.js'
 import { toDec } from 'lib/bn.js'
 import tree from '../images/Tree Artwork - V1.0.png'
 
@@ -118,7 +118,7 @@ const About = () => {
               <Box marginRight={"50px"} marginLeft={"50px"} marginBottom={"30px"} textAlign="center">
                 <Heading>About Elyseos</Heading>
                 <Text color={"navy"} textAlign={"left"} fontSize={"sm"}>Elyseos is a decentralized ecosystem
-                for Sacramental Medicine exploration. Sacramental medicines include, plants medicine,
+                for Sacramental Medicine exploration. Sacramental medicines include, plant medicine,
                 medicinal fungi, animal medicine and other agents of deep transformation. As people search
                 for effective longer lasting agents of deep healing, these Sacramental Medicines are bursting
                 into the mainstream. With the global marketplace embracing these powerful agents of

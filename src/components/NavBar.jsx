@@ -10,16 +10,41 @@ import { Stack } from "@chakra-ui/layout"
 import { Menu, X } from "react-feather"
 import WalletSpace from './WalletSpace'
 import { useWeb3React } from "@web3-react/core"
+import Burger from './Burger'
+
+// position: fixed;
+// transform: ${({ open }) => open ? 'translateX(0)' : 'translateX(100%)'};
+// top: 0;
+// right: 0;
+// height: 100vh;
+// width: 300px;
+// padding-top: 3.5rem;
+// transition: transform 0.3s ease-in-out;
+// z-index: 99;
 
 const HeaderContainer = styled("div")`
     background: #5E8195;
     color: white;
+
+    @media (max-width: 768px) {
+      position: fixed;
+      transform: ${({ open }) => open ? 'translateX(0)' : 'translateX(100%)'};
+      top: 0;
+      padding-top: 3.5rem;
+      transition: transform 0.3s ease-in-out;
+      z-index: 99;
+  }
 `
 
 const HeaderContent = styled("div")`
     display: flex;
     justify-content: space-between;
     align-items: center;
+
+    @media (max-width: 768px) {
+    flex-direction: column;
+
+  }
 `
 
 const HeaderLinks = styled("div")`
@@ -27,11 +52,13 @@ const HeaderLinks = styled("div")`
     display: flex;
 
     @media(max-width: ${dimensions.maxwidthTablet}px) {
-        grid-gap: 5.5em;
+        grid-gap: 1.5em;
+        flex-direction: column;
     }
 
     @media(max-width: ${dimensions.maxwidthMobile}px) {
         grid-gap: 2.5em;
+        flex-direction: column;
     }
 
     a {
@@ -96,7 +123,47 @@ export const StyledButton = styled("button")`
   color: #ED6F1B;
   background: #FFFFFF 0% 0% no-repeat padding-box;
   border-radius: 45px;
+`
 
+export const StyledStack = styled('div')`
+    display: flex;
+    flex-direction: row;
+    width: var(--chakra-sizes-lg);
+    padding: var(--chakra-space-2);
+    justify-content: flex-end;
+
+    @media (max-width: 768px) {
+      flex-direction: column;
+  }
+}
+`
+
+export const LogoStyledStack = styled('div')`
+    display: flex;
+    flex-direction: row;
+    width: var(--chakra-sizes-3xs);
+    padding-top: var(--chakra-space-3);
+    height: 6rem;
+    justify-content: center;
+    align-items: center;
+
+    @media (max-width: 768px) {
+    display: none;
+  }
+}
+`
+
+export const RightStyledStack = styled('div')`
+    display: flex;
+    flex-direction: row;
+    width: var(--chakra-sizes-lg);
+    padding: var(--chakra-space-2);
+    align-items: flex-start;
+
+    @media (max-width: 768px) {
+      flex-direction: column;
+  }
+}
 `
 
 const NavBar = () => {
@@ -111,7 +178,7 @@ const NavBar = () => {
   return (
       <HeaderContainer>
           <HeaderContent>
-              <Stack spacing="5" w="lg" direction="row" alignItems="flex-start" p="2" justifyContent="flex-end">
+              <StyledStack>
                 <HeaderLinks>
                   <Link
                       activeClassName="Link--is-active"
@@ -132,13 +199,13 @@ const NavBar = () => {
                         ELYS TOKEN
                     </Link>
                   </HeaderLinks>
-                </Stack>
-              <Stack spacing="5" w="3xs" direction="row" alignItems="center" justifyContent="center" paddingTop="3" h="6rem">
+                </StyledStack>
+              <LogoStyledStack>
                 <Link to="/">
                     <Image src={logo} w="102px" h="104px"/>
                 </Link>
-              </Stack>
-                  <Stack spacing="5" w="lg" direction="row" alignItems={active ? "center" : "flex-start"} p="2">
+              </LogoStyledStack>
+                  <RightStyledStack>
                   <HeaderLinks>
                       <Link
                           activeClassName="Link--is-active"
@@ -157,11 +224,12 @@ const NavBar = () => {
                       Connect Wallet
                     </Button>*/}
                     <WalletSpace />
-                  </Stack>
+                  </RightStyledStack>
               {/**<Stack spacing="5" w="full" direction="row" alignItems="center" justifyContent="flex-end" p="2">
 
               </Stack>*/}
           </HeaderContent>
+          <Burger/>
       </HeaderContainer>
   )
 }

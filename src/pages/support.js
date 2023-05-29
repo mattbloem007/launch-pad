@@ -9,7 +9,7 @@ import dimensions from "styles/dimensions";
 import Layout from "components/Layout";
 import ProjectCard from "components/ProjectCard";
 import kannaNFT from "../images/Sceletium Tortuosum - NFT Card - V1.0.2.png"
-import $ from 'lib/crwodsale.js'
+import $ from 'lib/crowdsale.js'
 import { toDec } from 'lib/bn.js'
 import crystal from '../images/Crystal Artwork - V1.0.png'
 import discord from "images/Social Media Icons Discord - V1.0.png"

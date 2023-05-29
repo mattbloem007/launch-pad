@@ -9,7 +9,7 @@ import dimensions from "styles/dimensions";
 import Layout from "components/Layout";
 import ProjectCard from "components/ProjectCard";
 import kannaNFT from "../images/Sceletium Tortuosum - NFT Card - V1.0.2.png"
-import $ from 'lib/crwodsale.js'
+import $ from 'lib/crowdsale.js'
 import { toDec } from 'lib/bn.js'
 import tree from '../images/Tree Artwork - V1.0.png'
 
@@ -156,7 +156,7 @@ const Faq = () => {
                     <Text fontSize="sm" color={"white"}>Either you can get the project's Sales Agent to
                     sell the product on your behalf and send you the returns less commission.  Or you can
                     sell your TOA yourself.  TOAs are NFTs  which are fully transferable,as is any NFT.
-                    You can offer your TOA for sale in the Elyseos TOA market (soon to be launched on this
+                    You can offer your TOA for sale in the Elyseos TOA marketplace (soon to be launched on this
                       site) where you can look for a potential buyer.</Text>
                   </Stack>
                   <Stack spacing="5" w="full" direction="row" justifyContent="space-between" p="2" borderRadius="11px" bg="mush">
@@ -188,7 +188,7 @@ const Faq = () => {
                     <br/>
                     <ListItem><Text fontSize="sm" color={"white"}>This happens in the world and people
                     participating in projects take losses.  The advantage of the TOA model is multiple
-                    backers can easily participate together which spreads the risk
+                    backers can easily participate together which spreads the risk.
                     </Text></ListItem>
                     <br/>
                   </OrderedList>
@@ -202,8 +202,8 @@ const Faq = () => {
                     presented by the lawyer and check out the Guardian’s bonafides.<br/><br/>
                     For Elyseos - we are not anonymous so you can check out the members of the
                     foundation and the DAO.  Elyseos has been in the crypto space since 2021 and went
-                    through the brutal bear market of 2022 and through it all members of the DAO kept
-                    showing up and delivering despite zero funding or general market support.  There are a
+                    through the brutal bear marketplace of 2022 and through it all members of the DAO kept
+                    showing up and delivering despite zero funding or general marketplace support.  There are a
                     lot of people who very much want this endeavor to succeed.
                     </Text>
                   </Stack>

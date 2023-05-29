@@ -21,7 +21,7 @@ import salesperson from '../images/Group 146.svg'
 import auditor from '../images/Group 148.svg'
 import lawyer from '../images/Group 150.svg'
 import stakeholder from '../images/Group 152.svg'
-import $ from 'lib/crwodsale.js'
+import $ from 'lib/crowdsale.js'
 import { toDec } from 'lib/bn.js'
 import { useWeb3React } from "@web3-react/core"
 import Sticky from 'react-stickynode';
@@ -496,16 +496,16 @@ const Project = () => {
                         <Text color={"navy"} fontSize={"sm"}>The CQKanna project by Kellquin Botanicals on Talana farm in the Western Cape region of South Africa will produce 1.25 Tons of Sceletium per year.</Text>
                         <Text color={"navy"} fontSize={"sm"}>Sceletium is a small succulent ground cover plant native to South Africa that has been used for centuries by indigenous peoples for its mood-enhancing and stress-relieving properties. The plant, also known as Kanna, is a member of the Mesembryanthemaceae family and grows in the arid regions of the country.</Text><br/>
                         <Text color={"navy"} fontSize={"sm"}>The active compounds in Sceletium are mesembrine, mesembrenone, and mesembrenol, which act on the brain's serotonin system. Serotonin is a neurotransmitter responsible for regulating mood, sleep, and appetite, among other functions. By modulating serotonin levels in the brain, Sceletium can help reduce anxiety and depression symptoms, promote relaxation, and improve cognitive function.</Text><br/>
-                        <Text color={"navy"} fontSize={"sm"}>Sceletium is fast gaining popularity as a natural supplement for managing anxiety and depression, and its recreational effects are becoming more widely embraced.. As more people become interested in natural remedies for mental health issues, the demand for Sceletium is likely to increase -  prices have been significantly trending upward in the last few years.</Text><br/>
-                        <Text color={"navy"} fontSize={"sm"}>The CQKanna project will supply TOA holders with 10kgs of dried Sceletium every year for 10- years . This  Sceletium will have a minimum mesembrine content of 0.6% OR a minimum of 0.9% total alkaloid content..  The TOAs cost $1250 each - this equates to a price of  $12.50 per kilo of Sceletium.</Text>
+                        <Text color={"navy"} fontSize={"sm"}>Sceletium is fast gaining popularity as a natural supplement for managing anxiety and depression, and its recreational effects are becoming more widely embraced. As more people become interested in natural remedies for mental health issues, the demand for Sceletium is likely to increase -  prices have been significantly trending upward in the last few years.</Text><br/>
+                        <Text color={"navy"} fontSize={"sm"}>The CQKanna project will supply TOA holders with 10kgs of dried Sceletium every year for 10 years . This  Sceletium will have a minimum mesembrine content of 0.6% OR a minimum of 0.9% total alkaloid content..  The TOAs cost $1250 each - this equates to a price of  $12.50 per kilo of Sceletium.</Text>
                         <Stack justifyContent="center" alignItems="center">
                           <Divider orientation='horizontal' style={{borderTop: "2px solid #164057", width: "50%", marginTop: "40px", marginBottom: "40px"}}/>
                         </Stack>
                       <Heading id="keypoints"> Keypoints </Heading><br/>
                         <UnorderedList color={"navy"} textAlign={"left"}>
-                          <ListItem>CQKanna TOAs offers the  potential to get high quality Sceletium at $12.50 per/kg a considerable discount front the current wholesale price of $40-$70 per kg</ListItem><br/>
+                          <ListItem>CQKanna TOAs offers the  potential to get high quality Sceletium at $12.50 per/kg a considerable discount from the current wholesale price of $40-$70 per kg</ListItem><br/>
                           <ListItem>The TOA can also be sold on should you no longer wish to hold the rights to receive the offtake</ListItem><br/>
-                          <ListItem>The Sales agent will sell your product and send you money (less commission) should you wish to continue to hold the TOA but not wish the get any sceletium</ListItem><br/>
+                          <ListItem>The Sales agent will sell your product and send you money (less commission) should you wish to continue to hold the TOA but not wish to get any sceletium</ListItem><br/>
                           <ListItem>Risks of the Producer failing to deliver are mitigated by the role of the Guardian who has a legal contractual relationship with the Producer.</ListItem><br/>
                           <ListItem>The Guardian has skin in the game and is the largest holder of TOAs in this project. The Guardian only receives their offtake after all other beneficiaries agree they are happy with their offtake from the harvest.</ListItem><br/>
                           <ListItem>There is built in governance (1 TOA = 1 vote) and so all TOA holders will have a voice</ListItem><br/>
@@ -519,7 +519,7 @@ const Project = () => {
                         </Stack>
                       <Heading id="stake"> Stakeholders </Heading><br/>
                         <Text color={"navy"} fontSize={"sm"}>Producer - Kellquin Botanicals<br/>
-Principals: Lizande Kelleher, Quintus Slabbet, Charl Slabbert, Lynette Slabbert<br/>
+Principals: Lizande Kellerman, Quintus Slabbet, Charl Slabbert, Lynette Slabbert<br/>
 You may contact Kellquin Botanicals via the  Elyseos Telegram group or the Launchpad Channel on the Elyseos Discord
 </Text><br/>
                         <Text color={"navy"} fontSize={"sm"}>Guardian - Botanical Investment Guardians<br/>
@@ -538,7 +538,7 @@ You may contact Gerhard via the  Elyseos Telegram group or the Launchpad Channel
                         <Text color={"navy"} fontSize={"sm"}>Auditor - Mark Solomon<br/>
 You may contact Mark via the  Elyseos Telegram group or the Launchpad Channel on the Elyseos Discord
 </Text><br/>
-                        <Text color={"navy"} fontSize={"sm"}>Local Peoples - Net Vir Pret, Barrydale</Text><br/>
+                        <Text color={"navy"} fontSize={"sm"}>Local Charity - Net Vir Pret, Barrydale, Western Cape, South Africa</Text><br/>
                         <Grid templateColumns='repeat(4, 0.5fr)' gap={6}>
                           <GridItem style={{display: "flex", flexDirection: "column", alignItems: "center"}}>
                             <Image boxSize='100px' src={beneficiary} />
@@ -577,15 +577,14 @@ You may contact Mark via the  Elyseos Telegram group or the Launchpad Channel on
                           <Divider orientation='horizontal' style={{borderTop: "2px solid #164057", width: "50%", marginTop: "40px", marginBottom: "40px"}}/>
                         </Stack>
                       <Heading id="risks"> Risks </Heading><br/>
-                        <Text color={"navy"} fontSize={"sm"}>This project is a innovative way of applying emerging technologies in a new ways.  There are a number of risk vectors when it comes to buying these TOAs.</Text><br/>
+                        <Text color={"navy"} fontSize={"sm"}>This project is a innovative way of applying emerging technologies in a new ways.  There are a number of risk factors when it comes to buying these TOAs.</Text><br/>
                         <OrderedList color={"navy"} textAlign={"left"}>
                           <ListItem>Some event happens and the funds never reach the Producer(e.g. the crowdsale is hacked, or the producer has their personal wallet hacked after withdrawal)  and so they are unable to start farming.</ListItem><br/>
-                          <ListItem>Producer is unreliable and does not apply the investment funds properly according to the laid out plat and so production is low and beneficiaries do not receive the correct amount of Sceletium</ListItem><br/>
+                          <ListItem>Producer is unreliable and does not apply the investment funds properly according to the laid out plan and so production is low and beneficiaries do not receive the correct amount of Sceletium</ListItem><br/>
                           <ListItem>The Guardian does not correctly manage risk and hold  the producer to account</ListItem><br/>
                           <ListItem>The Guardian offtake is insufficient to make up any shortfall from the producer</ListItem><br/>
                           <ListItem>Your personal TOA NFTs get stolen from your wallet</ListItem><br/>
                           <ListItem>The Sales agent is unable to sell Sceletium on your behalf and you have to take delivery</ListItem><br/>
-                          <ListItem>The Sceletium you receive is not as agreed</ListItem><br/>
                         </OrderedList>
                         <Stack justifyContent="center" alignItems="center">
                           <Divider orientation='horizontal' style={{borderTop: "2px solid #164057", width: "50%", marginTop: "40px", marginBottom: "40px"}}/>
@@ -605,7 +604,7 @@ You may contact Mark via the  Elyseos Telegram group or the Launchpad Channel on
                       <Stack spacing="1" w="full" direction="column" alignItems="flex-end" p="2">
                         <Stack spacing="5" w="full" direction="row" justifyContent="space-between" p="2" borderRadius="11px" bg="mush">
                           <Text fontSize="sm" color={"white"}>Product</Text>
-                          <Text fontSize="sm" color={"white"} fontWeight="bold">Mesembryanthemum Tortuousum</Text>
+                          <Text fontSize="sm" color={"white"} fontWeight="bold">Mesembryanthemum Tortuosum</Text>
                         </Stack>
                         <Stack spacing="5" w="full" direction="row" justifyContent="space-between" p="2">
                           <Text fontSize="sm" color={"white"}>First Offtake</Text>
@@ -629,7 +628,7 @@ You may contact Mark via the  Elyseos Telegram group or the Launchpad Channel on
                         </Stack>
                         <Stack spacing="5" w="full" direction="row" justifyContent="space-between" p="2" borderRadius="11px" bg="mush">
                           <Text fontSize="sm" color={"white"}>Min Mesembrine</Text>
-                          <Text fontSize="sm" color={"white"} fontWeight="bold">0.5%</Text>
+                          <Text fontSize="sm" color={"white"} fontWeight="bold">0.6%</Text>
                         </Stack>
                         <Stack spacing="5" w="full" direction="row" justifyContent="space-between" p="2">
                           <Text fontSize="sm" color={"white"}>Max Moisture</Text>

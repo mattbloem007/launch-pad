@@ -10,7 +10,7 @@ import About from "components/About";
 import Layout from "components/Layout";
 import ProjectCard from "components/ProjectCard";
 import kannaNFT from "../images/Sceletium Tortuosum - NFT Card - V1.0.2.png"
-import $ from 'lib/crwodsale.js'
+import $ from 'lib/crowdsale.js'
 import { toDec } from 'lib/bn.js'
 import tree from '../images/Tree Artwork - V1.0.png'
 import crystal from '../images/Crystal Artwork - V1.0.png'

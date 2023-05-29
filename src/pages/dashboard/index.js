@@ -15,7 +15,7 @@ import { ArrowBackIcon, WarningIcon, CopyIcon } from '@chakra-ui/icons'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useWeb3React } from "@web3-react/core"
-import $ from 'lib/crwodsale.js'
+import $ from 'lib/crowdsale.js'
 import { toDec } from 'lib/bn.js'
 import {
   Box,
