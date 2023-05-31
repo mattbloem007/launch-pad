@@ -177,6 +177,17 @@ const ProjectBody = styled("div")`
     }
 `
 
+const StyledFrame = styled('iframe')`
+  border-radius: 25px;
+  width: 593px;
+  height:384px;
+
+  @media(max-width:${dimensions.maxwidthMobile}px) {
+     width: 100%;
+     height: 100%;
+  }
+`
+
 const RenderBody = () => {
 
   const { isOpen, onOpen, onClose } = useDisclosure()
@@ -246,30 +257,29 @@ const RenderBody = () => {
             ]}
         />
           <ProjectHeroContainer>
-            <AspectRatio margin={"1rem"} w='583px' h='384px' borderRadius='25px' ratio={16 / 9}>
-              <iframe
+            <AspectRatio margin={"1rem"} w={{base: '100%', sm: '100%', md: '583px'}} h={{base: '100%', sm: '100%', md: '384px'}} borderRadius='25px' ratio={16 / 9}>
+              <StyledFrame
               title='elyseos'
               src='https://www.youtube.com/embed/l35CWqi3Itk'
               allowFullScreen
-              style={{borderRadius: '25px', width:'593px', height:'384px'}}
               />
             </AspectRatio>
             <Heading> Statistics </Heading>
-            <Container centerContent p="3" pt="0" bg={"mush"} rounded="3xl" shadow="lg" maxWidth="1185px" h="232px" justifyContent="space-evenly">
-              <Text textAlign={"center"} fontSize="xl" color="white" style={{position: "relative", top: "40px"}}>Tale of TOAs</Text>
-              <Stack direction="row" alignItems="center" marginRight={'122px'} spacing="6" h='228px'>
+            <Container centerContent p={{base: '24', sm: '24', md: "3"}} pt="0" bg={"mush"} rounded="3xl" shadow="lg" maxWidth={{ base: '25%', sm: '100%', md: '1156px' }} h="232px" justifyContent="space-evenly">
+              <Text textAlign={"center"} fontSize={{base: 'md', sm: 'md', md: 'xl'}} color="white" style={{position: "relative", top: "40px"}}>Tale of TOAs</Text>
+              <Stack direction="row" alignItems="center" marginRight={'122px'} spacing="6" h='228px' width={{base: '888px', sm: '888px', md: '100%'}}>
                   <Image w='300px' h='300px' src={tree} style={{position: 'relative', left: '114px', bottom: '55px', zIndex: '0'}}/>
-                  <Stack direction="column" justifyContent="center" borderRadius='33px' h='128px' w='188px' bg='darkBrown' style={{position: "relative"}}>
-                    <Text textAlign={"center"} fontSize="xl" fontWeight="bold" color={"white"}>1</Text>
-                    <Text textAlign={"center"} fontSize="sm" color={"white"}>Ongoing Projects</Text>
+                  <Stack direction="column" justifyContent="center" borderRadius='33px' h={{base: '50%', sm: '50%', md: '128px'}} w={{base: '15%', sm: '15%',  md:'188px'}} bg='darkBrown' style={{position: "relative"}}>
+                    <Text textAlign={"center"} fontSize={{base: 'sm', sm: 'sm', md: 'xl'}} fontWeight="bold" color={"white"}>1</Text>
+                    <Text textAlign={"center"} fontSize={{base: 'xs', sm: 'xs', md: 'sm'}} color={"white"}>Ongoing Projects</Text>
                   </Stack>
-                  <Stack direction="column" justifyContent="center" borderRadius='33px' h='128px' w='188px' bg='darkBrown'>
-                    <Text textAlign={"center"} fontSize="xl" fontWeight="bold" color={"white"}>${fundsRaised}</Text>
-                    <Text textAlign={"center"} fontSize="sm" color={"white"}>Funds Raised</Text>
+                  <Stack direction="column" justifyContent="center" borderRadius='33px' h={{base: '50%', sm: '50%', md: '128px'}} w={{base: '15%', sm: '15%',  md:'188px'}} bg='darkBrown'>
+                    <Text textAlign={"center"} fontSize={{base: 'sm', sm: 'sm', md: 'xl'}} fontWeight="bold" color={"white"}>${fundsRaised}</Text>
+                    <Text textAlign={"center"} fontSize={{base: 'xs', sm: 'xs', md: 'sm'}} color={"white"}>Funds Raised</Text>
                   </Stack>
-                  <Stack direction="column" justifyContent="center" borderRadius='33px' h='128px' w='188px' bg='darkBrown'>
-                    <Text textAlign={"center"} fontSize="xl" fontWeight="bold" color={"white"}>{numPurchased}</Text>
-                    <Text textAlign={"center"} fontSize="sm" color={"white"}>Total TOAs sold</Text>
+                  <Stack direction="column" justifyContent="center" borderRadius='33px' h={{base: '50%', sm: '50%', md: '128px'}} w={{base: '15%', sm: '15%',  md:'188px'}} bg='darkBrown'>
+                    <Text textAlign={"center"} fontSize={{base: 'sm', sm: 'sm', md: 'xl'}} fontWeight="bold" color={"white"}>{numPurchased}</Text>
+                    <Text textAlign={"center"} fontSize={{base: 'xs', sm: 'xs', md: 'sm'}} color={"white"}>Total TOAs sold</Text>
                   </Stack>
                   {/**<Stack direction="column" justifyContent="center" borderRadius='33px' h='128px' w='188px' bg='darkBrown' style={{position: "relative", zIndex: "1"}}>
                     <Text textAlign={"center"} fontSize="xl" fontWeight="bold" color={"white"}>48</Text>
@@ -308,7 +318,7 @@ const RenderBody = () => {
               </GridItem>**/}
             </Stack>
             <Heading>About Elyseos Ventures</Heading>
-            <Box marginRight={"50px"} marginLeft={"50px"} marginBottom={"100px"} w='1168px'>
+            <Box marginRight={"50px"} marginLeft={"50px"} marginBottom={"100px"} w={{base: '100%', sm: '100%', md:'1168px'}}>
               <Text color={"navy"} textAlign={"left"} fontSize={"sm"}>Elyseos Ventures is a platform which enables the funding of Ethno Medicine projects via Tokenised Offtake Agreements.  EV is part of the Elyseos ecosystem which includes a suite of web 3 tools which facilitate funding, trading & learning about Sacramental Medicines. Learn more at <Link to="https://elyseos.com" style={{textDecoration: "underline"}}>www.elyseos.com</Link></Text>
               <br/>
               <Text color={"navy"} textAlign={"left"}>TOAs form the core offering of Elyseos Ventures. Tokenized Off-take Agreements (TOAs) are Non Fungible Tokens (NFTs) which have attached to them an ‘offtake’ that is a certain amount of actual product produced e.g. 10kgs of cacao for 5 years.</Text>

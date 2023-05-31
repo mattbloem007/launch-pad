@@ -64,8 +64,9 @@ const FooterContainer = styled("div")`
     justify-content: start;
 
     @media (max-width: ${dimensions.maxwidthMobile}px) {
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: 1fr;
       grid-gap: 32px;
+      margin-bottom: 50px
     }
 
     svg {

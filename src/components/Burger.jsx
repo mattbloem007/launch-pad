@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import styled from "@emotion/styled";
+import MenuLinks from './MenuLinks'
 
 const StyledBurger = styled.div`
   width: 2rem;
@@ -49,6 +50,7 @@ const Burger = () => {
         <div />
         <div />
       </StyledBurger>
+      <MenuLinks open={open}/>
     </>
   )
 };

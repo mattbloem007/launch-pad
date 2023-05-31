@@ -12,27 +12,21 @@ import WalletSpace from './WalletSpace'
 import { useWeb3React } from "@web3-react/core"
 import Burger from './Burger'
 
-// position: fixed;
-// transform: ${({ open }) => open ? 'translateX(0)' : 'translateX(100%)'};
-// top: 0;
-// right: 0;
-// height: 100vh;
-// width: 300px;
-// padding-top: 3.5rem;
-// transition: transform 0.3s ease-in-out;
-// z-index: 99;
 
 const HeaderContainer = styled("div")`
     background: #5E8195;
     color: white;
 
     @media (max-width: 768px) {
+      flex-flow: column nowrap;
       position: fixed;
       transform: ${({ open }) => open ? 'translateX(0)' : 'translateX(100%)'};
       top: 0;
+      right: 0;
       padding-top: 3.5rem;
       transition: transform 0.3s ease-in-out;
-      z-index: 99;
+      z-index: 10;
+      width: 300px;
   }
 `
 
@@ -123,12 +117,13 @@ export const StyledButton = styled("button")`
   color: #ED6F1B;
   background: #FFFFFF 0% 0% no-repeat padding-box;
   border-radius: 45px;
+  margin-top: 20px;
 `
 
 export const StyledStack = styled('div')`
     display: flex;
     flex-direction: row;
-    width: var(--chakra-sizes-lg);
+    width: var(--chakra-sizes-3xs);
     padding: var(--chakra-space-2);
     justify-content: flex-end;
 
@@ -156,7 +151,7 @@ export const LogoStyledStack = styled('div')`
 export const RightStyledStack = styled('div')`
     display: flex;
     flex-direction: row;
-    width: var(--chakra-sizes-lg);
+    width: var(--chakra-sizes-3xs);
     padding: var(--chakra-space-2);
     align-items: flex-start;
 
@@ -166,20 +161,64 @@ export const RightStyledStack = styled('div')`
 }
 `
 
-const NavBar = () => {
-
-  const [mobileMenu, setMobileMenu] = useState({ open: false })
-  const { active } = useWeb3React()
-
-  function toggleMobileMenu() {
-    setMobileMenu({open: !mobileMenu.open})
-  }
+const MenuLinks = ({ open }) => {
 
   return (
-      <>
-          <Burger/>
-      </>
+    <HeaderContainer open={open}>
+      <HeaderContent>
+          <StyledStack>
+            <HeaderLinks>
+              <Link
+                  activeClassName="Link--is-active"
+                  to="/"
+                  style={{fontSize: "16px"}}>
+                   HOME
+              </Link>
+                <Link
+                    activeClassName="Link--is-active"
+                    to="https://www.elyseos.com/"
+                    style={{fontSize: "16px"}}>
+                    ELYSEOS HOME
+                </Link>
+                <Link
+                    activeClassName="Link--is-active"
+                    to="https://elys.money/"
+                    style={{fontSize: "16px"}}>
+                    ELYS TOKEN
+                </Link>
+              </HeaderLinks>
+            </StyledStack>
+          <LogoStyledStack>
+            <Link to="/">
+                <Image src={logo} w="102px" h="104px"/>
+            </Link>
+          </LogoStyledStack>
+              <RightStyledStack>
+              <HeaderLinks>
+                  <Link
+                      activeClassName="Link--is-active"
+                      to="/governance"
+                      style={{fontSize: "16px"}}>
+                      GOVERNANCE
+                  </Link>
+                  <Link
+                      activeClassName="Link--is-active"
+                      to="/dashboard"
+                      style={{fontSize: "16px"}}>
+                      DASHBOARD
+                  </Link>
+                </HeaderLinks>
+                {/**<Button size='md' bg='darkBrown'>
+                  Connect Wallet
+                </Button>*/}
+                <WalletSpace />
+              </RightStyledStack>
+          {/**<Stack spacing="5" w="full" direction="row" alignItems="center" justifyContent="flex-end" p="2">
+
+          </Stack>*/}
+      </HeaderContent>
+    </HeaderContainer>
   )
 }
 
-export default NavBar;
+export default MenuLinks;

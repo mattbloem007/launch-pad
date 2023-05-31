@@ -184,17 +184,26 @@ const DashBoard = (props) => {
 
   }
 
-  useEffect(async () => {
-  //  let balance = await $.crowdsale.balanceOf(account)
-    let balTOA = await $.crowdsale.TOABalance(account)
-  //  balance = toDec(balance._hex, 6, 1)
-    balTOA = toDec(balTOA._hex, 6, 1)
-    console.log("Balance: ", balTOA)
-  })
+  //  useEffect(async () => {
+
+  // // //  let balance = await $.crowdsale.balanceOf(account)
+  //       console.log(account)
+  //       //let balTOA = await $.crowdsale.TOABalance(account)
+  // // //  balance = toDec(balance._hex, 6, 1)
+  // //   balTOA = toDec(balTOA._hex, 6, 1)
+  // //   // console.log("Balance: ", balTOA)
+  // //   // console.log($.crowdsale.address)
+  // //   // console.log(account)
+  //  })
 
   useEffect(() => {
+      console.log(account)
 
       async function fetchData() {
+        let balTOA = await $.crowdsale.TOABalance(account)
+        console.log("Balance: ", balTOA)
+        balTOA = balTOA.toNumber()
+        console.log("Balance: ", balTOA)
         let body = JSON.stringify({
           wallet_address: account
 
