@@ -71,6 +71,16 @@ const ProjectBody = styled("div")`
     }
 `
 
+const StyledStack = styled(Stack)`
+  @media(max-width:${dimensions.maxwidthMobile}px) {
+        flex-direction: column;
+  }
+
+  @media(max-width:${dimensions.maxwidthTablet}px) {
+        flex-direction: column;
+  }
+`
+
 const About = () => {
 
   return(
@@ -114,7 +124,7 @@ const About = () => {
             ]}
         />
           <ProjectHeroContainer>
-            <Stack direction="row" alignItems="center">
+            <StyledStack alignItems="center">
               <Box marginRight={"50px"} marginLeft={"50px"} marginBottom={"30px"} textAlign="center">
                 <Heading>About Elyseos</Heading>
                 <Text color={"navy"} textAlign={"left"} fontSize={"sm"}>Elyseos is a decentralized ecosystem
@@ -153,7 +163,7 @@ const About = () => {
                   <br />
                 </Box>
                 <Image w='564px' h='564px' src={tree}/>
-              </Stack>
+              </StyledStack>
           </ProjectHeroContainer>
           <ProjectBody>
           </ProjectBody>

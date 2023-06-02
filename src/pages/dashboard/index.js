@@ -50,6 +50,20 @@ import {
 } from '@chakra-ui/react'
 import Select from 'react-select'
 
+const StyledStack = styled(Stack)`
+      width: var(--chakra-sizes-6xl);
+
+  @media(max-width:${dimensions.maxwidthMobile}px) {
+        width: var(--chakra-sizes-xs);
+        margin-top: 50px;
+  }
+
+  @media(max-width:${dimensions.maxwidthTablet}px) {
+        width: var(--chakra-sizes-xs);
+        margin-top: 50px;
+  }
+`
+
 const options = [
   { value: 'female', label: 'Female' },
   { value: 'male', label: 'Male' },
@@ -117,6 +131,14 @@ const ProjectBody = styled("div")`
         img {
             width: 100%;
         }
+    }
+
+    @media(max-width:${dimensions.maxwidthMobile}px) {
+          height: 150px;
+    }
+
+    @media(max-width:${dimensions.maxwidthTablet}px) {
+          height: 150px;
     }
 `
 
@@ -657,12 +679,12 @@ const DashBoard = (props) => {
           </>
           :
           <ProjectHeroContainer>
-          <Stack direction="column" w="6xl" alignItems='flex-start'>
+          <StyledStack direction="column" alignItems='flex-start'>
             <Text color='navy' fontSize='2xl' fontWeight='bold'>Dashboard</Text>
             <Stack direction='row' w='full' justifyContent="flex-start" alignItems="center">
               <Text color='navy' textAlign='left' fontSize='sm'>Please Connect your Wallet</Text>
             </Stack>
-          </Stack>
+          </StyledStack>
           </ProjectHeroContainer>
         }
         <ProjectBody></ProjectBody>

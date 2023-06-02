@@ -77,7 +77,27 @@ const ProjectBody = styled("div")`
         }
     }
 `
+const StyledStack = styled(Stack)`
+  width: 72rem;
 
+  @media(max-width:${dimensions.maxwidthMobile}px) {
+     width: 100%;
+  }
+
+  @media(max-width:${dimensions.maxwidthTablet}px) {
+     width: 100%;
+  }
+`
+
+const StyledHeading = styled(Heading)`
+  @media(max-width:${dimensions.maxwidthMobile}px) {
+     margin-top: 80px;
+  }
+
+  @media(max-width:${dimensions.maxwidthTablet}px) {
+     margin-top: 80px;
+  }
+`
 const Governance = () => {
 
   const { isOpen, onOpen, onClose } = useDisclosure()
@@ -132,12 +152,12 @@ const Governance = () => {
             ]}
         />
           <ProjectHeroContainer>
-          <Stack direction="row" w="6xl">
+          <StyledStack direction="row">
             <Stack spacing="1" w="full" direction="column" p="2" style={{overflowY: "auto", overflowX: "hidden", height: "550px"}}>
-              <Heading marginBottom={'0px'}>Proposals</Heading>
+              <StyledHeading marginBottom={'0px'}>Proposals</StyledHeading>
               <ListItem />
             </Stack>
-          </Stack>
+          </StyledStack>
           </ProjectHeroContainer>
           <ProjectBody>
           </ProjectBody>

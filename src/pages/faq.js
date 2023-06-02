@@ -79,6 +79,29 @@ const ListLink = styled("a")`
   }
 `
 
+const StyledHeading = styled(Heading)`
+  @media(max-width:${dimensions.maxwidthMobile}px) {
+        margin-top: 70px;
+  }
+
+  @media(max-width:${dimensions.maxwidthTablet}px) {
+        margin-top: 70px;
+  }
+`
+
+const StyledStack = styled(Stack)`
+
+  width: var(--chakra-sizes-6xl);
+
+  @media(max-width:${dimensions.maxwidthMobile}px) {
+    width: var(--chakra-sizes-xl);
+  }
+
+  @media(max-width:${dimensions.maxwidthTablet}px) {
+    width: var(--chakra-sizes-xl);
+  }
+`
+
 const Faq = () => {
 
   return(
@@ -122,8 +145,8 @@ const Faq = () => {
             ]}
         />
           <ProjectHeroContainer>
-            <Heading>FAQ's</Heading>
-            <Stack w='6xl' justifyContent="center" alignItems="center" marginBottom="130px">
+            <StyledHeading>FAQ's</StyledHeading>
+            <StyledStack justifyContent="center" alignItems="center" marginBottom="130px">
               <Box bg='darkBrown' borderRadius={'25px'} w='80%' padding={'20px'}>
                 <Stack spacing="1" w="full" direction="column" alignItems="flex-end" p="2">
                   <Stack spacing="5" w="full" direction="row" justifyContent="space-between" p="2" borderRadius="11px" bg="mush">
@@ -225,7 +248,7 @@ const Faq = () => {
                   </Stack>
                 </Stack>
               </Box>
-            </Stack>
+            </StyledStack>
           </ProjectHeroContainer>
           <ProjectBody>
           </ProjectBody>

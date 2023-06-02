@@ -80,6 +80,52 @@ const SocialSymbol = styled("img")`
   margin-right: 10px;
 `
 
+const StyledBox = styled(Box)`
+  margin-left: 370px;
+  margin-bottom: 30px;
+  text-align: center;
+  width: 821px;
+  position: relative;
+  z-index: 22;
+
+  @media(max-width:${dimensions.maxwidthMobile}px) {
+    width: var(--chakra-sizes-md);
+    margin-left: 0px;
+  }
+
+  @media(max-width:${dimensions.maxwidthTablet}px) {
+    width: var(--chakra-sizes-md);
+    margin-left: 0px;
+  }
+`
+
+const StyledStack = styled(Stack)`
+  flex-direction: row;
+  @media(max-width:${dimensions.maxwidthMobile}px) {
+    flex-direction: column;
+  }
+
+  @media(max-width:${dimensions.maxwidthTablet}px) {
+    flex-direction: column;
+  }
+`
+
+const CrystalImage = styled(Image)`
+  height: 590px;
+  width: 590px;
+  position: relative;
+  right: 175px;
+  z-index: 0;
+
+  @media(max-width:${dimensions.maxwidthMobile}px) {
+     right: 0;
+  }
+
+  @media(max-width:${dimensions.maxwidthTablet}px) {
+     right: 0;
+  }
+`
+
 const About = () => {
 
   return(
@@ -123,8 +169,8 @@ const About = () => {
             ]}
         />
           <ProjectHeroContainer>
-            <Stack direction="row" alignItems="center">
-              <Box marginLeft={"370px"} marginBottom={"30px"} textAlign="center" w='821px' style={{position: "relative", zIndex: "99"}}>
+            <StyledStack alignItems="center">
+              <StyledBox>
                 <Heading>Support</Heading>
                 <Text color={"navy"} textAlign={"left"} fontSize={"sm"}>Welcome to our support page!
                 If you're experiencing any issues or have any questions, we're here to help.
@@ -158,9 +204,9 @@ const About = () => {
                 <br/><br/>
                 Thank you for choosing our product and we look
                 forward to seeing you on our Discord server!</Text>
-                </Box>
-                <Image w='590px' h='590px' src={crystal} style={{position: "relative", zIndex: "0", right: "175px"}}/>
-              </Stack>
+                </StyledBox>
+                <CrystalImage src={crystal} />
+              </StyledStack>
           </ProjectHeroContainer>
           <ProjectBody>
           </ProjectBody>

@@ -76,6 +76,35 @@ const ProjectBody = styled("div")`
     }
 `
 
+const StyledStack = styled(Stack)`
+
+
+  @media(max-width:${dimensions.maxwidthMobile}px) {
+    flex-direction: column;
+    align-items: center;
+    margin-top: 50px;
+  }
+
+  @media(max-width:${dimensions.maxwidthTablet}px) {
+    flex-direction: column;
+    align-items: center;
+    margin-top: 50px;
+  }
+`
+
+const StyledStackProposals = styled(Stack)`
+
+  width: var(--chakra-sizes-full); 
+
+  @media(max-width:${dimensions.maxwidthMobile}px) {
+    width: var(--chakra-sizes-md);
+  }
+
+  @media(max-width:${dimensions.maxwidthTablet}px) {
+    width: var(--chakra-sizes-md);
+  }
+`
+
 const Governance = () => {
 
   const { isOpen, onOpen, onClose } = useDisclosure()
@@ -130,11 +159,11 @@ const Governance = () => {
             ]}
         />
           <ProjectHeroContainer>
-          <Stack direction="row" w="6xl">
+          <StyledStack direction="row" w="6xl">
             <Stack spacing="5" w={"300px"} direction="column" p="2">
               <VoteMenu />
             </Stack>
-            <Stack spacing="1" w="full" direction="column" p="2" style={{overflowY: "auto", overflowX: "hidden", height: "550px"}}>
+            <StyledStackProposals spacing="1"  direction="column" p="2" style={{overflowY: "auto", overflowX: "hidden", height: "550px"}}>
               <Heading marginBottom={'0px'}>Proposals</Heading>
               <Stack spacing="5" w="full" direction="row" justifyContent="center" p="2" borderRadius="25px" bg="navy"  padding="1rem">
                 <Text fontSize="sm" color={"white"}>Vote 1</Text>
@@ -142,8 +171,8 @@ const Governance = () => {
               <Link to='vote1'>
                 <VoteBlock title={"Sceletium Project"} active={true} voteDesc="Example Vote" voteText="Vote Proposal 1" days="3" />
               </Link>
-            </Stack>
-          </Stack>
+            </StyledStackProposals>
+          </StyledStack>
           </ProjectHeroContainer>
           <ProjectBody>
           </ProjectBody>

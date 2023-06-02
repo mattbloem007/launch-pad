@@ -33,6 +33,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import Brochure from '../static/documents/Kellquin_Botanicals_Company_Brochure.pdf'
 import Charity from '../static/documents/Net_Vir_Pret_Newsletter_March_2023.pdf'
 import Reports from '../static/documents/SUN_CAF_Kellquin_Sceletium Analysis_Sept2022.pdf'
+import { isMobile } from "react-device-detect";
 
 import {
   Box,
@@ -81,6 +82,8 @@ import {
 // grid-template-columns: 5fr 4fr;
 // gap: 40px;
 // align-items: flex-start;
+
+
 const ProjectHeroContainer = styled("div")`
     display: flex;
     justify-content: flex-start;
@@ -114,6 +117,63 @@ const ProjectBody = styled("div")`
             width: 100%;
         }
     }
+`
+
+const TreeImage = styled(Image)`
+  height: 353px;
+  width: 353px;
+  position: relative;
+  right: 51px;
+
+  @media(max-width:${dimensions.maxwidthTablet}px) {
+     display: none;
+  }
+`
+
+const CrystalImage = styled(Image)`
+  height: 353px;
+  width: 353px;
+  position: relative;
+  bottom: 184px;
+
+  @media(max-width:${dimensions.maxwidthMobile}px) {
+     display: none;
+  }
+
+  @media(max-width:${dimensions.maxwidthTablet}px) {
+     display: none;
+  }
+`
+
+const CustomGrid = styled(Grid)`
+  grid-template-columns: 5fr 4fr;
+  grid-gap: 50px;
+  max-height: 470px;
+  position: relative;
+  right: 200px;
+
+  @media(max-width:${dimensions.maxwidthMobile}px) {
+     grid-template-columns: 5fr;
+  }
+
+  @media(max-width:${dimensions.maxwidthTablet}px) {
+     grid-template-columns: 5fr;
+  }
+`
+const BuyNowContainer = styled(Container)`
+  width:400px;
+  height: 385px;
+  border-radius: 25px;
+  position: relative;
+  bottom: 255px;
+
+  @media(max-width:${dimensions.maxwidthMobile}px) {
+     bottom: 0px;
+  }
+
+  @media(max-width:${dimensions.maxwidthTablet}px) {
+     bottom: 0px;
+  }
 `
 
 const Project = () => {
@@ -298,6 +358,15 @@ const Project = () => {
     }
   }
 
+  function getDisplay() {
+    if (isMobile) {
+      return "0px";
+    }
+    else {
+      return "44px";
+    }
+}
+
   async function mintUSDC(amount) {
 
     let tx = await $.USDC.test.mint(library.getSigner(account), '0x5AD28fe78dBFf80385d7704880D53622d3A4A888', amount)
@@ -400,8 +469,8 @@ const Project = () => {
           <ProjectHeroContainer style={{zIndex:"33"}} justifyContent="center">
           <Stack direction="column" id="project">
             <Stack direction="row" alignItems="flex-end">
-              <Image h='353px' w='353px' style={{position: 'relative', right: "51px"}} src={tree}/>
-              <Grid templateColumns='5fr 4fr' gap={6} style={{maxHeight: "470px", position: "relative", right: "200px"}}>
+              <TreeImage src={tree}/>
+              <CustomGrid>
                 <GridItem h="70%">
                   <Tabs isFitted size='sm' id="projectTablist" index={tabIndex} onChange={(index) => setTabIndex(index)}>
                     <TabList>
@@ -427,17 +496,44 @@ const Project = () => {
                       </TabPanel>
                       <TabPanel>
                         <Stack alignItems="center" margin={"1rem"} w='583px' h='384px' borderRadius='25px' backgroundImage={metricsBG} backgroundPosition="center" backgroundRepeat="no-repeat" backgroundSize="cover">
-                          <Image src={kannaNFT} w='353px' h='353px'/>
+                          <CrystalImage src={kannaNFT} />
                         </Stack>
                       </TabPanel>
                     </TabPanels>
 
                   </Tabs>
                 </GridItem>
-                <GridItem h="70%" style={{marginTop: "44px"}}>
+                <GridItem h="70%" style={{marginTop: getDisplay()}}>
+                {
+                  isMobile ?
+                  <Stack direction="column" alignItems="center">
+                    <CrystalImage src={crystal} />
+                    <BuyNowContainer centerContent p="3" pt="0" shadow="lg"bg="navy">
+                        <Text textAlign="left" w="full" fontSize="5xl" fontWeight="medium" color={"white"} h='95px'>$ {fundsRaised}</Text>
+                        <Container px="8">
+                          <Text textAlign={"center"} flexGrow="2" fontSize="lg" color={"white"} >Raised of ${toaPrice*(parseInt(numPurchased) + parseInt(available))} Minimum</Text>
+                          <Progress bg="lavendar" rounded="3xl" value={progress} colorScheme="progress" marginBottom={"5px"}/>
+                        </Container>
+                        <Stack spacing="5" w="full" direction="column" alignItems="flex-end" p="2">
+                          <Stack spacing="5" w="full" direction="row" justifyContent="space-between" p="2" borderRadius="25px" bg="darkBrown">
+                            <Text fontSize="sm" color={"white"}>Price</Text>
+                            <Text fontSize="sm" color={"white"}>${toaPrice}/TOA</Text>
+                          </Stack>
+                          <Stack spacing="5" w="full" direction="row" justifyContent="space-between" p="2" borderRadius="25px" bg="darkBrown">
+                            <Text fontSize="sm" color={"white"}>TOA's left</Text>
+                            <Text fontSize="sm" color={"white"}>{numPurchased}/{parseInt(numPurchased) + parseInt(available)} Sold</Text>
+                          </Stack>
+                        </Stack>
+                        <Button size="lg" bg="darkBrown" onClick={onOpen}>
+                        Buy Now
+                        </Button>
+                        <Text textAlign={"center"} flexGrow="2" color={"white"} fontStyle={"italic"}>{Math.trunc(timeLeft)} days Remaining</Text>
+                    </BuyNowContainer>
+                  </Stack>
+                  :
                   <Sticky enabled={true} top={0} bottomBoundary="#body">
                     <Stack direction="column" alignItems="center">
-                      <Image w='295px' h='295px' src={crystal} style={{position: "relative", bottom: "184px"}}/>
+                      <CrystalImage src={crystal} />
                       <Container centerContent p="3" pt="0" shadow="lg" w="400px" h="385px" borderRadius="25px" bg="navy" style={{position: "relative", bottom: "255px"}}>
                           <Text textAlign="left" w="full" fontSize="5xl" fontWeight="medium" color={"white"} h='95px'>$ {fundsRaised}</Text>
                           <Container px="8">
@@ -461,8 +557,10 @@ const Project = () => {
                       </Container>
                     </Stack>
                   </Sticky>
+                }
+
                 </GridItem>
-              </Grid>
+              </CustomGrid>
             </Stack>
             <Stack direction='row' paddingLeft="16px">
             <Tabs isFitted size='sm' id="projectTablist" index={tabIndex} onChange={(index) => setTabIndex(index)}>

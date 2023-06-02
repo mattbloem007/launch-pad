@@ -14,6 +14,15 @@ import { ArrowBackIcon } from '@chakra-ui/icons'
 const HeaderContainer = styled("div")`
   margin-left: 156px;
   margin-right: 349px;
+  @media(max-width: ${dimensions.maxwidthTablet}px) {
+      margin-right: 0px;
+      margin-left: 0px;
+  }
+
+  @media(max-width: ${dimensions.maxwidthMobile}px) {
+    margin-right: 0px;
+    margin-left: 0px;
+  }
   background: #F0EBDD;
   z-index: -1;
 
@@ -24,6 +33,14 @@ const HeaderContent = styled("div")`
     justify-content: space-between;
     align-items: center;
     z-index: 1;
+
+    @media(max-width: ${dimensions.maxwidthTablet}px) {
+        flex-direction: column;
+    }
+
+    @media(max-width: ${dimensions.maxwidthMobile}px) {
+        flex-direction: column;
+    }
 `
 
 const HeaderLinks = styled("div")`

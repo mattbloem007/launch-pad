@@ -6,7 +6,7 @@ import { Stack } from '@chakra-ui/layout'
 
 const VoteBlock = ({ title, active, voteText, voteDesc, days }) => (
   <Stack w="full" padding="2rem" borderRadius="25px" bg="mush" direction="column" justifyContent="center" alignItems="center">
-    <Stack w="full" direction="row" justifyContent="space-between" paddingLeft="1rem" paddingTop="0.5rem">
+    <Stack w="full" direction="row" justifyContent="space-between" paddingLeft="1rem" paddingTop="0.5rem" alignItems="center">
       <Text fontSize="sm" color="navy">{title}</Text>
       {active ? <Stack direction="row" bg="#7DC05A" borderRadius="40px" w='72px' h='22px' justifyContent="center"><Text fontSize="12px" textAlign="center" color="white">Active</Text></Stack>
       : <Stack direction="row" bg="#E13F3F" borderRadius="40px" w='72px' h='22px' justifyContent="center"><Text fontSize="12px" textAlign="center" color="white">Closed</Text></Stack>

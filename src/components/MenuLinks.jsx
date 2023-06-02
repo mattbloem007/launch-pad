@@ -25,7 +25,7 @@ const HeaderContainer = styled("div")`
       right: 0;
       padding-top: 3.5rem;
       transition: transform 0.3s ease-in-out;
-      z-index: 10;
+      z-index: 33;
       width: 300px;
   }
 `
@@ -123,12 +123,13 @@ export const StyledButton = styled("button")`
 export const StyledStack = styled('div')`
     display: flex;
     flex-direction: row;
-    width: var(--chakra-sizes-3xs);
+    width: var(--chakra-sizes-lg);
     padding: var(--chakra-space-2);
     justify-content: flex-end;
 
     @media (max-width: 768px) {
       flex-direction: column;
+      width: var(--chakra-sizes-3xs);
   }
 }
 `
@@ -151,12 +152,13 @@ export const LogoStyledStack = styled('div')`
 export const RightStyledStack = styled('div')`
     display: flex;
     flex-direction: row;
-    width: var(--chakra-sizes-3xs);
+    width: var(--chakra-sizes-lg);
     padding: var(--chakra-space-2);
     align-items: flex-start;
 
     @media (max-width: 768px) {
       flex-direction: column;
+      width: var(--chakra-sizes-3xs);
   }
 }
 `
