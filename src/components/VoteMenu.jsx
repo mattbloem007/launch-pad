@@ -9,12 +9,12 @@ const VoteMenu = ({ data }) => (
   <Box bg="darkPurple" borderRadius="25px" w='288px' padding="10px">
   <Stack direction="column" alignItems="center">
     <Text textAlign="center" fontSize="sm" fontWeight="bold" color="white">284 Members</Text>
-    <Stack direction="row" justifyContent="center"><Button size="sm" bg="navy">Connect Wallet</Button></Stack>
-    <Link to="/governance"><Button size='link' bg='darkBrown'>All Proposals</Button></Link>
+    <Stack direction="row" justifyContent="center"><Button size="sm" bg="navy" style={{color: "white"}}>Connect Wallet</Button></Stack>
+    <Link to="/governance"><Button size='link' bg='darkBrown' style={{color: "white"}}>All Proposals</Button></Link>
     {/**<Text textAlign="left" fontSize="sm" fontWeight="bold" color="white">Bonus Proposals</Text>
     <Text textAlign="left" fontSize="sm" fontWeight="bold" color="white">Remedy Proposals</Text>
     <Text textAlign="left" fontSize="sm" fontWeight="bold" color="white">Other Proposals</Text>*/}
-    <Link to='/governance/addproposal'><Button size='link' bg='darkBrown'>Add Proposals</Button></Link>
+    <Link to='/governance/addproposal'><Button size='link' bg='darkBrown' style={{color: "white"}}>Add Proposals</Button></Link>
     </Stack>
   </Box>
 )

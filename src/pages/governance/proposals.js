@@ -94,7 +94,7 @@ const StyledStack = styled(Stack)`
 
 const StyledStackProposals = styled(Stack)`
 
-  width: var(--chakra-sizes-full); 
+  width: var(--chakra-sizes-full);
 
   @media(max-width:${dimensions.maxwidthMobile}px) {
     width: var(--chakra-sizes-md);
@@ -168,7 +168,7 @@ const Governance = () => {
               <Stack spacing="5" w="full" direction="row" justifyContent="center" p="2" borderRadius="25px" bg="navy"  padding="1rem">
                 <Text fontSize="sm" color={"white"}>Vote 1</Text>
               </Stack>
-              <Link to='vote1'>
+              <Link to='/project'>
                 <VoteBlock title={"Sceletium Project"} active={true} voteDesc="Example Vote" voteText="Vote Proposal 1" days="3" />
               </Link>
             </StyledStackProposals>

@@ -18,7 +18,7 @@ const ListItem = ({ data }) => (
         <Image borderRadius='15px' w='84px' h='83px' src={kannaNFT} />
         <Text color='white' textAlign='left' fontSize='lg'>CQKanna Project</Text>
       </Stack>
-      <Button size='link' bg='darkBrown' onClick={() => navigate("proposals")}>View Project Proposals</Button>
+      <Button size='link' bg='darkBrown' style={{color: 'white'}} onClick={() => navigate("proposals")}>View Project Proposals</Button>
     </Stack>
   </Stack>
 )

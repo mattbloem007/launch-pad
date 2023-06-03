@@ -176,6 +176,112 @@ const BuyNowContainer = styled(Container)`
   }
 `
 
+const DescStack = styled(Stack)`
+  flex-direction: row;
+  width: var(--chakra-sizes-3xl);
+  align-items:baseline;
+
+  @media(max-width:${dimensions.maxwidthMobile}px) {
+     width: var(--chakra-sizes-3xs);
+  }
+
+  @media(max-width:${dimensions.maxwidthTablet}px) {
+     width: var(--chakra-sizes-3xs);
+  }
+`
+
+const MenuStack = styled(Stack)`
+  width: 150px;
+  direction: column;
+  border-right: 2px;
+  border-right-style: dotted;
+
+  @media(max-width:${dimensions.maxwidthMobile}px) {
+     display: none;
+  }
+
+  @media(max-width:${dimensions.maxwidthTablet}px) {
+     display: none;
+  }
+`
+
+const StyledTabPanels = styled(TabPanels)`
+  width: 600px;
+
+  @media(max-width:${dimensions.maxwidthMobile}px) {
+     width: 100%;
+  }
+
+  @media(max-width:${dimensions.maxwidthTablet}px) {
+     width: 100%;
+  }
+`
+
+const FullStack = styled(Stack)`
+  @media(max-width:${dimensions.maxwidthMobile}px) {
+     width: 100%;
+  }
+
+  @media(max-width:${dimensions.maxwidthTablet}px) {
+     width: 100%;
+  }
+`
+
+const StyledFrame = styled("iframe")`
+  border-radius: 25px;
+  width: 593px;
+  height:384px;
+
+  @media(max-width:${dimensions.maxwidthMobile}px) {
+     width: 100%;
+  }
+
+  @media(max-width:${dimensions.maxwidthTablet}px) {
+     width: 100%;
+  }
+`
+
+const ImageStack = styled(Stack)`
+  align-items: center;
+  margin: 1rem
+  width: 583px;
+  height: 384px;
+  border-radius: 25px;
+
+  @media(max-width:${dimensions.maxwidthMobile}px) {
+     width: 100%;
+  }
+
+  @media(max-width:${dimensions.maxwidthTablet}px) {
+     width: 100%;
+  }
+`
+
+const TabStack = styled(Stack)`
+   width: var(--chakra-sizes-3xl);
+   justify-content: center;
+   align-items: flex-end;
+
+  @media(max-width:${dimensions.maxwidthMobile}px) {
+     width: 100%;
+  }
+
+  @media(max-width:${dimensions.maxwidthTablet}px) {
+     width: 100%;
+  }
+`
+
+const TabsStyled = styled(Tabs)`
+
+  @media(max-width:${dimensions.maxwidthMobile}px) {
+     width: var(--chakra-sizes-md);
+  }
+
+  @media(max-width:${dimensions.maxwidthTablet}px) {
+     width: var(--chakra-sizes-md);
+  }
+`
+
 const Project = () => {
 
   //const toast = useToast();
@@ -467,7 +573,7 @@ const Project = () => {
             </ModalContent>
           </Modal>
           <ProjectHeroContainer style={{zIndex:"33"}} justifyContent="center">
-          <Stack direction="column" id="project">
+          <FullStack direction="column" id="project">
             <Stack direction="row" alignItems="flex-end">
               <TreeImage src={tree}/>
               <CustomGrid>
@@ -481,18 +587,18 @@ const Project = () => {
                     <TabPanels>
                       <TabPanel>
                         <AspectRatio margin={"1rem"} w='583px' h='384px' borderRadius='25px' ratio={16 / 9}>
-                          <iframe
+                          <StyledFrame
                           title='elyseos'
                           src='https://www.youtube.com/embed/QXDxjXbr9TM'
                           allowFullScreen
-                          style={{borderRadius: '25px', width:'593px', height:'384px'}}
+
                           />
                         </AspectRatio>
                       </TabPanel>
                       <TabPanel>
-                        <Stack alignItems="center" margin={"1rem"} w='583px' h='384px' borderRadius='25px' backgroundImage={metricsBG} backgroundPosition="center" backgroundRepeat="no-repeat" backgroundSize="cover">
+                        <ImageStack  backgroundImage={metricsBG} backgroundPosition="center" backgroundRepeat="no-repeat" backgroundSize="cover">
                           <Image src={kannaNFT} w='353px' h='353px'/>
-                        </Stack>
+                        </ImageStack>
                       </TabPanel>
                       <TabPanel>
                         <Stack alignItems="center" margin={"1rem"} w='583px' h='384px' borderRadius='25px' backgroundImage={metricsBG} backgroundPosition="center" backgroundRepeat="no-repeat" backgroundSize="cover">
@@ -524,7 +630,7 @@ const Project = () => {
                             <Text fontSize="sm" color={"white"}>{numPurchased}/{parseInt(numPurchased) + parseInt(available)} Sold</Text>
                           </Stack>
                         </Stack>
-                        <Button size="lg" bg="darkBrown" onClick={onOpen}>
+                        <Button size="lg" bg="darkBrown" style={{color: "white"}} onClick={onOpen}>
                         Buy Now
                         </Button>
                         <Text textAlign={"center"} flexGrow="2" color={"white"} fontStyle={"italic"}>{Math.trunc(timeLeft)} days Remaining</Text>
@@ -569,10 +675,10 @@ const Project = () => {
                 <Tab id="toa"><Heading fontSize="md" style={{marginBottom: "0px"}}>TOA Metrics</Heading></Tab>
                 <Tab id="docs"><Heading fontSize="md" style={{marginBottom: "0px"}}>Documentation</Heading></Tab>
               </TabList>*/}
-              <TabPanels style={{width: "600px"}}>
+              <StyledTabPanels>
                 <TabPanel>
-                  <Stack direction="row" w="3xl" alignItems="baseline">
-                      <Stack spacing="5" w={"150px"} direction="column" p="2" borderRight={"2px"} borderRightStyle={"dotted"}>
+                  <DescStack>
+                      <MenuStack spacing="5" w={"150px"} direction="column" p="2" borderRight={"2px"} borderRightStyle={"dotted"}>
                         <Box color="navy" fontSize='sm' fontWeight="bold" onClick={() => scroll('background')} style={{cursor: "pointer"}}>
                         Background
                         </Box>
@@ -588,7 +694,7 @@ const Project = () => {
                         <Box color="navy" fontSize='sm' fontWeight="bold" onClick={() => scroll('documents')} style={{cursor: "pointer"}}>
                           Documents
                         </Box>
-                      </Stack>
+                      </MenuStack>
                     <Stack spacing="1" w="xl" direction="column" p="2">
                       <Heading id="background"> Background </Heading><br/>
                         <Text color={"navy"} fontSize={"sm"}>The CQKanna project by Kellquin Botanicals on Talana farm in the Western Cape region of South Africa will produce 1.25 Tons of Sceletium per year.</Text>
@@ -693,10 +799,10 @@ You may contact Mark via the  Elyseos Telegram group or the Launchpad Channel on
                       <a href={Charity} target="_blank"><Text color={"navy"} fontSize={"lg"} fontWeight="bold" textDecoration="underline">the Net Vir Pret newsletter </Text></a>
                       <a href={Reports} target="_blank"><Text color={"navy"} fontSize={"lg"} fontWeight="bold" textDecoration="underline">Laboratory Audits</Text></a>
                     </Stack>
-                  </Stack>
+                  </DescStack>
                 </TabPanel>
                 <TabPanel>
-                  <Stack w='3xl' justifyContent="center" alignItems="flex-end">
+                  <TabStack>
                     <Box bg='darkBrown' borderRadius={'25px'} w='80%'>
                       <Text textAlign={"center"} fontSize="xl" color="white"> Metrics </Text>
                       <Stack spacing="1" w="full" direction="column" alignItems="flex-end" p="2">
@@ -742,7 +848,7 @@ You may contact Mark via the  Elyseos Telegram group or the Launchpad Channel on
                         </Stack>
                       </Stack>
                     </Box>
-                  </Stack>
+                  </TabStack>
                 </TabPanel>
                 <TabPanel>
                   <Stack spacing="1" w="full" direction="column" p="2" style={{marginLeft: "166px"}}>
@@ -758,10 +864,10 @@ You may contact Mark via the  Elyseos Telegram group or the Launchpad Channel on
                       <Text color={"navy"} fontSize="sm">https://github.com/elyseos/contracts/blob/main/ElysForest.sol</Text>
                   </Stack>
                 </TabPanel>
-              </TabPanels>
+              </StyledTabPanels>
               </Tabs>
               </Stack>
-            </Stack>
+            </FullStack>
           </ProjectHeroContainer>
             <ProjectBody id="body">
 

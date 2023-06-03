@@ -11,7 +11,7 @@ const VoteBlock = ({ title, active, voteText, voteDesc, days }) => (
       {active ? <Stack direction="row" bg="#7DC05A" borderRadius="40px" w='72px' h='22px' justifyContent="center"><Text fontSize="12px" textAlign="center" color="white">Active</Text></Stack>
       : <Stack direction="row" bg="#E13F3F" borderRadius="40px" w='72px' h='22px' justifyContent="center"><Text fontSize="12px" textAlign="center" color="white">Closed</Text></Stack>
       }
-      <Button size='xs' bg='darkBrown'>View Project</Button>
+      <Button size='xs' bg='darkBrown' style={{color: "white"}}>View Project</Button>
     </Stack>
     <Stack spacing="5" direction="row" justifyContent="center" p="2" bg="darkBrown" borderRadius="11px">
       <Text fontSize="lg" textAlign="center" color={"white"}>{voteText}</Text>
