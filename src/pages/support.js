@@ -89,12 +89,12 @@ const StyledBox = styled(Box)`
   z-index: 22;
 
   @media(max-width:${dimensions.maxwidthMobile}px) {
-    width: var(--chakra-sizes-md);
+    width: var(--chakra-sizes-2xs);
     margin-left: 0px;
   }
 
   @media(max-width:${dimensions.maxwidthTablet}px) {
-    width: var(--chakra-sizes-md);
+    width: var(--chakra-sizes-2xs);
     margin-left: 0px;
   }
 `
@@ -186,7 +186,7 @@ const About = () => {
                     <SocialSymbol src={telegram} />
                   </a>
                   <a target="_blank" href="https://t.me/joinchat/kJCUkY1WacpkZTVk">
-                    <Text color={"navy"} textAlign={"left"} fontSize="28px">Join Our Telegram!</Text>
+                    <Text color={"navy"} textAlign={"left"} fontSize={{ base: "20px", sm: "20px", md:"28px"}}>Join Our Telegram!</Text>
                   </a>
                 </Stack>
                 <Stack direction="row" justifyContent="center" alignItems="center">
@@ -194,7 +194,7 @@ const About = () => {
                     <SocialSymbol src={discord} />
                   </a>
                   <a target="_blank" href="https://discord.com/invite/gY2WMAnBem">
-                    <Text color={"navy"} textAlign={"left"} fontSize="28px">Join Our Discord!</Text>
+                    <Text color={"navy"} textAlign={"left"} fontSize={{ base: "20px", sm: "20px", md:"28px"}}>Join Our Discord!</Text>
                   </a>
                 </Stack>
                 <Text color={"navy"} textAlign={"left"}>Once you're in our server, you'll be able to chat

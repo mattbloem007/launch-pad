@@ -94,11 +94,11 @@ const StyledStack = styled(Stack)`
   width: var(--chakra-sizes-6xl);
 
   @media(max-width:${dimensions.maxwidthMobile}px) {
-    width: var(--chakra-sizes-xl);
+    width: var(--chakra-sizes-sm);
   }
 
   @media(max-width:${dimensions.maxwidthTablet}px) {
-    width: var(--chakra-sizes-xl);
+    width: var(--chakra-sizes-sm);
   }
 `
 

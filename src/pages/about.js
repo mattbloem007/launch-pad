@@ -74,10 +74,21 @@ const ProjectBody = styled("div")`
 const StyledStack = styled(Stack)`
   @media(max-width:${dimensions.maxwidthMobile}px) {
         flex-direction: column;
+        width: var(--chakra-sizes-sm);;
   }
 
   @media(max-width:${dimensions.maxwidthTablet}px) {
         flex-direction: column;
+        width: var(--chakra-sizes-sm);;
+  }
+`
+
+const TreeImage = styled(Image)`
+  height: 564px;
+  width: 564px;
+
+  @media(max-width:${dimensions.maxwidthTablet}px) {
+     width: 100%;
   }
 `
 
@@ -162,7 +173,7 @@ const About = () => {
                   being traded.</Text>
                   <br />
                 </Box>
-                <Image w='564px' h='564px' src={tree}/>
+                <TreeImage src={tree}/>
               </StyledStack>
           </ProjectHeroContainer>
           <ProjectBody>
