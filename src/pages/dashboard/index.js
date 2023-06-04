@@ -54,12 +54,12 @@ const StyledStack = styled(Stack)`
       width: var(--chakra-sizes-6xl);
 
   @media(max-width:${dimensions.maxwidthMobile}px) {
-        width: var(--chakra-sizes-xs);
+        width: var(--chakra-sizes-2xs);
         margin-top: 50px;
   }
 
   @media(max-width:${dimensions.maxwidthTablet}px) {
-        width: var(--chakra-sizes-xs);
+        width: var(--chakra-sizes-2xs);
         margin-top: 50px;
   }
 `

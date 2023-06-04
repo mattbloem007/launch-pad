@@ -51,7 +51,7 @@ const HeaderLinks = styled("div")`
     }
 
     @media(max-width: ${dimensions.maxwidthMobile}px) {
-        grid-gap: 2.5em;
+        grid-gap: 1em;
         flex-direction: column;
     }
 
@@ -94,6 +94,14 @@ const HeaderLinks = styled("div")`
                 background: ${colors.blue500};
                 transition: 100ms ease-in-out background;
             }
+        }
+
+        @media(max-width: ${dimensions.maxwidthTablet}px) {
+            border-bottom: none;
+        }
+
+        @media(max-width: ${dimensions.maxwidthMobile}px) {
+            border-bottom: none;
         }
     }
 `
