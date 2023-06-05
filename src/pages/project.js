@@ -282,6 +282,18 @@ const TabsStyled = styled(Tabs)`
   }
 `
 
+const LinksStack = styled(Stack)`
+  margin-left: 116px;
+
+  @media(max-width:${dimensions.maxwidthMobile}px) {
+     margin-left: 0px;
+  }
+
+  @media(max-width:${dimensions.maxwidthTablet}px) {
+     margin-left: 0px;
+  }
+`
+
 const Project = () => {
 
   //const toast = useToast();
@@ -572,8 +584,95 @@ const Project = () => {
               </ModalBody>
             </ModalContent>
           </Modal>
-          <ProjectHeroContainer style={{zIndex:"33"}} justifyContent="center">
+          <ProjectHeroContainer style={{zIndex:"11"}} justifyContent="center">
           <FullStack direction="column" id="project">
+          {
+            isMobile ?
+            <Stack direction={{base: "column", sm: "column", md: "row"}} alignItems={{base: "center", sm: "center", md: "flex-end"}}>
+                  <Tabs isFitted size='sm' id="projectTablist" index={tabIndex} onChange={(index) => setTabIndex(index)}>
+                    <TabList>
+                      <Tab id="overview"><Heading fontSize="md" style={{marginBottom: "0px"}}>Overview</Heading></Tab>
+                      <Tab id="toa"><Heading fontSize="md" style={{marginBottom: "0px"}}>TOA Metrics</Heading></Tab>
+                      <Tab id="docs"><Heading fontSize="md" style={{marginBottom: "0px"}}>Smart Contracts</Heading></Tab>
+                    </TabList>
+                    <TabPanels>
+                      <TabPanel>
+                        <AspectRatio margin={"1rem"} w={{base: '353px', sm: '353px', md:'583px'}} h='384px' borderRadius='25px' ratio={16 / 9}>
+                          <StyledFrame
+                          title='elyseos'
+                          src='https://www.youtube.com/embed/QXDxjXbr9TM'
+                          allowFullScreen
+
+                          />
+                        </AspectRatio>
+                      </TabPanel>
+                      <TabPanel>
+                        <ImageStack  backgroundImage={metricsBG} backgroundPosition="center" backgroundRepeat="no-repeat" backgroundSize="cover">
+                          <Image src={kannaNFT} w='353px' h='353px'/>
+                        </ImageStack>
+                      </TabPanel>
+                      <TabPanel>
+                        <Stack alignItems="center" margin={"1rem"} w={{base: '353px', sm: '353px', md:'583px'}} h='384px' borderRadius='25px' backgroundImage={metricsBG} backgroundPosition="center" backgroundRepeat="no-repeat" backgroundSize="cover">
+                          <CrystalImage src={kannaNFT} />
+                        </Stack>
+                      </TabPanel>
+                    </TabPanels>
+
+                  </Tabs>
+                {
+                  isMobile ?
+                  <Stack direction="column" alignItems="center">
+                    <BuyNowContainer centerContent p="3" pt="0" shadow="lg" bg="navy">
+                        <Text textAlign="left" w="full" fontSize="5xl" fontWeight="medium" color={"white"} h='95px'>$ {fundsRaised}</Text>
+                        <Container px="8">
+                          <Text textAlign={"center"} flexGrow="2" fontSize="lg" color={"white"} >Raised of ${toaPrice*(parseInt(numPurchased) + parseInt(available))} Minimum</Text>
+                          <Progress bg="lavendar" rounded="3xl" value={progress} colorScheme="progress" marginBottom={"5px"}/>
+                        </Container>
+                        <Stack spacing="5" w="full" direction="column" alignItems="flex-end" p="2">
+                          <Stack spacing="5" w="full" direction="row" justifyContent="space-between" p="2" borderRadius="25px" bg="darkBrown">
+                            <Text fontSize="sm" color={"white"}>Price</Text>
+                            <Text fontSize="sm" color={"white"}>${toaPrice}/TOA</Text>
+                          </Stack>
+                          <Stack spacing="5" w="full" direction="row" justifyContent="space-between" p="2" borderRadius="25px" bg="darkBrown">
+                            <Text fontSize="sm" color={"white"}>TOA's left</Text>
+                            <Text fontSize="sm" color={"white"}>{numPurchased}/{parseInt(numPurchased) + parseInt(available)} Sold</Text>
+                          </Stack>
+                        </Stack>
+                        <Button size="lg" bg="darkBrown" style={{color: "white"}} onClick={onOpen}>
+                        Buy Now
+                        </Button>
+                        <Text textAlign={"center"} flexGrow="2" color={"white"} fontStyle={"italic"}>{Math.trunc(timeLeft)} days Remaining</Text>
+                    </BuyNowContainer>
+                  </Stack>
+                  :
+                  <Sticky enabled={true} top={0} bottomBoundary="#body">
+                    <Stack direction="column" alignItems="center">
+                      <Container centerContent p="3" pt="0" shadow="lg" w="400px" h="385px" borderRadius="25px" bg="navy" style={{position: "relative", bottom: "255px"}}>
+                          <Text textAlign="left" w="full" fontSize="5xl" fontWeight="medium" color={"white"} h='95px'>$ {fundsRaised}</Text>
+                          <Container px="8">
+                            <Text textAlign={"center"} flexGrow="2" fontSize="lg" color={"white"} >Raised of ${toaPrice*(parseInt(numPurchased) + parseInt(available))} Minimum</Text>
+                            <Progress bg="lavendar" rounded="3xl" value={progress} colorScheme="progress" marginBottom={"5px"}/>
+                          </Container>
+                          <Stack spacing="5" w="full" direction="column" alignItems="flex-end" p="2">
+                            <Stack spacing="5" w="full" direction="row" justifyContent="space-between" p="2" borderRadius="25px" bg="darkBrown">
+                              <Text fontSize="sm" color={"white"}>Price</Text>
+                              <Text fontSize="sm" color={"white"}>${toaPrice}/TOA</Text>
+                            </Stack>
+                            <Stack spacing="5" w="full" direction="row" justifyContent="space-between" p="2" borderRadius="25px" bg="darkBrown">
+                              <Text fontSize="sm" color={"white"}>TOA's left</Text>
+                              <Text fontSize="sm" color={"white"}>{numPurchased}/{parseInt(numPurchased) + parseInt(available)} Sold</Text>
+                            </Stack>
+                          </Stack>
+                          <Button size="lg" bg="darkBrown" onClick={onOpen}>
+                          Buy Now
+                          </Button>
+                          <Text textAlign={"center"} flexGrow="2" color={"white"} fontStyle={"italic"}>{Math.trunc(timeLeft)} days Remaining</Text>
+                      </Container>
+                    </Stack>
+                  </Sticky>
+                }
+            </Stack>
+            :
             <Stack direction="row" alignItems="flex-end">
               <TreeImage src={tree}/>
               <CustomGrid>
@@ -668,6 +767,8 @@ const Project = () => {
                 </GridItem>
               </CustomGrid>
             </Stack>
+          }
+
             <Stack direction='row' paddingLeft="16px">
             <Tabs isFitted size='sm' id="projectTablist" index={tabIndex} onChange={(index) => setTabIndex(index)}>
               {/**<TabList>
@@ -743,7 +844,7 @@ You may contact Gerhard via the  Elyseos Telegram group or the Launchpad Channel
 You may contact Mark via the  Elyseos Telegram group or the Launchpad Channel on the Elyseos Discord
 </Text><br/>
                         <Text color={"navy"} fontSize={"sm"}>Local Charity - Net Vir Pret, Barrydale, Western Cape, South Africa</Text><br/>
-                        <Grid templateColumns='repeat(4, 0.5fr)' gap={6}>
+                        <Grid templateColumns={{base: 'repeat(2, 0.5fr)', sm: 'repeat(2, 0.5fr)', md:'repeat(4, 0.5fr)'}} gap={6}>
                           <GridItem style={{display: "flex", flexDirection: "column", alignItems: "center"}}>
                             <Image boxSize='100px' src={beneficiary} />
                             <Text color={"navy"} fontSize={"sm"}> Beneficiary</Text>
@@ -803,7 +904,7 @@ You may contact Mark via the  Elyseos Telegram group or the Launchpad Channel on
                 </TabPanel>
                 <TabPanel>
                   <TabStack>
-                    <Box bg='darkBrown' borderRadius={'25px'} w='80%'>
+                    <Box bg='darkBrown' borderRadius={'25px'} w={{base: "100%", sm: "100%", md: '80%'}}>
                       <Text textAlign={"center"} fontSize="xl" color="white"> Metrics </Text>
                       <Stack spacing="1" w="full" direction="column" alignItems="flex-end" p="2">
                         <Stack spacing="5" w="full" direction="row" justifyContent="space-between" p="2" borderRadius="11px" bg="mush">
@@ -851,7 +952,7 @@ You may contact Mark via the  Elyseos Telegram group or the Launchpad Channel on
                   </TabStack>
                 </TabPanel>
                 <TabPanel>
-                  <Stack spacing="1" w="full" direction="column" p="2" style={{marginLeft: "166px"}}>
+                  <LinksStack spacing="1" w={{base: "2xs", sm: "2xs", md: "full"}} direction="column" p={{base: "0", sm: "0", md: "2"}}>
                     <Heading> NFT Contracts </Heading>
                       <Link to="https://ftmscan.com/token/0xd89cc0d2a28a769eadef50fff74ebc07405db9fc"><Text color={"navy"} fontSize={"lg"} fontWeight="bold" textDecoration="underline">FTMScan</Text></Link>
                       <Text color={"navy"} fontSize="sm">https://ftmscan.com/token/0xd89cc0d2a28a769eadef50fff74ebc07405db9fc</Text>
@@ -862,7 +963,7 @@ You may contact Mark via the  Elyseos Telegram group or the Launchpad Channel on
                       <Text color={"navy"} fontSize="sm">https://ftmscan.com/token/0xd89cc0d2a28a769eadef50fff74ebc07405db9fc</Text>
                       <Link to="https://github.com/elyseos/contracts/blob/main/ElysForest.sol"><Text color={"navy"} fontSize={"lg"} fontWeight="bold" textDecoration="underline">Github</Text></Link>
                       <Text color={"navy"} fontSize="sm">https://github.com/elyseos/contracts/blob/main/ElysForest.sol</Text>
-                  </Stack>
+                  </LinksStack>
                 </TabPanel>
               </StyledTabPanels>
               </Tabs>
