@@ -226,10 +226,19 @@ const DashBoard = (props) => {
         console.log("Balance: ", balTOA)
         balTOA = balTOA.toNumber()
         console.log("Balance: ", balTOA)
+        console.log("account", account)
+        console.log("TOA contract address", $.TOA.address)
+        let tokenId = [];
+        let currId = "";
+       for (let i = 0;  i < balTOA; i++) {
+          currId = await $.TOA.tokenOfOwnerByIndex(account, i)
+          console.log("Current ID", currId)
+       }
         let body = JSON.stringify({
           wallet_address: account
 
         })
+      //  let meta = await $.TOA.meta()
         try{
           await fetch("/.netlify/functions/getDeliveryInfo", {
             method: "POST",

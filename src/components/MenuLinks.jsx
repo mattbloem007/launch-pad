@@ -188,7 +188,7 @@ const MenuLinks = ({ open }) => {
                     activeClassName="Link--is-active"
                     to="https://www.elyseos.com/"
                     style={{fontSize: "16px"}}>
-                    ELYSEOS HOME
+                    ELYSEOS
                 </Link>
                 <Link
                     activeClassName="Link--is-active"
@@ -216,6 +216,12 @@ const MenuLinks = ({ open }) => {
                       to="/dashboard"
                       style={{fontSize: "16px"}}>
                       DASHBOARD
+                  </Link>
+                  <Link
+                      activeClassName="Link--is-active"
+                      to="/support"
+                      style={{fontSize: "16px"}}>
+                      CONTACT
                   </Link>
                 </HeaderLinks>
                 {/**<Button size='md' bg='darkBrown'>
