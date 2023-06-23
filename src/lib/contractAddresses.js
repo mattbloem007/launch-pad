@@ -1,7 +1,7 @@
 const $ = {
-    toaAddress: '0x984744243204847609c69C74686E64986AA7e715',
-    crowdsaleAddress: '0xBD5e9d41a0E901c5AACB5001de6DaB89f394b65b',
-    USDC: '0x9b76deD4C2386E214dB5B6B70Dd26c37abf39E13',
+    toaAddress: '0x31a6223Aa7738721f7B9bDBdDa76049ed9802a77',
+    crowdsaleAddress: '0xAE4Ff484B382636De304F2864B5F3dc29019287B',
+    USDC: '0x8D11eC38a3EB5E956B052f67Da8Bdc9bef8Abf3E',
     Elys: '0x52f1f3d2f38bdbe2377cda0b0dbeb993dc242b98',
     tradepool: ''
 }
