@@ -156,6 +156,7 @@ const DashBoard = (props) => {
   const [updated, setUpdated] = useState({ updated: false, delivery_person: "", current_courier: "", current_address: "" })
   const [deliveryInfo, setDeliveryInfo] = useState({ wallet_address: "", toa_no: "", delivery_person: "", current_courier: "", current_address: "" })
   const { library, active, account } = useWeb3React()
+  const [meta, setMeta] = useState({data: []})
 
   async function updateDelivery() {
     let personName = ""
@@ -222,18 +223,59 @@ const DashBoard = (props) => {
       console.log(account)
 
       async function fetchData() {
-        let balTOA = await $.crowdsale.TOABalance(account)
-        console.log("Balance: ", balTOA)
-        balTOA = balTOA.toNumber()
-        console.log("Balance: ", balTOA)
-        console.log("account", account)
-        console.log("TOA contract address", $.TOA.address)
-        let tokenId = [];
-        let currId = "";
-       for (let i = 0;  i < balTOA; i++) {
-          currId = await $.TOA.tokenOfOwnerByIndex(account, i)
-          console.log("Current ID", currId)
-       }
+
+        let balTOA;
+        let timeTillEnd = await $.crowdsale.timeUntilEnd()
+        let metaData;
+        timeTillEnd = timeTillEnd.toNumber()
+        console.log("time", timeTillEnd)
+        if (timeTillEnd == 0) {
+          console.log("Is Success")
+            let toabal = await $.crowdsale.TOABalance(account)
+            toabal = toabal.toNumber()
+            console.log("TOABalance: ", toabal)
+            if (toabal > 0) {
+              assignTOA()
+            }
+
+            balTOA = await $.TOA.balanceOf(account)
+            console.log("Balance: ", balTOA)
+            balTOA = balTOA.toNumber()
+            console.log("Balance: ", balTOA)
+            console.log("account", account)
+            console.log("TOA contract address", $.TOA.address)
+            if (balTOA > 0) {
+              let tokenId = [];
+              let currId = "";
+               for (let i = 0;  i < balTOA; i++) {
+                  currId = await $.TOA.tokenOfOwnerByIndex(account, i)
+                  console.log("Current ID", currId.toNumber())
+                  tokenId.push(currId.toNumber())
+               }
+               let data = []
+               for (let i = 0; i < tokenId.length; i++) {
+                 metaData = await $.TOA.meta(tokenId[i])
+                 console.log("Meta", metaData)
+                 data.push(metaData)
+                 setMeta({data: data})
+                 console.log("META Array", meta.data)
+               }
+
+            }
+
+        }
+        else {
+          console.log("Not Success")
+          balTOA = await $.crowdsale.TOABalance(account)
+          console.log("TOABalance: ", balTOA)
+          balTOA = balTOA.toNumber()
+          console.log("TOABalance: ", balTOA)
+          console.log("account", account)
+          console.log("TOA contract address", $.TOA.address)
+        }
+
+
+
         let body = JSON.stringify({
           wallet_address: account
 
@@ -283,7 +325,16 @@ const DashBoard = (props) => {
 
   const assignTOA = () => {
     try {
-      $.crowdsale.assignTOAs(library.getSigner(account), account)
+      $.crowdsale.assignTOAs(library.getSigner(account))
+    }
+    catch(e) {
+      console.log(e.message)
+    }
+  }
+
+  const transferTOA = () => {
+    try {
+      $.crowdsale.assignTOAs(library.getSigner(account))
     }
     catch(e) {
       console.log(e.message)
@@ -522,93 +573,47 @@ const DashBoard = (props) => {
                 </TabList>
                 <TabPanels>
                   <TabPanel>
-                  <Stack  w="full" direction="column" p="1">
-                    <Stack w="full" padding="1.5rem" borderRadius="25px" bg="mush" direction="row" justifyContent="center" alignItems="center">
-                      <Image borderRadius='15px' w='84px' h='83px' border={'1px solid'} borderColor="#164057" src='https://bit.ly/dan-abramov' />
-                      <Stack direction='column' style={{marginRight: "60px", cursor: "pointer"}} onClick={onOpen}>
-                        <Text color='white' textAlign='left' fontSize='sm'>Sceletium Project</Text>
-                        <Text color='white' textAlign='left' fontSize='sm' style={{marginTop: "0px"}}>0xf45664ds65fdfgg654616</Text>
-                      </Stack>
-                      <Text color='white' textAlign='left' fontSize='sm'>NFT #81 / 500</Text>
-                      <Stack flexWrap="wrap" direction="row">
-                        <Stack direction="column">
-                          <Box flex={"1 1 calc(100% - 50px)"}>
-                            <a href="https://www.artion.io/" target="_blank"><Button size='xs' bg='darkBrown'>Sell on Artion</Button></a>
-                          </Box>
-                          <Box flex={"0 0 50px"}>
-                            <Link to='/project'><Button size='xs' bg='darkBrown'>View Project</Button></Link>
-                          </Box>
+                  {
+                    meta.data ?
+                    meta.data.map(met => {
+                      return (
+                        <Stack  w="full" direction="column" p="1">
+                          <Stack w="full" padding="1.5rem" borderRadius="25px" bg="mush" direction="row" justifyContent="center" alignItems="center">
+                            <Image borderRadius='15px' w='84px' h='83px' src={met.image.replace('ipfs://','https://nftupload.infura-ipfs.io/ipfs/')} />
+                            <Stack direction='column' style={{marginRight: "60px", cursor: "pointer"}} onClick={onOpen}>
+                              <Text color='white' textAlign='left' fontSize='sm'>{met.name}</Text>
+                              <Text color='white' textAlign='left' fontSize='sm' style={{marginTop: "0px"}}><a target="_blank" href={met.url}>{met.url}</a></Text>
+                            </Stack>
+                            <Text color='white' textAlign='left' fontSize='sm'>{met.description}</Text>
+                            <Stack flexWrap="wrap" direction="row">
+                              <Stack direction="column">
+                                <Box flex={"1 1 calc(100% - 50px)"}>
+                                  <a href="https://www.artion.io/" target="_blank"><Button size='xs' bg='darkBrown'>Sell on Artion</Button></a>
+                                </Box>
+                                <Box flex={"0 0 50px"}>
+                                  <Link to='/project'><Button size='xs' bg='darkBrown'>View Project</Button></Link>
+                                </Box>
+                              </Stack>
+                              <Stack direction="column">
+                                <Box flex={"1 1 calc(100% - 50px)"}>
+                                  <Button size='xs' bg='darkBrown' onClick={() => transferTOA()}>Transfer</Button>
+                                </Box>
+                                <Box flex={"0 0 50px"}>
+                                  <Button size='xs' bg='darkBrown'>View in FTM Scan</Button>
+                                </Box>
+                              </Stack>
+                            </Stack>
+                            <Button size='link' bg='darkBrown' onClick={onDeliveryOpen}>Delivery</Button>
+                          </Stack>
                         </Stack>
-                        <Stack direction="column">
-                          <Box flex={"1 1 calc(100% - 50px)"}>
-                            <Button size='xs' bg='darkBrown' onClick={() => assignTOA()}>Transfer</Button>
-                          </Box>
-                          <Box flex={"0 0 50px"}>
-                            <Button size='xs' bg='darkBrown'>View in FTM Scan</Button>
-                          </Box>
-                        </Stack>
-                      </Stack>
-                      <Button size='link' bg='darkBrown' onClick={onDeliveryOpen}>Delivery</Button>
-                    </Stack>
-                  </Stack>
-                  <Stack  w="full" direction="column"  p="1">
-                    <Stack w="full" padding="1.5rem" borderRadius="25px" bg="mush" direction="row" justifyContent="center" alignItems="center">
-                      <Image borderRadius='15px' w='84px' h='83px' border={'1px solid'} borderColor="#164057" src='https://bit.ly/dan-abramov' />
-                      <Stack direction='column' style={{marginRight: "60px", cursor: "pointer"}} onClick={onOpen}>
-                        <Text color='white' textAlign='left' fontSize='sm'>Sceletium Project</Text>
-                        <Text color='white' textAlign='left' fontSize='sm' style={{marginTop: "0px"}}>0xf45664ds65fdfgg654616</Text>
-                      </Stack>
-                      <Text color='white' textAlign='left' fontSize='sm'>NFT #81 / 500</Text>
-                      <Stack flexWrap="wrap" direction="row">
-                        <Stack direction="column">
-                          <Box flex={"1 1 calc(100% - 50px)"}>
-                          <a href="https://www.artion.io/" target="_blank"><Button size='xs' bg='darkBrown'>Sell on Artion</Button></a>
-                          </Box>
-                          <Box flex={"0 0 50px"}>
-                            <Link to='/project'><Button size='xs' bg='darkBrown'>View Project</Button></Link>
-                          </Box>
-                        </Stack>
-                        <Stack direction="column">
-                          <Box flex={"1 1 calc(100% - 50px)"}>
-                            <Button size='xs' bg='darkBrown'>Transfer</Button>
-                          </Box>
-                          <Box flex={"0 0 50px"}>
-                            <Button size='xs' bg='darkBrown'>View in FTM Scan</Button>
-                          </Box>
-                        </Stack>
-                      </Stack>
-                      <Button size='link' bg='darkBrown' onClick={onDeliveryOpen}>Delivery</Button>
-                    </Stack>
-                  </Stack>
-                  <Stack  w="full" direction="column"  p="1">
-                    <Stack w="full" padding="1.5rem" borderRadius="25px" bg="mush" direction="row" justifyContent="center" alignItems="center">
-                      <Image borderRadius='15px' w='84px' h='83px' border={'1px solid'} borderColor="#164057" src='https://bit.ly/dan-abramov' />
-                      <Stack direction='column' style={{marginRight: "60px", cursor: "pointer"}} onClick={onOpen}>
-                        <Text color='white' textAlign='left' fontSize='sm'>Sceletium Project</Text>
-                        <Text color='white' textAlign='left' fontSize='sm' style={{marginTop: "0px"}}>0xf45664ds65fdfgg654616</Text>
-                      </Stack>
-                      <Text color='white' textAlign='left' fontSize='sm'>NFT #81 / 500</Text>
-                      <Stack flexWrap="wrap" direction="row">
-                        <Stack direction="column">
-                          <Box flex={"1 1 calc(100% - 50px)"}>
-                            <a href="https://www.artion.io/" target="_blank"><Button size='xs' bg='darkBrown'>Sell on Artion</Button></a>
-                          </Box>
-                          <Box flex={"0 0 50px"}>
-                            <Link to='/project'><Button size='xs' bg='darkBrown'>View Project</Button></Link>
-                          </Box>
-                        </Stack>
-                        <Stack direction="column">
-                          <Box flex={"1 1 calc(100% - 50px)"}>
-                            <Button size='xs' bg='darkBrown'>Transfer</Button>
-                          </Box>
-                          <Box flex={"0 0 50px"}>
-                            <Button size='xs' bg='darkBrown'>View in FTM Scan</Button>
-                          </Box>
-                        </Stack>
-                      </Stack>
-                      <Button size='link' bg='darkBrown' onClick={onDeliveryOpen}>Delivery</Button>
-                    </Stack>
-                  </Stack>
+                      )
+                    })
+
+                    :
+                    <div></div>
+                  }
+
+
                   </TabPanel>
                   <TabPanel>
                   <Stack  w="full" direction="column" p="1">

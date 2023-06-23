@@ -1,7 +1,7 @@
 import abi from './abi'
 import {ethers} from 'ethers'
 import addresses from './contractAddresses'
-import {axios} from 'axios'
+import axios from 'axios'
 
 const rpcEndPoint = {
     test: 'https://xapi.testnet.fantom.network/lachesis' //'HTTP://127.0.0.1:7545'//'https://api.avax-test.network/ext/bc/C/rpc'
@@ -14,7 +14,7 @@ ethersProvider.on("network", (newNetwork, oldNetwork) => {
         }
 });
 
-const replaceIPFS = (url) => url.replace('ipfs://','http://nftupload.infura-ipfs.com/ipfs/')
+const replaceIPFS = (url) => url.replace('ipfs://','https://nftupload.infura-ipfs.io/ipfs/')
 
 const TOAAddress = addresses.toaAddress
 const crowdsaleAddress = addresses.crowdsaleAddress
@@ -101,8 +101,10 @@ const $ = {
         getApproved: async (tokenId) => await TOAContract.getApproved(tokenId),
         isApprovedForAll: async (owner, operator) => await TOAContract.isApprovedForAll(owner, operator),
         meta: async (tokenId) => {
+          console.log("tokenID", tokenId)
             let url = await TOAContract.tokenURI(tokenId)
             url = replaceIPFS(url)
+            console.log("url", url)
             let ret = await axios.get(url)
             let meta = ret.data
             meta.url = url
@@ -135,4 +137,3 @@ const $ = {
 }
 
 export default $
-
