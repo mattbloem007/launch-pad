@@ -4,7 +4,7 @@ import addresses from './contractAddresses'
 import axios from 'axios'
 
 const rpcEndPoint = {
-    test: 'https://xapi.testnet.fantom.network/lachesis' //'HTTP://127.0.0.1:7545'//'https://api.avax-test.network/ext/bc/C/rpc'
+    test: 'https://rpc.ankr.com/fantom' //'https://xapi.testnet.fantom.network/lachesis' //'HTTP://127.0.0.1:7545'//'https://api.avax-test.network/ext/bc/C/rpc'
 }
 
 const ethersProvider = new ethers.providers.JsonRpcProvider(rpcEndPoint.test)
