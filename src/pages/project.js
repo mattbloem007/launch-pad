@@ -145,6 +145,20 @@ const CrystalImage = styled(Image)`
   }
 `
 
+const KannaImage = styled(Image)`
+  height: 353px;
+  width: 353px;
+  position: relative;
+
+  @media(max-width:${dimensions.maxwidthMobile}px) {
+     display: none;
+  }
+
+  @media(max-width:${dimensions.maxwidthTablet}px) {
+     display: none;
+  }
+`
+
 const CustomGrid = styled(Grid)`
   grid-template-columns: 5fr 4fr;
   grid-gap: 50px;
@@ -243,7 +257,7 @@ const StyledFrame = styled("iframe")`
 
 const ImageStack = styled(Stack)`
   align-items: center;
-  margin: 1rem
+  margin: 1rem;
   width: 583px;
   height: 384px;
   border-radius: 25px;
@@ -607,13 +621,13 @@ const Project = () => {
                         </AspectRatio>
                       </TabPanel>
                       <TabPanel>
-                        <ImageStack  backgroundImage={metricsBG} backgroundPosition="center" backgroundRepeat="no-repeat" backgroundSize="cover">
+                        <ImageStack  w={{base: '353px', sm: '353px', md:'583px'}} h='384px' backgroundImage={metricsBG} backgroundPosition="center" backgroundRepeat="no-repeat" backgroundSize="cover">
                           <Image src={kannaNFT} w='353px' h='353px'/>
                         </ImageStack>
                       </TabPanel>
                       <TabPanel>
                         <Stack alignItems="center" margin={"1rem"} w={{base: '353px', sm: '353px', md:'583px'}} h='384px' borderRadius='25px' backgroundImage={metricsBG} backgroundPosition="center" backgroundRepeat="no-repeat" backgroundSize="cover">
-                          <CrystalImage src={kannaNFT} />
+                          <KannaImage src={kannaNFT} />
                         </Stack>
                       </TabPanel>
                     </TabPanels>
@@ -701,7 +715,7 @@ const Project = () => {
                       </TabPanel>
                       <TabPanel>
                         <Stack alignItems="center" margin={"1rem"} w='583px' h='384px' borderRadius='25px' backgroundImage={metricsBG} backgroundPosition="center" backgroundRepeat="no-repeat" backgroundSize="cover">
-                          <CrystalImage src={kannaNFT} />
+                          <KannaImage src={kannaNFT} />
                         </Stack>
                       </TabPanel>
                     </TabPanels>
