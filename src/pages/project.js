@@ -627,7 +627,7 @@ const Project = () => {
                       </TabPanel>
                       <TabPanel>
                         <Stack alignItems="center" margin={"1rem"} w={{base: '353px', sm: '353px', md:'583px'}} h='384px' borderRadius='25px' backgroundImage={metricsBG} backgroundPosition="center" backgroundRepeat="no-repeat" backgroundSize="cover">
-                          <KannaImage src={kannaNFT} />
+                          <Image src={kannaNFT} w='353px' h='353px'/>
                         </Stack>
                       </TabPanel>
                     </TabPanels>
