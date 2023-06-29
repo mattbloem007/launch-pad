@@ -177,7 +177,7 @@ const NavBar = () => {
 
   return (
       <>
-          <Burger/>
+          <Burger toggle={toggleMobileMenu}/>
       </>
   )
 }

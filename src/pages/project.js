@@ -31,8 +31,12 @@ import { createStandaloneToast } from '@chakra-ui/toast'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Brochure from '../static/documents/Kellquin_Botanicals_Company_Brochure.pdf'
-import Charity from '../static/documents/Net_Vir_Pret_Newsletter_March_2023.pdf'
+import Charity from '../static/documents/NetVirPret_Newsletter_2023May.pdf'
 import Reports from '../static/documents/SUN_CAF_Kellquin_Sceletium Analysis_Sept2022.pdf'
+import ProgressReport from '../static/documents/NetVirPret_ProgressReport_20230331.pdf'
+import PressRelease from '../static/documents/Press Release - NVP ACVV - Net Vir Meisies May 2023.pdf'
+import ProducerGuardian from '../static/documents/ProducerGuardianAgreement_Signed_Redacted_All_Pages.pdf'
+import AuditorEvaluation from '../static/documents/CQKanna Governance Document Auditor.pdf'
 import { isMobile } from "react-device-detect";
 
 import {
@@ -911,8 +915,17 @@ You may contact Mark via the  Elyseos Telegram group or the Launchpad Channel on
                       <Heading id="documents"> Documents </Heading>
                       <Text color={"navy"} fontSize={"sm"}>Here are links to documents of the producer brochure, the charity involved, and the lab reports of the Kanna</Text>
                       <a href={Brochure} target="_blank"><Text color={"navy"} fontSize={"lg"} fontWeight="bold" textDecoration="underline">Producer Brochure</Text></a>
+                      <a href={ProducerGuardian} target="_blank"><Text color={"navy"} fontSize={"lg"} fontWeight="bold" textDecoration="underline">Producer/Guardian Contract</Text></a>
+                      <a href={AuditorEvaluation} target="_blank"><Text color={"navy"} fontSize={"lg"} fontWeight="bold" textDecoration="underline">Auditor's Evaluation Report</Text></a>
                       <a href={Charity} target="_blank"><Text color={"navy"} fontSize={"lg"} fontWeight="bold" textDecoration="underline">the Net Vir Pret newsletter </Text></a>
+                      <a href={ProgressReport} target="_blank"><Text color={"navy"} fontSize={"lg"} fontWeight="bold" textDecoration="underline">Net Vir Pret Progress Report</Text></a>
+                      <a href={PressRelease} target="_blank"><Text color={"navy"} fontSize={"lg"} fontWeight="bold" textDecoration="underline">Net Vir Pret Press Release</Text></a>
+                      <Text color={"navy"} fontSize={"md"} textDecoration="underline">Contact Details for Net vir Pret:</Text>
+                      <a href="http://www.netvirpret.co.za/" target="_blank"><Text color={"navy"} fontSize={"sm"} textDecoration="underline">http://www.netvirpret.co.za/</Text></a>
+                      <a href="https://www.facebook.com/netvirpret04%20/" target="_blank"><Text color={"navy"} fontSize={"sm"} textDecoration="underline">Facebook</Text></a>
+                      <a href="https://www.instagram.com/net_vir_pret/" target="_blank"><Text color={"navy"} fontSize={"sm"} textDecoration="underline">Instagram</Text></a>
                       <a href={Reports} target="_blank"><Text color={"navy"} fontSize={"lg"} fontWeight="bold" textDecoration="underline">Laboratory Audits</Text></a>
+
                     </Stack>
                   </DescStack>
                 </TabPanel>

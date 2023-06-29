@@ -40,17 +40,17 @@ const StyledBurger = styled.div`
   }
 `;
 
-const Burger = () => {
+const Burger = ({ toggle }) => {
   const [open, setOpen] = useState(false)
 
   return (
     <>
-      <StyledBurger open={open} onClick={() => setOpen(!open)}>
+      <StyledBurger  open={open} onClick={() => setOpen(!open)}>
         <div />
         <div />
         <div />
       </StyledBurger>
-      <MenuLinks open={open}/>
+      <MenuLinks toggle={toggle} open={open}/>
     </>
   )
 };

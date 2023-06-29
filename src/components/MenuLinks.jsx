@@ -171,8 +171,10 @@ export const RightStyledStack = styled('div')`
 }
 `
 
-const MenuLinks = ({ open }) => {
+const MenuLinks = ({ open, toggle }) => {
 
+  const [openMenu, setOpen] = useState(open)
+  
   return (
     <HeaderContainer open={open}>
       <HeaderContent>
@@ -181,8 +183,11 @@ const MenuLinks = ({ open }) => {
               <Link
                   activeClassName="Link--is-active"
                   to="/"
-                  style={{fontSize: "16px"}}>
+                  style={{fontSize: "16px"}}
+                  onClick={() => toggle()}
+                  >
                    HOME
+
               </Link>
                 <Link
                     activeClassName="Link--is-active"
