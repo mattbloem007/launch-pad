@@ -854,14 +854,18 @@ You may contact Andrew via the  Elyseos Telegram group or the Launchpad Channel 
 </Text><br/>
                         <Text color={"navy"} fontSize={"sm"}>Sales Agent - The Sceletium Source<br/>
 Principals: Jean-Pierre Le Roux<br/>
-www.sceletium.com </Text><br/>
+<a href="https://www.sceletium.com/" target="_blank"><Text color={"navy"} fontSize={"sm"} fontWeight="bold" textDecoration="underline">www.sceletium.com</Text></a></Text><br/>
                         <Text color={"navy"} fontSize={"sm"}>Lawyer - Gerhard Swart<br/>
 You may contact Gerhard via the  Elyseos Telegram group or the Launchpad Channel on the Elyseos Discord
 </Text><br/>
                         <Text color={"navy"} fontSize={"sm"}>Auditor - Mark Solomon<br/>
 You may contact Mark via the  Elyseos Telegram group or the Launchpad Channel on the Elyseos Discord
 </Text><br/>
-                        <Text color={"navy"} fontSize={"sm"}>Local Charity - Net Vir Pret, Barrydale, Western Cape, South Africa</Text><br/>
+                        <Text color={"navy"} fontSize={"sm"}>Local Charity - Net Vir Pret, Barrydale, Western Cape, South Africa<br/>
+                        <a href="http://www.netvirpret.co.za/" target="_blank"><Text color={"navy"} fontSize={"sm"} fontWeight="bold" textDecoration="underline">http://www.netvirpret.co.za/</Text></a>
+                        <a href="https://www.facebook.com/netvirpret04%20/" target="_blank"><Text color={"navy"} fontSize={"sm"} fontWeight="bold" textDecoration="underline">https://www.facebook.com/netvirpret04%20/</Text></a>
+                        <a href="https://www.instagram.com/net_vir_pret/" target="_blank"><Text color={"navy"} fontSize={"sm"} fontWeight="bold" textDecoration="underline">https://www.instagram.com/net_vir_pret/</Text></a>
+                        </Text><br/>
                         <Grid templateColumns={{base: 'repeat(2, 0.5fr)', sm: 'repeat(2, 0.5fr)', md:'repeat(4, 0.5fr)'}} gap={6}>
                           <GridItem style={{display: "flex", flexDirection: "column", alignItems: "center"}}>
                             <Image boxSize='100px' src={beneficiary} />
@@ -893,7 +897,7 @@ You may contact Mark via the  Elyseos Telegram group or the Launchpad Channel on
                           </GridItem>
                           <GridItem style={{display: "flex", flexDirection: "column", alignItems: "center"}}>
                             <Image boxSize='100px' src={stakeholder} />
-                            <Text color={"navy"} fontSize={"sm"}> Stakeholder 1</Text>
+                            <Text color={"navy"} fontSize={"sm"}>Local Charity</Text>
                           </GridItem>
                         </Grid>
                         <Stack justifyContent="center" alignItems="center">
@@ -920,10 +924,6 @@ You may contact Mark via the  Elyseos Telegram group or the Launchpad Channel on
                       <a href={Charity} target="_blank"><Text color={"navy"} fontSize={"lg"} fontWeight="bold" textDecoration="underline">the Net Vir Pret newsletter </Text></a>
                       <a href={ProgressReport} target="_blank"><Text color={"navy"} fontSize={"lg"} fontWeight="bold" textDecoration="underline">Net Vir Pret Progress Report</Text></a>
                       <a href={PressRelease} target="_blank"><Text color={"navy"} fontSize={"lg"} fontWeight="bold" textDecoration="underline">Net Vir Pret Press Release</Text></a>
-                      <Text color={"navy"} fontSize={"md"} textDecoration="underline">Contact Details for Net vir Pret:</Text>
-                      <a href="http://www.netvirpret.co.za/" target="_blank"><Text color={"navy"} fontSize={"sm"} textDecoration="underline">http://www.netvirpret.co.za/</Text></a>
-                      <a href="https://www.facebook.com/netvirpret04%20/" target="_blank"><Text color={"navy"} fontSize={"sm"} textDecoration="underline">Facebook</Text></a>
-                      <a href="https://www.instagram.com/net_vir_pret/" target="_blank"><Text color={"navy"} fontSize={"sm"} textDecoration="underline">Instagram</Text></a>
                       <a href={Reports} target="_blank"><Text color={"navy"} fontSize={"lg"} fontWeight="bold" textDecoration="underline">Laboratory Audits</Text></a>
 
                     </Stack>
