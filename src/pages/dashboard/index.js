@@ -157,6 +157,9 @@ const DashBoard = (props) => {
   const [deliveryInfo, setDeliveryInfo] = useState({ wallet_address: "", toa_no: "", delivery_person: "", current_courier: "", current_address: "" })
   const { library, active, account } = useWeb3React()
   const [meta, setMeta] = useState({data: []})
+  const [numTOAs, setNum] = useState()
+  const [usdc, setUSDC] = useState()
+  const [usdcPayout, setUSDCPayout] = useState()
 
   async function updateDelivery() {
     let personName = ""
@@ -224,7 +227,7 @@ const DashBoard = (props) => {
 
       async function fetchData() {
 
-        let balTOA;
+        let balTOA, usdcBal;
         let timeTillEnd = await $.crowdsale.timeUntilEnd()
         let metaData;
         timeTillEnd = timeTillEnd.toNumber()
@@ -239,8 +242,12 @@ const DashBoard = (props) => {
             }
 
             balTOA = await $.TOA.balanceOf(account)
+            usdcBal = await $.USDC.balanceOf(account)
             console.log("Balance: ", balTOA)
             balTOA = balTOA.toNumber()
+            usdcBal = usdcBal.toNumber()
+            setNum(balTOA)
+            setUSDC(usdcBal)
             console.log("Balance: ", balTOA)
             console.log("account", account)
             console.log("TOA contract address", $.TOA.address)
@@ -267,11 +274,14 @@ const DashBoard = (props) => {
         else {
           console.log("Not Success")
           balTOA = await $.crowdsale.TOABalance(account)
-          console.log("TOABalance: ", balTOA)
+          usdcBal = await $.USDC.balanceOf(account)
+          usdcBal = usdcBal.toNumber()
           balTOA = balTOA.toNumber()
+          setNum(balTOA)
+          setUSDCPayout(usdcBal)
           console.log("TOABalance: ", balTOA)
           console.log("account", account)
-          console.log("TOA contract address", $.TOA.address)
+          console.log("TOA contract address", meta.data)
         }
 
 
@@ -574,7 +584,7 @@ const DashBoard = (props) => {
                 <TabPanels>
                   <TabPanel>
                   {
-                    meta.data ?
+                    meta.data.length > 0 ?
                     meta.data.map(met => {
                       return (
                         <Stack  w="full" direction="column" p="1">
@@ -610,7 +620,9 @@ const DashBoard = (props) => {
                     })
 
                     :
-                    <div></div>
+                    <Stack  w="full" direction="column" p="1">
+                        <Text color='navy' textAlign='left' fontSize='sm'>No TOAs Held</Text>
+                    </Stack>
                   }
 
 
@@ -626,7 +638,7 @@ const DashBoard = (props) => {
                         </Stack>
                         <Stack w='3xl' justifyContent="center" alignItems="flex-end">
                           <Stack spacing="5" w="full" direction="row" justifyContent="space-between" p="2" borderRadius="40px" bg="navy" style={{paddingLeft: "20px"}}>
-                            <Text fontSize="lg" color={"white"}>200,00 USDC Due</Text>
+                          { usdc ? <Text fontSize="lg" color={"white"}>{`${usdc} USDC Due`}</Text> : <Text fontSize="lg" color={"white"}>{`No USDC Due`}</Text>}
                             <Button size='claim' bg='darkBrown'>Claim</Button>
                           </Stack>
                         </Stack>
@@ -639,7 +651,7 @@ const DashBoard = (props) => {
                         </Stack>
                         <Stack w='3xl' justifyContent="center" alignItems="flex-end">
                           <Stack spacing="5" w="full" direction="row" justifyContent="space-between" p="2" borderRadius="40px" bg="navy" style={{paddingLeft: "20px"}}>
-                            <Text fontSize="lg" color={"white"}>5 TOA's Due</Text>
+                            { numTOAs ? <Text fontSize="lg" color={"white"}>{`${numTOAs} TOA's Due`}</Text> : <Text fontSize="lg" color={"white"}>{`No TOA's Due`}</Text>}
                             <Button size='claim' bg='darkBrown'>Claim</Button>
                           </Stack>
                         </Stack>
@@ -652,7 +664,7 @@ const DashBoard = (props) => {
                         </Stack>
                         <Stack w='3xl' justifyContent="center" alignItems="flex-end">
                           <Stack spacing="5" w="full" direction="row" justifyContent="space-between" p="2" borderRadius="40px" bg="navy" style={{paddingLeft: "20px"}}>
-                            <Text fontSize="lg" color={"white"}>158 00,00 USDC Due</Text>
+                            { usdcPayout ? <Text fontSize="lg" color={"white"}>{`${usdcPayout} USDC Due`}</Text> : <Text fontSize="lg" color={"white"}>{`No USDC Due`}</Text>}
                             <Button size='claim' bg='darkBrown'>Claim</Button>
                           </Stack>
                         </Stack>
