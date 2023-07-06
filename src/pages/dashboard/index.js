@@ -242,7 +242,7 @@ const DashBoard = (props) => {
             }
 
             balTOA = await $.TOA.balanceOf(account)
-            usdcBal = await $.USDC.balanceOf(account)
+            usdcBal = await $.crowdsale.balanceOf(account)
             console.log("Balance: ", balTOA)
             balTOA = balTOA.toNumber()
             usdcBal = toDec(usdcBal._hex, 6, 1)
@@ -274,7 +274,7 @@ const DashBoard = (props) => {
         else {
           console.log("Not Success")
           balTOA = await $.crowdsale.TOABalance(account)
-          usdcBal = await $.USDC.balanceOf(account)
+          usdcBal = await $.crowdsale.balanceOf(account)
           usdcBal = toDec(usdcBal._hex, 6, 1)
           balTOA = balTOA.toNumber()
           setNum(balTOA)
