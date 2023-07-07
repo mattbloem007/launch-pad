@@ -158,7 +158,7 @@ export const RightStyledStack = styled('div')`
     flex-direction: row;
     width: var(--chakra-sizes-lg);
     padding: var(--chakra-space-2);
-    align-items: flex-start;
+    align-items: center;
 
     @media (max-width: 768px) {
       flex-direction: column;

@@ -37,6 +37,8 @@ import ProgressReport from '../static/documents/NetVirPret_ProgressReport_202303
 import PressRelease from '../static/documents/Press Release - NVP ACVV - Net Vir Meisies May 2023.pdf'
 import ProducerGuardian from '../static/documents/ProducerGuardianAgreement_Signed_Redacted_All_Pages.pdf'
 import AuditorEvaluation from '../static/documents/CQKanna Governance Document Auditor.pdf'
+import SCLetter from '../static/documents/Letter on Global Sceletium Supply.pdf'
+
 import { isMobile } from "react-device-detect";
 
 import {
@@ -925,6 +927,7 @@ You may contact Mark via the  Elyseos Telegram group or the Launchpad Channel on
                       <a href={ProgressReport} target="_blank"><Text color={"navy"} fontSize={"lg"} fontWeight="bold" textDecoration="underline">Net Vir Pret Progress Report</Text></a>
                       <a href={PressRelease} target="_blank"><Text color={"navy"} fontSize={"lg"} fontWeight="bold" textDecoration="underline">Net Vir Pret Press Release</Text></a>
                       <a href={Reports} target="_blank"><Text color={"navy"} fontSize={"lg"} fontWeight="bold" textDecoration="underline">Laboratory Audits</Text></a>
+                      <a href={SCLetter} target="_blank"><Text color={"navy"} fontSize={"lg"} fontWeight="bold" textDecoration="underline">Letter from Sceletium Source</Text></a>
 
                     </Stack>
                   </DescStack>

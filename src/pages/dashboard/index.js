@@ -242,12 +242,13 @@ const DashBoard = (props) => {
             }
 
             balTOA = await $.TOA.balanceOf(account)
-            usdcBal = await $.crowdsale.balanceOf(account)
+            usdcBal = await $.crowdsale.toaPrice(account)
             console.log("Balance: ", balTOA)
             balTOA = balTOA.toNumber()
-            usdcBal = toDec(usdcBal._hex, 6, 1)
+            usdcBal = balTOA *  toDec(usdcBal._hex, 6, 1)
+            console.log("usdc", usdcBal)
             setNum(balTOA)
-            setUSDC(usdcBal)
+            setUSDC(0)
             console.log("Balance: ", balTOA)
             console.log("account", account)
             console.log("TOA contract address", $.TOA.address)
@@ -274,11 +275,12 @@ const DashBoard = (props) => {
         else {
           console.log("Not Success")
           balTOA = await $.crowdsale.TOABalance(account)
-          usdcBal = await $.crowdsale.balanceOf(account)
-          usdcBal = toDec(usdcBal._hex, 6, 1)
+          usdcBal = await $.crowdsale.toaPrice(account)
+          usdcBal = balTOA * toDec(usdcBal._hex, 6, 1)
           balTOA = balTOA.toNumber()
           setNum(balTOA)
-          setUSDCPayout(usdcBal)
+          setUSDC(usdcBal)
+          console.log("usdc", usdc)
           console.log("TOABalance: ", balTOA)
           console.log("account", account)
           console.log("TOA contract address", meta.data)
@@ -638,7 +640,7 @@ const DashBoard = (props) => {
                         </Stack>
                         <Stack w='3xl' justifyContent="center" alignItems="flex-end">
                           <Stack spacing="5" w="full" direction="row" justifyContent="space-between" p="2" borderRadius="40px" bg="navy" style={{paddingLeft: "20px"}}>
-                          { usdc ? <Text fontSize="lg" color={"white"}>{`${usdc} USDC Due`}</Text> : <Text fontSize="lg" color={"white"}>{`No USDC Due`}</Text>}
+                          { usdc >= 0 ? <Text fontSize="lg" color={"white"}>{`${usdc} USDC Due`}</Text> : <Text fontSize="lg" color={"white"}>{`No USDC Due`}</Text>}
                             <Button size='claim' bg='darkBrown'>Claim</Button>
                           </Stack>
                         </Stack>
@@ -657,7 +659,7 @@ const DashBoard = (props) => {
                         </Stack>
                       </Stack>
 
-                      <Stack direction="row">
+                    {/**<Stack direction="row">
                         <Stack direction='column' w="full" style={{marginRight: "60px"}}>
                           <Text color='white' textAlign='left' fontSize='lg'>USDC Payout</Text>
                           <Text color='white' textAlign='left' fontSize='sm' fontStyle="italic" style={{marginTop: "0px"}}>If you are a stakeholder due USDC as a payout you can claim it here.</Text>
@@ -668,7 +670,7 @@ const DashBoard = (props) => {
                             <Button size='claim' bg='darkBrown'>Claim</Button>
                           </Stack>
                         </Stack>
-                      </Stack>
+                      </Stack>*/}
                     </Stack>
                   </Stack>
                   {/**<Stack  w="full" direction="column" p="1">
