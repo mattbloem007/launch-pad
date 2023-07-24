@@ -620,7 +620,7 @@ const Project = () => {
                         <AspectRatio margin={"1rem"} w={{base: '353px', sm: '353px', md:'583px'}} h='384px' borderRadius='25px' ratio={16 / 9}>
                           <StyledFrame
                           title='elyseos'
-                          src='https://www.youtube.com/embed/QXDxjXbr9TM'
+                          src='https://www.youtube.com/embed/JkxJvhXsmbI'
                           allowFullScreen
 
                           />
