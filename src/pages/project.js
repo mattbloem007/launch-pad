@@ -658,9 +658,9 @@ const Project = () => {
                             <Text fontSize="sm" color={"white"}>{numPurchased}/{parseInt(numPurchased) + parseInt(available)} Sold</Text>
                           </Stack>
                         </Stack>
-                        <Button size="lg" bg="darkBrown" style={{color: "white"}} onClick={onOpen}>
+                        {/**<Button size="lg" bg="darkBrown" style={{color: "white"}} onClick={onOpen}>
                         Buy Now
-                        </Button>
+                        </Button>*/}
                         <Text textAlign={"center"} flexGrow="2" color={"white"} fontStyle={"italic"}>{Math.trunc(timeLeft)} days Remaining</Text>
                     </BuyNowContainer>
                   </Stack>
@@ -683,9 +683,9 @@ const Project = () => {
                               <Text fontSize="sm" color={"white"}>{numPurchased}/{parseInt(numPurchased) + parseInt(available)} Sold</Text>
                             </Stack>
                           </Stack>
-                          <Button size="lg" bg="darkBrown" onClick={onOpen}>
+                          {/**<Button size="lg" bg="darkBrown" onClick={onOpen}>
                           Buy Now
-                          </Button>
+                          </Button>*/}
                           <Text textAlign={"center"} flexGrow="2" color={"white"} fontStyle={"italic"}>{Math.trunc(timeLeft)} days Remaining</Text>
                       </Container>
                     </Stack>
@@ -749,9 +749,9 @@ const Project = () => {
                             <Text fontSize="sm" color={"white"}>{numPurchased}/{parseInt(numPurchased) + parseInt(available)} Sold</Text>
                           </Stack>
                         </Stack>
-                        <Button size="lg" bg="darkBrown" style={{color: "white"}} onClick={onOpen}>
+                        {/**<Button size="lg" bg="darkBrown" style={{color: "white"}} onClick={onOpen}>
                         Buy Now
-                        </Button>
+                        </Button>*/}
                         <Text textAlign={"center"} flexGrow="2" color={"white"} fontStyle={"italic"}>{Math.trunc(timeLeft)} days Remaining</Text>
                     </BuyNowContainer>
                   </Stack>
@@ -775,9 +775,9 @@ const Project = () => {
                               <Text fontSize="sm" color={"white"}>{numPurchased}/{parseInt(numPurchased) + parseInt(available)} Sold</Text>
                             </Stack>
                           </Stack>
-                          <Button size="lg" bg="darkBrown" onClick={onOpen}>
+                          {/**<Button size="lg" bg="darkBrown" onClick={onOpen}>
                           Buy Now
-                          </Button>
+                          </Button>*/}
                           <Text textAlign={"center"} flexGrow="2" color={"white"} fontStyle={"italic"}>{Math.trunc(timeLeft)} days Remaining</Text>
                       </Container>
                     </Stack>
