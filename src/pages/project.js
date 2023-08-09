@@ -363,8 +363,8 @@ const Project = () => {
       setfundsRaised(funds)
       settoaPrice(price)
       settoaPriceBN(priceBN)
-      setnumPurchased(num)
-      setavailable(avail)
+      setnumPurchased(10)
+      setavailable(72)
     }
      fetchData();
 
@@ -661,7 +661,7 @@ const Project = () => {
                         {/**<Button size="lg" bg="darkBrown" style={{color: "white"}} onClick={onOpen}>
                         Buy Now
                         </Button>*/}
-                        <Text textAlign={"center"} flexGrow="2" color={"white"} fontStyle={"italic"}>{Math.trunc(timeLeft)} days Remaining</Text>
+                        <Text textAlign={"center"} flexGrow="2" color={"white"} fontStyle={"italic"}>25 days Remaining</Text>
                     </BuyNowContainer>
                   </Stack>
                   :
@@ -686,7 +686,7 @@ const Project = () => {
                           {/**<Button size="lg" bg="darkBrown" onClick={onOpen}>
                           Buy Now
                           </Button>*/}
-                          <Text textAlign={"center"} flexGrow="2" color={"white"} fontStyle={"italic"}>{Math.trunc(timeLeft)} days Remaining</Text>
+                          <Text textAlign={"center"} flexGrow="2" color={"white"} fontStyle={"italic"}>25 days Remaining</Text>
                       </Container>
                     </Stack>
                   </Sticky>
@@ -752,7 +752,7 @@ const Project = () => {
                         {/**<Button size="lg" bg="darkBrown" style={{color: "white"}} onClick={onOpen}>
                         Buy Now
                         </Button>*/}
-                        <Text textAlign={"center"} flexGrow="2" color={"white"} fontStyle={"italic"}>{Math.trunc(timeLeft)} days Remaining</Text>
+                        <Text textAlign={"center"} flexGrow="2" color={"white"} fontStyle={"italic"}>25 days Remaining</Text>
                     </BuyNowContainer>
                   </Stack>
                   :
@@ -778,7 +778,7 @@ const Project = () => {
                           {/**<Button size="lg" bg="darkBrown" onClick={onOpen}>
                           Buy Now
                           </Button>*/}
-                          <Text textAlign={"center"} flexGrow="2" color={"white"} fontStyle={"italic"}>{Math.trunc(timeLeft)} days Remaining</Text>
+                          <Text textAlign={"center"} flexGrow="2" color={"white"} fontStyle={"italic"}>25 days Remaining</Text>
                       </Container>
                     </Stack>
                   </Sticky>
