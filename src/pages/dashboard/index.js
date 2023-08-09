@@ -232,7 +232,9 @@ const DashBoard = (props) => {
         let metaData;
         timeTillEnd = timeTillEnd.toNumber()
         console.log("time", timeTillEnd)
-        if (timeTillEnd == 0) {
+        let success = await $.crowdsale.isSuccess()
+        console.log("Success", success)
+        if (timeTillEnd == 0 && success == true) {
           console.log("Is Success")
             let toabal = await $.crowdsale.TOABalance(account)
             toabal = toabal.toNumber()
@@ -274,6 +276,20 @@ const DashBoard = (props) => {
         }
         else {
           console.log("Not Success")
+          balTOA = await $.crowdsale.TOABalance(account)
+          usdcBal = await $.crowdsale.toaPrice(account)
+          usdcBal = balTOA * toDec(usdcBal._hex, 6, 1)
+          balTOA = balTOA.toNumber()
+          setNum(balTOA)
+          setUSDC(usdcBal)
+          console.log("usdc", usdc)
+          console.log("TOABalance: ", balTOA)
+          console.log("account", account)
+          console.log("TOA contract address", meta.data)
+        }
+
+        if (timeTillEnd == 0 && success == false) {
+          console.log("Not Success2")
           balTOA = await $.crowdsale.TOABalance(account)
           usdcBal = await $.crowdsale.toaPrice(account)
           usdcBal = balTOA * toDec(usdcBal._hex, 6, 1)
