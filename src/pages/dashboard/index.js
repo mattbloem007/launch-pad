@@ -160,6 +160,7 @@ const DashBoard = (props) => {
   const [numTOAs, setNum] = useState()
   const [usdc, setUSDC] = useState()
   const [usdcPayout, setUSDCPayout] = useState()
+  const [toaNumbers, setToaNumbers] = useState({numbers: []})
 
   async function updateDelivery() {
     let personName = ""
@@ -262,6 +263,7 @@ const DashBoard = (props) => {
                   console.log("Current ID", currId.toNumber())
                   tokenId.push(currId.toNumber())
                }
+               setToaNumbers({numbers: tokenId})
                let data = []
                for (let i = 0; i < tokenId.length; i++) {
                  metaData = await $.TOA.meta(tokenId[i])
@@ -603,14 +605,16 @@ const DashBoard = (props) => {
                   <TabPanel>
                   {
                     meta.data.length > 0 ?
-                    meta.data.map(met => {
+                    meta.data.map((met, i) => {
+                      console.log("Meta data", met)
+                      console.log("numbers", toaNumbers.numbers)
                       return (
                         <Stack  w="full" direction="column" p="1">
                           <Stack w="full" padding="1.5rem" borderRadius="25px" bg="mush" direction="row" justifyContent="center" alignItems="center">
                             <Image borderRadius='15px' w='84px' h='83px' src={met.image.replace('ipfs://','https://nftupload.infura-ipfs.io/ipfs/')} />
                             <Stack direction='column' style={{marginRight: "60px", cursor: "pointer"}} onClick={onOpen}>
-                              <Text color='white' textAlign='left' fontSize='sm'>{met.name}</Text>
-                              <Text color='white' textAlign='left' fontSize='sm' style={{marginTop: "0px"}}><a target="_blank" href={met.url}>{met.url}</a></Text>
+                              <Text color='white' textAlign='left' fontSize='sm'>{toaNumbers.numbers[i]}</Text>
+                              {/*<Text color='white' textAlign='left' fontSize='sm' style={{marginTop: "0px"}}><a target="_blank" href={met.url}>{met.url}</a></Text>*/}
                             </Stack>
                             <Text color='white' textAlign='left' fontSize='sm'>{met.description}</Text>
                             <Stack flexWrap="wrap" direction="row">
@@ -623,11 +627,11 @@ const DashBoard = (props) => {
                                 </Box>
                               </Stack>
                               <Stack direction="column">
-                                <Box flex={"1 1 calc(100% - 50px)"}>
+                                {/**<Box flex={"1 1 calc(100% - 50px)"}>
                                   <Button size='xs' bg='darkBrown' onClick={() => transferTOA()}>Transfer</Button>
-                                </Box>
+                                </Box>*/}
                                 <Box flex={"0 0 50px"}>
-                                  <Button size='xs' bg='darkBrown'>View in FTM Scan</Button>
+                                  <a href="`https://ftmscan.com/token/0xaaf5da1be157c1f811517f1d0830d8ad022ebd39?a${account}=#inventory`" target="_blank"><Button size='xs' bg='darkBrown'>View in FTM Scan</Button></a>
                                 </Box>
                               </Stack>
                             </Stack>
