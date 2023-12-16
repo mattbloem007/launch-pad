@@ -645,7 +645,7 @@ const Project = () => {
                     <BuyNowContainer centerContent p="3" pt="0" shadow="lg" bg="navy">
                         <Text textAlign="left" w="full" fontSize="5xl" fontWeight="medium" color={"white"} h='95px'>$ {toaPrice*parseInt(numPurchased)}</Text>
                         <Container px="8">
-                          <Text textAlign={"center"} flexGrow="2" fontSize="lg" color={"white"} >Raised of ${toaPrice*(parseInt(numPurchased) + parseInt(available))} Minimum</Text>
+                          <Text textAlign={"center"} flexGrow="2" fontSize="lg" color={"white"} >Raised of $77,500</Text>
                           <Progress bg="lavendar" rounded="3xl" value={progress} colorScheme="progress" marginBottom={"5px"}/>
                         </Container>
                         <Stack spacing="5" w="full" direction="column" alignItems="flex-end" p="2">
@@ -660,8 +660,8 @@ const Project = () => {
                         </Stack>
                         {/**<Button size="lg" bg="darkBrown" style={{color: "white"}} onClick={onOpen}>
                         Buy Now
-                        </Button>*/}
-                        <Text textAlign={"center"} flexGrow="2" color={"white"} fontStyle={"italic"}>{Math.trunc(timeLeft)} days Remaining</Text>
+                        </Button>
+                        <Text textAlign={"center"} flexGrow="2" color={"white"} fontStyle={"italic"}>{Math.trunc(timeLeft)} days Remaining</Text>*/}
                     </BuyNowContainer>
                   </Stack>
                   :
@@ -670,7 +670,7 @@ const Project = () => {
                       <Container centerContent p="3" pt="0" shadow="lg" w="400px" h="385px" borderRadius="25px" bg="navy" style={{position: "relative", bottom: "255px"}}>
                           <Text textAlign="left" w="full" fontSize="5xl" fontWeight="medium" color={"white"} h='95px'>$ {toaPrice*parseInt(numPurchased)}</Text>
                           <Container px="8">
-                            <Text textAlign={"center"} flexGrow="2" fontSize="lg" color={"white"} >Raised of ${toaPrice*(parseInt(numPurchased) + parseInt(available))} Minimum</Text>
+                            <Text textAlign={"center"} flexGrow="2" fontSize="lg" color={"white"} >Raised of $77,500</Text>
                             <Progress bg="lavendar" rounded="3xl" value={progress} colorScheme="progress" marginBottom={"5px"}/>
                           </Container>
                           <Stack spacing="5" w="full" direction="column" alignItems="flex-end" p="2">
@@ -685,8 +685,8 @@ const Project = () => {
                           </Stack>
                           {/**<Button size="lg" bg="darkBrown" onClick={onOpen}>
                           Buy Now
-                          </Button>*/}
-                          <Text textAlign={"center"} flexGrow="2" color={"white"} fontStyle={"italic"}>{Math.trunc(timeLeft)} days Remaining</Text>
+                          </Button>
+                          <Text textAlign={"center"} flexGrow="2" color={"white"} fontStyle={"italic"}>{Math.trunc(timeLeft)} days Remaining</Text>*/}
                       </Container>
                     </Stack>
                   </Sticky>
@@ -736,7 +736,7 @@ const Project = () => {
                     <BuyNowContainer centerContent p="3" pt="0" shadow="lg"bg="navy">
                         <Text textAlign="left" w="full" fontSize="5xl" fontWeight="medium" color={"white"} h='95px'>$ {toaPrice*parseInt(numPurchased)}</Text>
                         <Container px="8">
-                          <Text textAlign={"center"} flexGrow="2" fontSize="lg" color={"white"} >Raised of ${toaPrice*(parseInt(numPurchased) + parseInt(available))} Minimum</Text>
+                          <Text textAlign={"center"} flexGrow="2" fontSize="lg" color={"white"} >Raised of $77,500</Text>
                           <Progress bg="lavendar" rounded="3xl" value={progress} colorScheme="progress" marginBottom={"5px"}/>
                         </Container>
                         <Stack spacing="5" w="full" direction="column" alignItems="flex-end" p="2">
@@ -751,8 +751,9 @@ const Project = () => {
                         </Stack>
                         {/**<Button size="lg" bg="darkBrown" style={{color: "white"}} onClick={onOpen}>
                         Buy Now
-                        </Button>*/}
+                        </Button>
                         <Text textAlign={"center"} flexGrow="2" color={"white"} fontStyle={"italic"}>{Math.trunc(timeLeft)} days Remaining</Text>
+                        */}
                     </BuyNowContainer>
                   </Stack>
                   :
@@ -762,7 +763,7 @@ const Project = () => {
                       <Container centerContent p="3" pt="0" shadow="lg" w="400px" h="385px" borderRadius="25px" bg="navy" style={{position: "relative", bottom: "255px"}}>
                           <Text textAlign="left" w="full" fontSize="5xl" fontWeight="medium" color={"white"} h='95px'>$ {toaPrice*parseInt(numPurchased)}</Text>
                           <Container px="8">
-                            <Text textAlign={"center"} flexGrow="2" fontSize="lg" color={"white"} >Raised of ${toaPrice*(parseInt(numPurchased) + parseInt(available))} Minimum</Text>
+                            <Text textAlign={"center"} flexGrow="2" fontSize="lg" color={"white"} >Raised of $77,500</Text>
                             <Progress bg="lavendar" rounded="3xl" value={progress} colorScheme="progress" marginBottom={"5px"}/>
                           </Container>
                           <Stack spacing="5" w="full" direction="column" alignItems="flex-end" p="2">
@@ -777,8 +778,9 @@ const Project = () => {
                           </Stack>
                           {/**<Button size="lg" bg="darkBrown" onClick={onOpen}>
                           Buy Now
-                          </Button>*/}
+                          </Button>
                           <Text textAlign={"center"} flexGrow="2" color={"white"} fontStyle={"italic"}>{Math.trunc(timeLeft)} days Remaining</Text>
+                          */}
                       </Container>
                     </Stack>
                   </Sticky>

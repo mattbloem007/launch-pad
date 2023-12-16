@@ -499,7 +499,7 @@ const DashBoard = (props) => {
                         <Button size='xs' bg='darkBrown'>Transfer</Button>
                       </Box>
                       <Box flex={"0 0 50px"}>
-                        <Button size='xs' bg='darkBrown'>View in FTM Scan</Button>
+                        <a href={`https://ftmscan.com/token/0xaaf5da1be157c1f811517f1d0830d8ad022ebd39?a${account}=#inventory`} target="_blank"><Button size='xs' bg='darkBrown'>View in FTM Scan</Button></a>
                       </Box>
                     </Stack>
                   </Stack>
@@ -638,7 +638,7 @@ const DashBoard = (props) => {
                         <Stack  w="full" direction="column" p="1">
                           <Stack w="full" padding="1.5rem" borderRadius="25px" bg="mush" direction="row" justifyContent="center" alignItems="center">
                             <Image borderRadius='15px' w='84px' h='83px' src={met.image.replace('ipfs://','https://nftupload.infura-ipfs.io/ipfs/')} />
-                            <Stack direction='column' style={{marginRight: "60px", cursor: "pointer"}} onClick={onOpen}>
+                            <Stack direction='column' style={{cursor: "pointer"}} onClick={onOpen}>
                               <Text color='white' textAlign='left' fontSize='sm'>{toaNumbers.numbers[i]}</Text>
                               {/*<Text color='white' textAlign='left' fontSize='sm' style={{marginTop: "0px"}}><a target="_blank" href={met.url}>{met.url}</a></Text>*/}
                             </Stack>
@@ -652,7 +652,7 @@ const DashBoard = (props) => {
                                   <Link to='/project'><Button size='xs' bg='darkBrown'>View Project</Button></Link>
                                 </Box>
                                 <Box flex={"0 0 50px"}>
-                                  <a href="`https://ftmscan.com/token/0xaaf5da1be157c1f811517f1d0830d8ad022ebd39?a${account}=#inventory`" target="_blank"><Button size='xs' bg='darkBrown'>View in FTM Scan</Button></a>
+                                  <a href={`https://ftmscan.com/token/0xaaf5da1be157c1f811517f1d0830d8ad022ebd39?a${account}=#inventory`} target="_blank"><Button size='xs' bg='darkBrown'>View in FTM Scan</Button></a>
                                 </Box>
                               </Stack>
                               {/**<Stack direction="column">
