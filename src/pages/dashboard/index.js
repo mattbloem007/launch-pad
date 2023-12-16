@@ -293,7 +293,11 @@ const DashBoard = (props) => {
                  setMeta({data: data})
                  console.log("META Array", meta.data)
                }
+               setHasLoaded(true)
 
+            }
+            else {
+              setNoData(true)
             }
 
         }
@@ -305,6 +309,8 @@ const DashBoard = (props) => {
           balTOA = balTOA.toNumber()
           setNum(balTOA)
           setUSDC(usdcBal)
+          setHasLoaded(true)
+          setNoData(true)
           console.log("usdc", usdc)
           console.log("TOABalance: ", balTOA)
           console.log("account", account)
@@ -319,6 +325,8 @@ const DashBoard = (props) => {
           balTOA = balTOA.toNumber()
           setNum(balTOA)
           setUSDC(usdcBal)
+          setHasLoaded(true)
+          setNoData(true)
           console.log("usdc", usdc)
           console.log("TOABalance: ", balTOA)
           console.log("account", account)
@@ -363,11 +371,6 @@ const DashBoard = (props) => {
     }
     if (active) {
        fetchData()
-      setHasLoaded(true);
-      console.log(meta.data.length)
-      if (meta.data.length == 0) {
-        setNoData(true)
-      }
     }
   }, [updated, active])
 
@@ -669,6 +672,9 @@ const DashBoard = (props) => {
                         </Stack>
                       )
                     })
+                    :
+                    hasLoaded && noData ?
+                    <Text color='navy' textAlign='left' fontSize='sm'>No TOA's helds</Text>
                     :
                     <GridSpinner
                       height="80"
