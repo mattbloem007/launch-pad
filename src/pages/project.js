@@ -359,12 +359,12 @@ const Project = () => {
       console.log("value", val)
 
       setProgress(val)
-      settimeLeft(25)
+      settimeLeft(0)
       setfundsRaised(funds)
       settoaPrice(price)
       settoaPriceBN(priceBN)
-      setnumPurchased(10)
-      setavailable(62)
+      setnumPurchased(35)
+      setavailable(37)
     }
      fetchData();
 
@@ -643,7 +643,7 @@ const Project = () => {
                   isMobile ?
                   <Stack direction="column" alignItems="center">
                     <BuyNowContainer centerContent p="3" pt="0" shadow="lg" bg="navy">
-                        <Text textAlign="left" w="full" fontSize="5xl" fontWeight="medium" color={"white"} h='95px'>$ {fundsRaised}</Text>
+                        <Text textAlign="left" w="full" fontSize="5xl" fontWeight="medium" color={"white"} h='95px'>$ {toaPrice*parseInt(numPurchased)}</Text>
                         <Container px="8">
                           <Text textAlign={"center"} flexGrow="2" fontSize="lg" color={"white"} >Raised of ${toaPrice*(parseInt(numPurchased) + parseInt(available))} Minimum</Text>
                           <Progress bg="lavendar" rounded="3xl" value={progress} colorScheme="progress" marginBottom={"5px"}/>
@@ -668,7 +668,7 @@ const Project = () => {
                   <Sticky enabled={true} top={0} bottomBoundary="#body">
                     <Stack direction="column" alignItems="center">
                       <Container centerContent p="3" pt="0" shadow="lg" w="400px" h="385px" borderRadius="25px" bg="navy" style={{position: "relative", bottom: "255px"}}>
-                          <Text textAlign="left" w="full" fontSize="5xl" fontWeight="medium" color={"white"} h='95px'>$ {fundsRaised}</Text>
+                          <Text textAlign="left" w="full" fontSize="5xl" fontWeight="medium" color={"white"} h='95px'>$ {toaPrice*parseInt(numPurchased)}</Text>
                           <Container px="8">
                             <Text textAlign={"center"} flexGrow="2" fontSize="lg" color={"white"} >Raised of ${toaPrice*(parseInt(numPurchased) + parseInt(available))} Minimum</Text>
                             <Progress bg="lavendar" rounded="3xl" value={progress} colorScheme="progress" marginBottom={"5px"}/>
@@ -734,7 +734,7 @@ const Project = () => {
                   <Stack direction="column" alignItems="center">
                     <CrystalImage src={crystal} />
                     <BuyNowContainer centerContent p="3" pt="0" shadow="lg"bg="navy">
-                        <Text textAlign="left" w="full" fontSize="5xl" fontWeight="medium" color={"white"} h='95px'>$ {fundsRaised}</Text>
+                        <Text textAlign="left" w="full" fontSize="5xl" fontWeight="medium" color={"white"} h='95px'>$ {toaPrice*parseInt(numPurchased)}</Text>
                         <Container px="8">
                           <Text textAlign={"center"} flexGrow="2" fontSize="lg" color={"white"} >Raised of ${toaPrice*(parseInt(numPurchased) + parseInt(available))} Minimum</Text>
                           <Progress bg="lavendar" rounded="3xl" value={progress} colorScheme="progress" marginBottom={"5px"}/>
@@ -760,7 +760,7 @@ const Project = () => {
                     <Stack direction="column" alignItems="center">
                       <CrystalImage src={crystal} />
                       <Container centerContent p="3" pt="0" shadow="lg" w="400px" h="385px" borderRadius="25px" bg="navy" style={{position: "relative", bottom: "255px"}}>
-                          <Text textAlign="left" w="full" fontSize="5xl" fontWeight="medium" color={"white"} h='95px'>$ {fundsRaised}</Text>
+                          <Text textAlign="left" w="full" fontSize="5xl" fontWeight="medium" color={"white"} h='95px'>$ {toaPrice*parseInt(numPurchased)}</Text>
                           <Container px="8">
                             <Text textAlign={"center"} flexGrow="2" fontSize="lg" color={"white"} >Raised of ${toaPrice*(parseInt(numPurchased) + parseInt(available))} Minimum</Text>
                             <Progress bg="lavendar" rounded="3xl" value={progress} colorScheme="progress" marginBottom={"5px"}/>

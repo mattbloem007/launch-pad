@@ -17,6 +17,8 @@ import 'react-toastify/dist/ReactToastify.css';
 import { useWeb3React } from "@web3-react/core"
 import $ from 'lib/crowdsale.js'
 import { toDec } from 'lib/bn.js'
+import { Grid as GridSpinner } from  'react-loader-spinner'
+
 import {
   Box,
   Container,
@@ -161,6 +163,9 @@ const DashBoard = (props) => {
   const [usdc, setUSDC] = useState()
   const [usdcPayout, setUSDCPayout] = useState()
   const [toaNumbers, setToaNumbers] = useState({numbers: []})
+  const [hasLoaded, setHasLoaded] = useState(false);
+  const [noData, setNoData] = useState(false);
+
 
   async function updateDelivery() {
     let personName = ""
@@ -210,6 +215,22 @@ const DashBoard = (props) => {
     }
 
   }
+
+  function TOALoading(){
+    return (
+      <GridSpinner
+        height="80"
+        width="80"
+        color="#4fa94d"
+        ariaLabel="grid-loading"
+        radius="12.5"
+        wrapperStyle={{}}
+        wrapperClass=""
+        visible={true}
+      />
+    )
+  }
+
 
   //  useEffect(async () => {
 
@@ -341,7 +362,12 @@ const DashBoard = (props) => {
       onEditClose()
     }
     if (active) {
-      fetchData()
+       fetchData()
+      setHasLoaded(true);
+      console.log(meta.data.length)
+      if (meta.data.length == 0) {
+        setNoData(true)
+      }
     }
   }, [updated, active])
 
@@ -604,7 +630,7 @@ const DashBoard = (props) => {
                 <TabPanels>
                   <TabPanel>
                   {
-                    meta.data.length > 0 ?
+                    hasLoaded && meta.data.length > 0 ?
                     meta.data.map((met, i) => {
                       console.log("Meta data", met)
                       console.log("numbers", toaNumbers.numbers)
@@ -625,26 +651,35 @@ const DashBoard = (props) => {
                                 <Box flex={"0 0 50px"}>
                                   <Link to='/project'><Button size='xs' bg='darkBrown'>View Project</Button></Link>
                                 </Box>
-                              </Stack>
-                              <Stack direction="column">
-                                {/**<Box flex={"1 1 calc(100% - 50px)"}>
-                                  <Button size='xs' bg='darkBrown' onClick={() => transferTOA()}>Transfer</Button>
-                                </Box>*/}
                                 <Box flex={"0 0 50px"}>
                                   <a href="`https://ftmscan.com/token/0xaaf5da1be157c1f811517f1d0830d8ad022ebd39?a${account}=#inventory`" target="_blank"><Button size='xs' bg='darkBrown'>View in FTM Scan</Button></a>
                                 </Box>
                               </Stack>
+                              {/**<Stack direction="column">
+                                <Box flex={"1 1 calc(100% - 50px)"}>
+                                  <Button size='xs' bg='darkBrown' onClick={() => transferTOA()}>Transfer</Button>
+                                </Box>
+                                <Box flex={"0 0 50px"}>
+                                  <a href="`https://ftmscan.com/token/0xaaf5da1be157c1f811517f1d0830d8ad022ebd39?a${account}=#inventory`" target="_blank"><Button size='xs' bg='darkBrown'>View in FTM Scan</Button></a>
+                                </Box>
+                              </Stack>*/}
                             </Stack>
                             <Button size='link' bg='darkBrown' onClick={onDeliveryOpen}>Delivery</Button>
                           </Stack>
                         </Stack>
                       )
                     })
-
                     :
-                    <Stack  w="full" direction="column" p="1">
-                        <Text color='navy' textAlign='left' fontSize='sm'>No TOAs Held</Text>
-                    </Stack>
+                    <GridSpinner
+                      height="80"
+                      width="80"
+                      color="#4fa94d"
+                      ariaLabel="grid-loading"
+                      radius="12.5"
+                      wrapperStyle={{}}
+                      wrapperClass=""
+                      visible={true}
+                    />
                   }
 
 
