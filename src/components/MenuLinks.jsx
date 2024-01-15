@@ -189,7 +189,13 @@ const MenuLinks = ({ open, toggle }) => {
                    HOME
 
               </Link>
-                <Link
+              <Link
+                  activeClassName="Link--is-active"
+                  to="/governance"
+                  style={{fontSize: "16px"}}>
+                  GOVERNANCE
+              </Link>
+                {/**<Link
                     activeClassName="Link--is-active"
                     to="https://www.elyseos.com/"
                     style={{fontSize: "16px"}}>
@@ -200,7 +206,7 @@ const MenuLinks = ({ open, toggle }) => {
                     to="https://elys.money/"
                     style={{fontSize: "16px"}}>
                     ELYS TOKEN
-                </Link>
+                </Link>*/}
               </HeaderLinks>
             </StyledStack>
           <LogoStyledStack>
@@ -210,12 +216,6 @@ const MenuLinks = ({ open, toggle }) => {
           </LogoStyledStack>
               <RightStyledStack>
               <HeaderLinks>
-                  <Link
-                      activeClassName="Link--is-active"
-                      to="/governance"
-                      style={{fontSize: "16px"}}>
-                      GOVERNANCE
-                  </Link>
                   <Link
                       activeClassName="Link--is-active"
                       to="/dashboard"

@@ -277,7 +277,7 @@ const RenderBody = () => {
             </AspectRatio>
             <Heading> Statistics </Heading>
             <Container centerContent p={{base: '24', sm: '24', md: "3"}} pt="0" bg={"mush"} rounded="3xl" shadow="lg" maxWidth={{ base: '25%', sm: '100%', md: '1156px' }} h="232px" justifyContent="space-evenly">
-              <Text textAlign={"center"} fontSize={{base: 'md', sm: 'md', md: 'xl'}} color="white" style={{position: "relative", top: "40px"}}>Tale of TOAs</Text>
+              <Text textAlign={"center"} fontSize={{base: 'md', sm: 'md', md: 'xl'}} color="white" style={{position: "relative", top: "40px"}}>Sale of TOAs</Text>
               <Stack direction="row" alignItems="center" marginRight={'122px'} spacing="6" h='228px' width={{base: '800px', sm: '800px', md: '100%'}}>
                   <Image w='300px' h='300px' src={tree} style={{position: 'relative', left: '114px', bottom: '55px', zIndex: '0'}}/>
                   <Stack direction="column" justifyContent="center" borderRadius='33px' h={{base: '50%', sm: '50%', md: '128px'}} w={{base: '15%', sm: '15%',  md:'188px'}} bg='darkBrown' style={{position: "relative"}}>
