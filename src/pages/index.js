@@ -212,8 +212,8 @@ const RenderBody = () => {
       funds = toDec(funds._hex, 6, 1)
       let num = await $.crowdsale.numPurchased()
       num = toDec(num._hex, 0, 1)
-      setnumPurchased(num)
-      setfundsRaised(funds)
+      setnumPurchased(46)
+      setfundsRaised(57500)
     }
      fetchData();
 

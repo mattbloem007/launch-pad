@@ -355,13 +355,13 @@ const Project = () => {
       let daysRemaining = ti/(1000 * 60 * 60 * 24)
       let total = price*(parseInt(num) + parseInt(avail))
       console.log("total value", total, funds)
-      let val = (funds/total)*100
+      let val = (57500/77500)*100
       console.log("value", val)
 
       setProgress(val)
       settimeLeft(0)
       setfundsRaised(funds)
-      settoaPrice(price)
+      settoaPrice(2000)
       settoaPriceBN(priceBN)
       setnumPurchased(46)
       setavailable(37)
@@ -643,7 +643,7 @@ const Project = () => {
                   isMobile ?
                   <Stack direction="column" alignItems="center">
                     <BuyNowContainer centerContent p="3" pt="0" shadow="lg" bg="navy">
-                        <Text textAlign="left" w="full" fontSize="5xl" fontWeight="medium" color={"white"} h='95px'>$ {toaPrice*parseInt(numPurchased)}</Text>
+                        <Text textAlign="left" w="full" fontSize="5xl" fontWeight="medium" color={"white"} h='95px'>$ 57 500</Text>
                         <Container px="8">
                           <Text textAlign={"center"} flexGrow="2" fontSize="lg" color={"white"} >Raised of $77,500</Text>
                           <Progress bg="lavendar" rounded="3xl" value={progress} colorScheme="progress" marginBottom={"5px"}/>
@@ -655,7 +655,7 @@ const Project = () => {
                           </Stack>
                           <Stack spacing="5" w="full" direction="row" justifyContent="space-between" p="2" borderRadius="25px" bg="darkBrown">
                             <Text fontSize="sm" color={"white"}>TOA's left</Text>
-                            <Text fontSize="sm" color={"white"}>{numPurchased}/{parseInt(numPurchased) + parseInt(available)} Sold</Text>
+                            <Text fontSize="sm" color={"white"}>{numPurchased}/56 Sold</Text>
                           </Stack>
                         </Stack>
                         {/**<Button size="lg" bg="darkBrown" style={{color: "white"}} onClick={onOpen}>
@@ -668,7 +668,7 @@ const Project = () => {
                   <Sticky enabled={true} top={0} bottomBoundary="#body">
                     <Stack direction="column" alignItems="center">
                       <Container centerContent p="3" pt="0" shadow="lg" w="400px" h="385px" borderRadius="25px" bg="navy" style={{position: "relative", bottom: "255px"}}>
-                          <Text textAlign="left" w="full" fontSize="5xl" fontWeight="medium" color={"white"} h='95px'>$ {toaPrice*parseInt(numPurchased)}</Text>
+                          <Text textAlign="left" w="full" fontSize="5xl" fontWeight="medium" color={"white"} h='95px'>$ 57 500</Text>
                           <Container px="8">
                             <Text textAlign={"center"} flexGrow="2" fontSize="lg" color={"white"} >Raised of $77,500</Text>
                             <Progress bg="lavendar" rounded="3xl" value={progress} colorScheme="progress" marginBottom={"5px"}/>
@@ -680,7 +680,7 @@ const Project = () => {
                             </Stack>
                             <Stack spacing="5" w="full" direction="row" justifyContent="space-between" p="2" borderRadius="25px" bg="darkBrown">
                               <Text fontSize="sm" color={"white"}>TOA's left</Text>
-                              <Text fontSize="sm" color={"white"}>{numPurchased}/{parseInt(numPurchased) + parseInt(available)} Sold</Text>
+                              <Text fontSize="sm" color={"white"}>{numPurchased}/56 Sold</Text>
                             </Stack>
                           </Stack>
                           {/**<Button size="lg" bg="darkBrown" onClick={onOpen}>
@@ -734,7 +734,7 @@ const Project = () => {
                   <Stack direction="column" alignItems="center">
                     <CrystalImage src={crystal} />
                     <BuyNowContainer centerContent p="3" pt="0" shadow="lg"bg="navy">
-                        <Text textAlign="left" w="full" fontSize="5xl" fontWeight="medium" color={"white"} h='95px'>$ {toaPrice*parseInt(numPurchased)}</Text>
+                        <Text textAlign="left" w="full" fontSize="5xl" fontWeight="medium" color={"white"} h='95px'>$ 57 500</Text>
                         <Container px="8">
                           <Text textAlign={"center"} flexGrow="2" fontSize="lg" color={"white"} >Raised of $77,500</Text>
                           <Progress bg="lavendar" rounded="3xl" value={progress} colorScheme="progress" marginBottom={"5px"}/>
@@ -746,7 +746,7 @@ const Project = () => {
                           </Stack>
                           <Stack spacing="5" w="full" direction="row" justifyContent="space-between" p="2" borderRadius="25px" bg="darkBrown">
                             <Text fontSize="sm" color={"white"}>TOA's left</Text>
-                            <Text fontSize="sm" color={"white"}>{numPurchased}/{parseInt(numPurchased) + parseInt(available)} Sold</Text>
+                            <Text fontSize="sm" color={"white"}>{numPurchased}/56 Sold</Text>
                           </Stack>
                         </Stack>
                         {/**<Button size="lg" bg="darkBrown" style={{color: "white"}} onClick={onOpen}>
@@ -761,7 +761,7 @@ const Project = () => {
                     <Stack direction="column" alignItems="center">
                       <CrystalImage src={crystal} />
                       <Container centerContent p="3" pt="0" shadow="lg" w="400px" h="385px" borderRadius="25px" bg="navy" style={{position: "relative", bottom: "255px"}}>
-                          <Text textAlign="left" w="full" fontSize="5xl" fontWeight="medium" color={"white"} h='95px'>$ {toaPrice*parseInt(numPurchased)}</Text>
+                          <Text textAlign="left" w="full" fontSize="5xl" fontWeight="medium" color={"white"} h='95px'>$ 57 500</Text>
                           <Container px="8">
                             <Text textAlign={"center"} flexGrow="2" fontSize="lg" color={"white"} >Raised of $77,500</Text>
                             <Progress bg="lavendar" rounded="3xl" value={progress} colorScheme="progress" marginBottom={"5px"}/>
@@ -773,7 +773,7 @@ const Project = () => {
                             </Stack>
                             <Stack spacing="5" w="full" direction="row" justifyContent="space-between" p="2" borderRadius="25px" bg="darkBrown">
                               <Text fontSize="sm" color={"white"}>TOA's left</Text>
-                              <Text fontSize="sm" color={"white"}>{numPurchased}/{parseInt(numPurchased) + parseInt(available)} Sold</Text>
+                              <Text fontSize="sm" color={"white"}>{numPurchased}/56 Sold</Text>
                             </Stack>
                           </Stack>
                           {/**<Button size="lg" bg="darkBrown" onClick={onOpen}>
