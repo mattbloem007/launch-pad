@@ -363,7 +363,7 @@ const Project = () => {
       setfundsRaised(funds)
       settoaPrice(price)
       settoaPriceBN(priceBN)
-      setnumPurchased(35)
+      setnumPurchased(46)
       setavailable(37)
     }
      fetchData();
