@@ -830,7 +830,7 @@ const Project = () => {
                         </Stack>
                       <Heading id="keypoints"> Keypoints </Heading><br/>
                         <UnorderedList color={"navy"} textAlign={"left"}>
-                          <ListItem>CQKanna TOAs offers the  potential to get high quality Sceletium at $12.50 per/kg a considerable discount from the current wholesale price of $40-$70 per kg</ListItem><br/>
+                          <ListItem>CQKanna TOAs offers the  potential to get high quality Sceletium at $20 per/kg a considerable discount from the current wholesale price of $40-$70 per kg</ListItem><br/>
                           <ListItem>The TOA can also be sold on should you no longer wish to hold the rights to receive the offtake</ListItem><br/>
                           <ListItem>The Sales agent will sell your product and send you money (less commission) should you wish to continue to hold the TOA but not wish to get any sceletium</ListItem><br/>
                           <ListItem>Risks of the Producer failing to deliver are mitigated by the role of the Guardian who has a legal contractual relationship with the Producer.</ListItem><br/>
